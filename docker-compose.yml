@@ -1,0 +1,19 @@
+version: "3.9"
+
+networks:
+  traefik_proxy:
+    external: true
+
+services:
+  site:
+    build: .
+    image: my-portfolio:local
+    container_name: my-portfolio
+    restart: unless-stopped
+    networks: [traefik_proxy]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.my-portfolio.rule=Host(`mihaylov.io`)"
+      - "traefik.http.routers.my-portfolio.entrypoints=websecure"
+      - "traefik.http.routers.my-portfolio.tls=true"
+      - "traefik.http.services.my-portfolio.loadbalancer.server.port=80"
