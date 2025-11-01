@@ -1,5 +1,3 @@
-version: "3.9"
-
 networks:
   traefik_proxy:
     external: true
