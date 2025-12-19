@@ -1,41 +1,76 @@
-# Nuxt Starter Template
+# Mihail Mihaylov - Portfolio Website
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+A modern, performant portfolio website built with Nuxt 4, showcasing my work as a Full-Stack Developer & Automation Engineer.
 
-Use this template to get started with [Nuxt UI](https://ui.nuxt.com) quickly.
+🌐 **Live Site:** [mihaylov.io](https://mihaylov.io)
 
-- [Live demo](https://starter-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+## 🚀 Features
 
-<a href="https://starter-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-    <img alt="Nuxt Starter Template" src="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-  </picture>
-</a>
+- **Static Site Generation (SSG)** - Pre-rendered at build time for optimal performance
+- **Dark/Light Mode** - System preference detection with manual toggle
+- **Responsive Design** - Mobile-first approach with smooth animations
+- **SEO Optimized** - Complete meta tags, structured data (JSON-LD), and Open Graph support
+- **Performance Optimized** - Font preloading, optimized CSS loading, and minimal JavaScript
+- **Modern UI** - Built with Nuxt UI and Tailwind CSS
 
-> The starter template for Vue is on https://github.com/nuxt-ui-templates/starter-vue.
+## 🛠️ Tech Stack
 
-## Quick Start
+- **Framework:** [Nuxt 4](https://nuxt.com/)
+- **UI Library:** [Nuxt UI](https://ui.nuxt.com/)
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **Package Manager:** pnpm
 
-```bash [Terminal]
-npm create nuxt@latest -- -t github:nuxt-ui-templates/starter
+## 📁 Project Structure
+
+```
+app/
+├── assets/
+│   └── css/
+│       └── main.css          # Global styles and theme configuration
+├── components/
+│   ├── AboutSection.vue      # About section component
+│   ├── AppButton.vue         # Reusable button component
+│   ├── AppFooter.vue         # Footer component
+│   ├── AppHeader.vue         # Navigation header
+│   ├── ContactSection.vue    # Contact form section
+│   ├── HeroSection.vue       # Hero/landing section
+│   ├── ProjectCard.vue       # Project card component
+│   ├── ProjectSection.vue    # Projects showcase section
+│   ├── SectionDivider.vue    # Section divider component
+│   ├── SkillBadge.vue        # Skill badge component
+│   └── ThemeToggle.vue       # Dark/light mode toggle
+├── composables/
+│   └── useProjects.ts        # Projects data composable
+├── layouts/
+│   └── default.vue           # Default layout
+└── pages/
+    └── index.vue             # Home page
 ```
 
-## Deploy your own
+## 🚦 Getting Started
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=starter&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fstarter&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fstarter-dark.png&demo-url=https%3A%2F%2Fstarter-template.nuxt.dev%2F&demo-title=Nuxt%20Starter%20Template&demo-description=A%20minimal%20template%20to%20get%20started%20with%20Nuxt%20UI.)
+### Prerequisites
 
-## Setup
+- Node.js 18+
+- pnpm 10.23.0+ (or npm/yarn)
 
-Make sure to install the dependencies:
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd my-portfolio
+```
+
+2. Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-## Development Server
+## 💻 Development
 
 Start the development server on `http://localhost:3000`:
 
@@ -43,18 +78,85 @@ Start the development server on `http://localhost:3000`:
 pnpm dev
 ```
 
-## Production
+## 🏗️ Building for Production
 
-Build the application for production:
+Build the application for production (generates static files):
 
 ```bash
 pnpm build
 ```
 
-Locally preview production build:
+The static site will be generated in `.output/public/` directory.
+
+Preview the production build locally:
 
 ```bash
 pnpm preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 🚢 Deployment
+
+This site is configured for static site generation (SSG), making it deployable to any static hosting service:
+
+- **Vercel** - Automatic deployments with zero configuration
+- **Netlify** - Drag and drop the `.output/public` folder
+- **GitHub Pages** - Deploy the static files
+- **Cloudflare Pages** - Connect your repository
+- **Any CDN** - Serve the static files from `.output/public/`
+
+### Docker Deployment
+
+The project includes Docker configuration for containerized deployment:
+
+```bash
+docker build -t portfolio .
+docker run -p 80:80 portfolio
+```
+
+## ⚡ Performance Optimizations
+
+- **Static Site Generation** - All pages are pre-rendered at build time
+- **Font Optimization** - Google Fonts loaded via preconnect and link tags (not @import)
+- **CSS Optimization** - Critical styles loaded inline to prevent FOUC
+- **Route Prerendering** - All routes automatically discovered and prerendered
+
+## 📝 Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build
+- `pnpm lint` - Run ESLint
+- `pnpm typecheck` - Run TypeScript type checking
+
+## 🎨 Customization
+
+### Theme Colors
+
+Edit `app/assets/css/main.css` to customize the color palette:
+
+- Primary colors: Warm Beige/Peach (#ECCAA4)
+- Secondary colors: Bright Blue (#0A74FF)
+
+### Fonts
+
+Fonts are configured in `nuxt.config.ts` and `app/assets/css/main.css`:
+
+- Primary font: Teachers
+- Secondary font: Cantarell
+
+## 📄 License
+
+This project is private and proprietary.
+
+## 👤 Author
+
+**Mihail Mihaylov**
+
+- Website: [mihaylov.io](https://mihaylov.io)
+- Email: m.mihaylov94@gmail.com
+- LinkedIn: [mihail-mihaylov](https://www.linkedin.com/in/mihail-mihaylov)
+- GitHub: [mihaylov-dev](https://github.com/mihaylov-dev)
+
+---
+
+Built with ❤️ using Nuxt 4
