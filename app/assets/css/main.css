@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Teachers", sans-serif;
+  --font-serif: "Cantarell", sans-serif;
+  --font-primary: "Teachers", sans-serif;
+  --font-secondary: "Cantarell", sans-serif;
+
+  /* Primary Color Palette - #ECCAA4 (Warm Beige/Peach) */
+  --color-primary-50: #fdf8f4;
+  --color-primary-100: #faf0e8;
+  --color-primary-200: #f5e0d1;
+  --color-primary-300: #f0d0ba;
+  --color-primary-400: #eccaa4;
+  --color-primary-500: #e4b88a;
+  --color-primary-600: #d9a570;
+  --color-primary-700: #c89056;
+  --color-primary-800: #b37c3c;
+  --color-primary-900: #9d6822;
+  --color-primary-950: #7a4f15;
+
+  /* Secondary Color Palette - #0A74FF (Bright Blue) */
+  --color-secondary-50: #e6f2ff;
+  --color-secondary-100: #cce5ff;
+  --color-secondary-200: #99cbff;
+  --color-secondary-300: #66b1ff;
+  --color-secondary-400: #3397ff;
+  --color-secondary-500: #0a74ff;
+  --color-secondary-600: #085ee6;
+  --color-secondary-700: #0648cc;
+  --color-secondary-800: #0532b3;
+  --color-secondary-900: #031c99;
+  --color-secondary-950: #021080;
+}
