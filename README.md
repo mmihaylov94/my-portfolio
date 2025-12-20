@@ -134,8 +134,10 @@ docker run -p 80:80 portfolio
 
 Edit `app/assets/css/main.css` to customize the color palette:
 
-- Primary colors: Warm Beige/Peach (#ECCAA4)
-- Secondary colors: Bright Blue (#0A74FF)
+- Primary colors: Warm Beige/Peach (#ECCAA4, #e4b88a)
+- Secondary colors: Warm Teal-Blue (#7BB5CC)
+
+The color palette uses Tailwind CSS v4's `@theme` directive for theme configuration. Both primary and secondary colors have full 50-950 shade palettes for consistent theming across light and dark modes.
 
 ### Fonts
 
@@ -143,6 +145,14 @@ Fonts are configured in `nuxt.config.ts` and `app/assets/css/main.css`:
 
 - Primary font: Teachers
 - Secondary font: Cantarell
+
+### Logo
+
+The site uses an SVG logo (`public/logo.svg`) that:
+
+- Automatically adapts to light/dark mode using CSS media queries
+- Serves as the favicon with built-in dark mode support
+- Uses the primary color palette for consistent branding
 
 ## 📄 License
 
