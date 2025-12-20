@@ -1,62 +1,62 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxt/eslint", "@nuxt/ui"],
+	modules: ["@nuxt/eslint", "@nuxt/ui"],
 
-  devtools: {
-    enabled: true,
-  },
+	devtools: {
+		enabled: true,
+	},
 
-  css: ["~/assets/css/main.css"],
+	css: ["~/assets/css/main.css"],
 
-  app: {
-    head: {
-      link: [
-        // Preconnect to Google Fonts for faster loading
-        {
-          rel: "preconnect",
-          href: "https://fonts.googleapis.com",
-        },
-        {
-          rel: "preconnect",
-          href: "https://fonts.gstatic.com",
-          crossorigin: "",
-        },
-        // Load fonts as link tags instead of @import for better performance
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap",
-        },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap",
-        },
-      ],
-    },
-  },
+	app: {
+		head: {
+			link: [
+				// Preconnect to Google Fonts for faster loading
+				{
+					rel: "preconnect",
+					href: "https://fonts.googleapis.com",
+				},
+				{
+					rel: "preconnect",
+					href: "https://fonts.gstatic.com",
+					crossorigin: "",
+				},
+				// Load fonts as link tags instead of @import for better performance
+				{
+					rel: "stylesheet",
+					href: "https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap",
+				},
+				{
+					rel: "stylesheet",
+					href: "https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+				},
+			],
+		},
+	},
 
-  colorMode: {
-    preference: "system",
-  },
+	colorMode: {
+		preference: "system",
+	},
 
-  nitro: {
-    prerender: {
-      routes: ["/"],
-      crawlLinks: true,
-    },
-  },
+	nitro: {
+		prerender: {
+			routes: ["/"],
+			crawlLinks: true,
+		},
+	},
 
-  routeRules: {
-    "/**": { prerender: true },
-  },
+	routeRules: {
+		"/**": { prerender: true },
+	},
 
-  compatibilityDate: "2025-01-15",
+	compatibilityDate: "2025-01-15",
 
-  eslint: {
-    config: {
-      stylistic: {
-        commaDangle: "never",
-        braceStyle: "1tbs",
-      },
-    },
-  },
+	eslint: {
+		config: {
+			stylistic: {
+				commaDangle: "never",
+				braceStyle: "1tbs",
+			},
+		},
+	},
 });
