@@ -4,8 +4,7 @@ networks:
 
 services:
   site:
-    build: .
-    image: my-portfolio:local
+    image: ghcr.io/mmihaylov94/my-portfolio:latest
     container_name: my-portfolio
     restart: unless-stopped
     networks: [traefik_proxy]
