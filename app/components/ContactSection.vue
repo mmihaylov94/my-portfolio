@@ -32,11 +32,26 @@ async function handleSubmit() {
 	isSubmitting.value = true;
 	submitMessage.value = "";
 
-	// Here you would typically send the form data to your backend
-	// For now, we'll just simulate a submission
 	try {
-		// Simulate API call
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+		const response = await fetch(
+			"https://path-to-webhook/needs-to-be-secured-first",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: form.value.email,
+					subject: form.value.subject,
+					message: form.value.message,
+					reason: form.value.reason,
+				}),
+			}
+		);
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
 
 		submitMessage.value = "Thank you! Your message has been sent.";
 		form.value = {
@@ -45,7 +60,8 @@ async function handleSubmit() {
 			message: "",
 			reason: "",
 		};
-	} catch {
+	} catch (error) {
+		console.error("Form submission error:", error);
 		submitMessage.value =
 			"Sorry, there was an error sending your message. Please try again.";
 	} finally {
@@ -55,7 +71,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-	<section class="bg-primary-50 dark:bg-gray-900 pt-16 lg:pt-24">
+	<section class="bg-primary-50 dark:bg-gray-900 pt-16 lg:pt-24 pb-4 lg:pb-8">
 		<div class="w-full px-4 sm:px-6 lg:px-16 xl:px-24 max-w-4xl mx-auto">
 			<div class="space-y-8">
 				<!-- Header -->
@@ -205,7 +221,6 @@ async function handleSubmit() {
 					</form>
 				</div>
 			</div>
-			<SectionDivider />
 		</div>
 	</section>
 </template>

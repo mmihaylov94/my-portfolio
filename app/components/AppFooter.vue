@@ -1,33 +1,6 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear();
-
-const socialLinks = [
-	{
-		name: "Facebook",
-		url: "https://www.facebook.com/m.mihaylov94",
-		icon: "i-simple-icons-facebook",
-	},
-	{
-		name: "Instagram",
-		url: "https://www.instagram.com/mi.mihaylov",
-		icon: "i-simple-icons-instagram",
-	},
-	{
-		name: "LinkedIn",
-		url: "https://www.linkedin.com/in/mihail-m-mihaylov",
-		icon: "i-simple-icons-linkedin",
-	},
-	{
-		name: "Email",
-		url: "mailto:m.mihaylov94@gmail.com",
-		icon: "i-heroicons-envelope",
-	},
-	{
-		name: "GitHub",
-		url: "https://github.com/mmihaylov94",
-		icon: "i-simple-icons-github",
-	},
-];
+const { socialLinks } = useAbout();
 </script>
 
 <template>

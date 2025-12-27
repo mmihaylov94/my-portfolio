@@ -4,113 +4,80 @@ definePageMeta({
 });
 
 const siteUrl = "https://mihaylov.io";
-const siteName = "Mihail Mihaylov - Full-Stack Developer & Automation Engineer";
+const siteName = "Mihail Mihaylov";
+const title = "Mihail Mihaylov | Full-Stack Developer & Automation";
 const description =
-	"Full-stack developer and automation engineer with 6+ years of experience. Specializing in C#, Python, Java, RPA solutions, and Microsoft Power Platform. Based in Sofia, Bulgaria.";
+	"I build full-stack web systems that replace spreadsheets and manual work with reliable automation. End-to-end delivery and production ownership for small businesses and startups.";
 
 useSeoMeta({
-	title: siteName,
+	title,
 	titleTemplate: "%s",
 	description,
-	ogTitle: siteName,
+
+	ogTitle: title,
 	ogDescription: description,
-	ogImage: `${siteUrl}/profile_picture.jpg`,
+	ogImage: `${siteUrl}/og-image.png`,
 	ogUrl: siteUrl,
 	ogType: "website",
 	ogSiteName: siteName,
-	twitterTitle: siteName,
-	twitterDescription: description,
-	twitterImage: `${siteUrl}/profile_picture.jpg`,
+
 	twitterCard: "summary_large_image",
-	twitterSite: "@mihaylov_dev",
-	twitterCreator: "@mihaylov_dev",
+	twitterTitle: title,
+	twitterDescription: description,
+	twitterImage: `${siteUrl}/og-image.png`,
+
 	keywords:
-		"full-stack developer, automation engineer, RPA, Python, C#, Java, Microsoft Power Platform, software engineer, Sofia, Bulgaria, solution architect",
-	author: "Mihail Mihaylov",
+		"full-stack developer, business automation, workflow automation, internal tools, system integrations, replace spreadsheets, custom web app, PHP, JavaScript, React, Vue, Sofia, Bulgaria",
+	author: siteName,
 	robots: "index, follow",
 	themeColor: "#ECCAA4",
 });
 
 useHead({
-	htmlAttrs: {
-		lang: "en",
-	},
+	htmlAttrs: { lang: "en" },
 	link: [
-		{
-			rel: "icon",
-			type: "image/svg+xml",
-			href: "/logo.svg",
-		},
-		{
-			rel: "canonical",
-			href: siteUrl,
-		},
+		{ rel: "icon", type: "image/svg+xml", href: "/logo.svg" },
+		{ rel: "canonical", href: siteUrl },
 	],
 	meta: [
-		{
-			name: "viewport",
-			content: "width=device-width, initial-scale=1",
-		},
-		{
-			name: "format-detection",
-			content: "telephone=no",
-		},
-		{
-			name: "geo.region",
-			content: "BG-22",
-		},
-		{
-			name: "geo.placename",
-			content: "Sofia",
-		},
+		{ name: "viewport", content: "width=device-width, initial-scale=1" },
+		{ name: "format-detection", content: "telephone=no" },
+		{ name: "geo.region", content: "BG-22" },
+		{ name: "geo.placename", content: "Sofia" },
 	],
-});
-
-// Structured Data (JSON-LD)
-useHead({
 	script: [
 		{
 			type: "application/ld+json",
 			innerHTML: JSON.stringify({
 				"@context": "https://schema.org",
 				"@type": "Person",
-				name: "Mihail Mihaylov",
-				jobTitle: "Solution Architect & Full-Stack Developer",
-				description: description,
+				name: siteName,
+				jobTitle: "Full-Stack Developer & Automation Engineer",
+				description,
 				url: siteUrl,
 				image: `${siteUrl}/profile_picture.jpg`,
-				email: "m.mihaylov94@gmail.com",
 				address: {
 					"@type": "PostalAddress",
 					addressLocality: "Sofia",
-					addressRegion: "Sofia",
 					addressCountry: "BG",
 				},
 				sameAs: [
 					"https://www.linkedin.com/in/mihail-mihaylov",
-					"https://github.com/mihaylov-dev",
-					"https://www.facebook.com/mihail.mihaylov",
-					"https://www.instagram.com/mihail.mihaylov",
+					"https://github.com/mmihaylov94",
 				],
-				alumniOf: {
-					"@type": "EducationalOrganization",
-					name: "University of Strathclyde",
-					address: {
-						"@type": "PostalAddress",
-						addressLocality: "Glasgow",
-						addressCountry: "GB",
-					},
-				},
 				knowsAbout: [
-					"Full-Stack Development",
-					"Automation Engineering",
-					"RPA (Robotic Process Automation)",
-					"Python",
-					"C#",
-					"Java",
-					"Microsoft Power Platform",
-					"SQL Server",
-					"Software Architecture",
+					"Full-Stack Web Development",
+					"Business Process Automation",
+					"System Integrations",
+					"Workflow Automation",
+					"PHP",
+					"JavaScript",
+					"React",
+					"Vue",
+					"SQL",
+					"n8n",
+					"Microsoft Power Automate",
+					"Make.com",
 				],
 			}),
 		},
@@ -125,17 +92,17 @@ useHead({
 	</section>
 
 	<!-- About -->
-	<section id="about" class="scroll-mt-24">
+	<section id="about">
 		<AboutSection />
 	</section>
 
 	<!-- Projects -->
-	<section id="projects" class="scroll-mt-20">
+	<section id="projects">
 		<ProjectSection />
 	</section>
 
 	<!-- Contact -->
-	<section id="contact" class="scroll-mt-20">
+	<section id="contact">
 		<ContactSection />
 	</section>
 </template>

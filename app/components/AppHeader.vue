@@ -6,19 +6,11 @@ const nav = [
 	{ label: "Contact", to: "#contact" },
 ];
 
+const { scrollToSection } = useNavigation();
+
 function onNavClick(to: string) {
 	if (!to.startsWith("#")) return;
-
-	const el = document.querySelector(to);
-	if (!el) return;
-
-	const offsetPosition = el.getBoundingClientRect().top + window.pageYOffset;
-
-	window.scrollTo({
-		top: Math.max(0, offsetPosition),
-		behavior: "smooth",
-	});
-	history.replaceState(null, "", to);
+	scrollToSection(to, { updateHistory: true });
 }
 </script>
 

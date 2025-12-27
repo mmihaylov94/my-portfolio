@@ -1,80 +1,6 @@
 <script setup lang="ts">
-function scrollToSection(id: string) {
-	const el = document.querySelector(id);
-	if (!el) return;
-
-	// Get the header element to calculate its actual height
-	const header = document.querySelector("header");
-	const headerHeight = header ? header.offsetHeight : 0;
-	const headerTop = header ? parseFloat(getComputedStyle(header).top) || 0 : 0;
-
-	// Account for fixed header position (top offset) + header height + extra padding
-	const headerOffset = headerTop + headerHeight + 20;
-
-	const elementPosition = el.getBoundingClientRect().top;
-	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-	window.scrollTo({
-		top: Math.max(0, offsetPosition),
-		behavior: "smooth",
-	});
-}
-
-const skills = [
-	{ label: "PHP", icon: "i-simple-icons-php" },
-	{ label: "CodeIgniter", icon: "i-simple-icons-codeigniter" },
-	{ label: "Laravel", icon: "i-simple-icons-laravel" },
-	{ label: "HTML", icon: "i-simple-icons-html5" },
-	{ label: "CSS", icon: "i-simple-icons-css3" },
-	{ label: "JavaScript", icon: "i-simple-icons-javascript" },
-	{ label: "React", icon: "i-simple-icons-react" },
-	{ label: "Node", icon: "i-simple-icons-nodedotjs" },
-	{ label: "Vue.js", icon: "i-simple-icons-vuedotjs" },
-	{ label: "Nuxt", icon: "i-simple-icons-nuxtdotjs" },
-	{ label: "Tailwind", icon: "i-simple-icons-tailwindcss" },
-	{ label: "Firebase", icon: "i-simple-icons-firebase" },
-	{ label: "Supabase", icon: "i-simple-icons-supabase" },
-	{ label: "Git", icon: "i-simple-icons-git" },
-	{ label: "GitHub", icon: "i-simple-icons-github" },
-	{ label: "SQL", icon: "i-heroicons-circle-stack" },
-	{ label: "MySQL", icon: "i-simple-icons-mysql" },
-	{ label: "MariaDB", icon: "i-simple-icons-mariadb" },
-	{ label: "PostgreSQL", icon: "i-simple-icons-postgresql" },
-	{ label: "n8n", icon: "i-simple-icons-n8n" },
-	{ label: "MS Power Automate" },
-	{ label: "Zapier", icon: "i-simple-icons-zapier" },
-	{ label: "Make.com", icon: "i-simple-icons-make" },
-];
-
-const timeline = [
-	{
-		title: "Solution Architect",
-		company: "Businessmap LTD, Sofia, BG",
-		period: "2022 - Current",
-		description: "Full-stack developer and automation engineer",
-	},
-	{
-		title: "Technical Solution Architect",
-		company: "Deloitte LLP UK, Glasgow, UK",
-		period: "2020 - 2022",
-		description:
-			"Supervised and guided developers through building and testing phases. Contributed to full development lifecycle of RPA projects, from proposal and requirements gathering to deployment. Won four new projects by introducing Microsoft Power Stack. Saved client 10,000+ hours and £250,000 annually through effective document processing automation.",
-	},
-	{
-		title: "MSc Advanced Computer Science",
-		company: "University of Strathclyde, Glasgow, UK",
-		period: "2018 - 2019",
-		description:
-			"Master's Dissertation: Predicting the Resolution Time and Priority of Bug Reports: A Deep Learning Approach",
-	},
-	{
-		title: "BEng (Hons) Computer and Electronic Systems",
-		company: "University of Strathclyde, Glasgow, UK",
-		period: "2013 - 2017",
-		description:
-			"4th Year Project: Developing a Computer-Based Version of the Board Game Vector Racer using Java (Merit)",
-	},
-];
+const { scrollToSection } = useNavigation();
+const { skills, timeline, description } = useAbout();
 </script>
 
 <template>
@@ -110,23 +36,11 @@ const timeline = [
 							About Me
 						</h2>
 						<p
+							v-for="(paragraph, index) in description"
+							:key="index"
 							class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
 						>
-							I build scalable applications and automate business processes.
-							With six years of professional experience across Deloitte and
-							fast-growing startups, I transform ideas into working solutions
-							that matter.
-						</p>
-						<p
-							class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
-						>
-							Exceptionally talented IT professional with hands-on experience in
-							developing and supporting high-tech business/software/RPA
-							solutions. Passionate about becoming a full-stack software
-							engineer specialising in C#, Python, and Java. Track record of
-							success managing teams, engineering projects, and deadlines, with
-							expertise in object-oriented software development lifecycle,
-							maintenance, testing, and troubleshooting.
+							{{ paragraph }}
 						</p>
 					</div>
 

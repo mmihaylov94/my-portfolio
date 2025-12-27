@@ -1,6 +1,6 @@
 <template>
 	<section
-		class="h-screen flex items-center justify-center bg-[linear-gradient(to_bottom_right,var(--color-primary-200)_0%,var(--color-primary-200)_40%,var(--color-secondary-200)_60%,var(--color-secondary-200)_100%)] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative"
+		class="h-screen flex items-center justify-center bg-[linear-gradient(to_bottom_right,var(--color-primary-200)_0%,var(--color-primary-200)_40%,var(--color-secondary-200)_60%,var(--color-secondary-200)_100%)] dark:bg-[linear-gradient(to_bottom_right,var(--color-gray-900)_0%,var(--color-gray-900)_40%,var(--color-gray-800)_60%,var(--color-gray-800)_100%)] relative"
 	>
 		<div class="text-center px-8 max-w-4xl mx-auto">
 			<h1
@@ -11,8 +11,8 @@
 			<p
 				class="text-xl md:text-2xl lg:text-3xl text-gray-700 dark:text-gray-300 leading-relaxed"
 			>
-				I am a full-stack developer and an automation engineer and I can help
-				you digitize and transform your business.
+				I build full-stack systems that replace spreadsheets and manual work
+				with reliable, automated solutions - and I own them in production.
 			</p>
 		</div>
 		<!-- Section Divider -->
