@@ -1,17 +1,5 @@
 <script setup lang="ts">
-const nav = [
-	{ label: "Home", to: "#top" },
-	{ label: "About", to: "#about" },
-	{ label: "Projects", to: "#projects" },
-	{ label: "Contact", to: "#contact" },
-];
-
-const { scrollToSection } = useNavigation();
-
-function onNavClick(to: string) {
-	if (!to.startsWith("#")) return;
-	scrollToSection(to, { updateHistory: true });
-}
+const { nav, mobileItems, onNavClick, goHome } = useNavigation();
 </script>
 
 <template>
@@ -22,6 +10,7 @@ function onNavClick(to: string) {
 		<div class="px-6 py-3 flex items-center justify-between">
 			<NuxtLink
 				to="/"
+				@click="goHome"
 				class="font-semibold text-lg text-gray-900 dark:text-gray-100 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors"
 			>
 				<div class="flex items-center gap-2.5">
@@ -78,14 +67,7 @@ function onNavClick(to: string) {
 
 				<!-- Mobile menu -->
 				<div class="md:hidden">
-					<UDropdownMenu
-						:items="[
-							nav.map((i) => ({
-								label: i.label,
-								click: () => onNavClick(i.to),
-							})),
-						]"
-					>
+					<UDropdownMenu :items="mobileItems">
 						<UButton
 							icon="i-heroicons-bars-3"
 							variant="ghost"
