@@ -36,7 +36,7 @@ const projects: Project[] = [
 		title: "Threadline",
 		description: "Moderated community forum with category-based discussions, threaded posts with voting and favorites, user profiles, content search and sorting, reporting system, and comprehensive moderation dashboard.",
 		outcome: "Demonstrates secure authentication, role-based moderation workflows, and scalable forum architecture.",
-		image: "threadline.png",
+		image: "threadline_20260128.png",
 		liveUrl: "https://threadline.mihaylov.io",
 		githubUrl: "https://github.com/mmihaylov94/threadline",
 		technologies: [
