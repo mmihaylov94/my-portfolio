@@ -21,20 +21,33 @@ const projects: Project[] = [
 		image: "omni-retail.png",
 		liveUrl: "https://omni-retail.mihaylov.io",
 		githubUrl: "https://github.com/mmihaylov94/omni-retail",
-		technologies: ["CodeIgniter", "PHP", "MySQL", "HTML", "JavaScript", "CSS"],
+		technologies: [
+			"CodeIgniter",
+			"PHP",
+			"MySQL",
+			"HTML",
+			"JavaScript",
+			"React",
+			"Tailwind CSS",
+		],
 	},
 	{
 		id: "2",
 		title: "Threadline",
-		description: `Community forum built for structured discussions and moderation-ready operations. Includes authentication, category-based
-      forums, threaded posts and replies, role-based moderation, reporting and content approval, notifications, and activity metrics to
-      support healthy communities from launch.`,
-		outcome:
-			"Enables moderated community discussions with clear roles and controls.",
+		description: "Moderated community forum with category-based discussions, threaded posts with voting and favorites, user profiles, content search and sorting, reporting system, and comprehensive moderation dashboard.",
+		outcome: "Demonstrates secure authentication, role-based moderation workflows, and scalable forum architecture.",
 		image: "threadline.png",
 		liveUrl: "https://threadline.mihaylov.io",
 		githubUrl: "https://github.com/mmihaylov94/threadline",
-		technologies: ["CodeIgniter", "PHP", "MySQL", "React", "Tailwind CSS"],
+		technologies: [
+			"CodeIgniter 4",
+			"PHP",
+			"PostgreSQL",
+			"HTML",
+			"JavaScript",
+			"CSS",
+			"Bootstrap 5",
+		],
 	},
 	{
 		id: "3",

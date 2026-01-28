@@ -24,15 +24,26 @@ const emit = defineEmits<{
 function handleClick() {
 	emit("click");
 }
+
+function getComponentType() {
+	if (props.to) return "NuxtLink";
+	if (props.href) {
+		// Use regular <a> tag for external URLs
+		return props.href.startsWith("http") ? "a" : "NuxtLink";
+	}
+	return "button";
+}
 </script>
 
 <template>
 	<component
-		:is="to || href ? 'NuxtLink' : 'button'"
-		:to="to"
-		:href="href"
-		:type="to || href ? undefined : type"
+		:is="getComponentType()"
+		:to="props.to"
+		:href="getComponentType() === 'a' ? props.href : undefined"
+		:type="getComponentType() === 'button' ? type : undefined"
 		:disabled="disabled"
+		:target="props.href && props.href.startsWith('http') ? '_blank' : undefined"
+		:rel="props.href && props.href.startsWith('http') ? 'noopener noreferrer' : undefined"
 		:class="[
 			'inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
 			{
