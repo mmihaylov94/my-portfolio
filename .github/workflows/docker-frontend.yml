@@ -1,8 +1,11 @@
-name: docker
+name: docker-frontend
 
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "api/**"
+      - ".github/workflows/docker-api.yml"
 
 permissions:
   contents: read

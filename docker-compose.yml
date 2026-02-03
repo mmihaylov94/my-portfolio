@@ -15,3 +15,18 @@ services:
       - "traefik.http.routers.my-portfolio.tls=true"
       - "traefik.http.routers.my-portfolio.tls.certresolver=cloudflare"
       - "traefik.http.services.my-portfolio.loadbalancer.server.port=80"
+  api:
+    image: ghcr.io/mmihaylov94/my-portfolio-api:latest
+    container_name: my-portfolio-api
+    restart: unless-stopped
+    networks: [traefik_proxy]
+    environment:
+      - PORT=3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.my-portfolio-api.rule=Host(`mihaylov.io`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.my-portfolio-api.entrypoints=websecure"
+      - "traefik.http.routers.my-portfolio-api.tls=true"
+      - "traefik.http.routers.my-portfolio-api.tls.certresolver=cloudflare"
+      - "traefik.http.routers.my-portfolio-api.priority=100"
+      - "traefik.http.services.my-portfolio-api.loadbalancer.server.port=3000"

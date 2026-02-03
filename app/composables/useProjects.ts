@@ -19,8 +19,8 @@ const projects: Project[] = [
 		outcome:
 			"Centralises retail operations and reduces stock/sales admin overhead.",
 		image: "omni-retail.png",
-		liveUrl: "https://omni-retail.mihaylov.io",
-		githubUrl: "https://github.com/mmihaylov94/omni-retail",
+		liveUrl: "https://omniretail.mihaylov.io",
+		githubUrl: "https://github.com/mmihaylov94/omniretail-app",
 		technologies: [
 			"CodeIgniter",
 			"PHP",
