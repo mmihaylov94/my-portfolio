@@ -3,58 +3,58 @@ interface ChatMessage {
 	id?: string
 	role: "user" | "assistant"
 	content: string
-}
+};
 
-const isComingSoon = true
-const isOpen = ref(false)
-const messages = ref<ChatMessage[]>([])
-const input = ref("")
-const isLoading = ref(false)
-const feedbackGiven = ref<Record<string, "positive" | "negative">>({})
+const isComingSoon = true;
+const isOpen = ref(false);
+const messages = ref<ChatMessage[]>([]);
+const input = ref("");
+const isLoading = ref(false);
+const feedbackGiven = ref<Record<string, "positive" | "negative">>({});
 
 function toggle() {
-	if (isComingSoon) return
-	isOpen.value = !isOpen.value
+	if (isComingSoon) return;
+	isOpen.value = !isOpen.value;
 }
 
 async function sendMessage() {
-	const text = input.value.trim()
-	if (!text || isLoading.value) return
+	const text = input.value.trim();
+	if (!text || isLoading.value) return;
 
-	const userMsg: ChatMessage = { role: "user", content: text }
-	messages.value.push(userMsg)
-	input.value = ""
-	isLoading.value = true
+	const userMsg: ChatMessage = { role: "user", content: text };
+	messages.value.push(userMsg);
+	input.value = "";
+	isLoading.value = true;
 
 	try {
 		const history = messages.value
 			.slice(0, -1)
-			.map((m) => ({ role: m.role, content: m.content }))
+			.map((m) => ({ role: m.role, content: m.content }));
 
 		const response = await fetch("/api/chat", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ message: text, history })
-		})
+		});
 
-		const data = (await response.json()) as { reply?: string; error?: string }
-		const reply = data?.reply ?? data?.error ?? "Sorry, I couldn't process that."
+		const data = (await response.json()) as { reply?: string; error?: string };
+		const reply = data?.reply ?? data?.error ?? "Sorry, I couldn't process that.";
 
 		const assistantMsg: ChatMessage = {
 			id: `a-${Date.now()}`,
 			role: "assistant",
 			content: reply
-		}
-		messages.value.push(assistantMsg)
+		};
+		messages.value.push(assistantMsg);
 	} catch (err) {
-		console.error("Chat error:", err)
+		console.error("Chat error:", err);
 		messages.value.push({
 			id: `a-${Date.now()}`,
 			role: "assistant",
 			content: "Something went wrong. Please try again."
-		})
+		});
 	} finally {
-		isLoading.value = false
+		isLoading.value = false;
 	}
 }
 
@@ -64,8 +64,8 @@ async function sendFeedback(
 	chatMessage: string,
 	reply: string
 ) {
-	if (feedbackGiven.value[messageId]) return
-	feedbackGiven.value[messageId] = feedback
+	if (feedbackGiven.value[messageId]) return;
+	feedbackGiven.value[messageId] = feedback;
 
 	try {
 		await fetch("api/feedback", {
@@ -77,9 +77,9 @@ async function sendFeedback(
 				chatMessage,
 				reply
 			})
-		})
+		});
 	} catch (err) {
-		console.error("Feedback error:", err)
+		console.error("Feedback error:", err);
 	}
 }
 </script>
@@ -104,7 +104,11 @@ async function sendFeedback(
 				<div
 					class="flex items-center justify-between px-5 py-4 bg-secondary-500 text-white"
 				>
-					<h3 class="font-semibold text-base">Chat with me</h3>
+					<h3
+						class="font-semibold text-base"
+					>
+						Chat with me
+					</h3>
 					<button
 						type="button"
 						aria-label="Close chat"
@@ -152,7 +156,11 @@ async function sendFeedback(
 									: 'bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow border border-gray-200 dark:border-gray-600 rounded-bl-md'
 							]"
 						>
-							<p class="whitespace-pre-wrap">{{ msg.content }}</p>
+							<p
+								class="whitespace-pre-wrap"
+							>
+								{{ msg.content }}
+							</p>
 							<!-- Feedback for assistant messages -->
 							<div
 								v-if="msg.role === 'assistant' && msg.id"
