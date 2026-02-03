@@ -116,7 +116,7 @@ const aboutInfo: AboutInfo = {
 		},
 		{
 			name: "Email",
-			url: "mailto:m.mihaylov94@gmail.com",
+			url: "mailto:mihaylov.dev@gmail.com",
 			icon: "i-heroicons-envelope",
 		},
 		{

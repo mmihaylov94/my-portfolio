@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const config = useRuntimeConfig();
+const apiBase = (config.public.apiBase as string) || "";
+const { execute: executeRecaptcha, isEnabled: isRecaptchaEnabled } = useRecaptcha();
+
 const form = ref({
 	email: "",
 	subject: "",
@@ -33,24 +37,37 @@ async function handleSubmit() {
 	submitMessage.value = "";
 
 	try {
-		const response = await fetch(
-			"https://path-to-webhook/needs-to-be-secured-first",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					email: form.value.email,
-					subject: form.value.subject,
-					message: form.value.message,
-					reason: form.value.reason,
-				}),
+		let recaptchaToken: string | null = null;
+		if (isRecaptchaEnabled) {
+			recaptchaToken = await executeRecaptcha();
+			if (!recaptchaToken) {
+				submitMessage.value =
+					"Unable to verify you are human. Please try again.";
+				return;
 			}
-		);
+		}
 
+		const body: Record<string, string> = {
+			email: form.value.email,
+			subject: form.value.subject,
+			message: form.value.message,
+			reason: form.value.reason,
+		};
+		if (recaptchaToken) {
+			body.recaptchaToken = recaptchaToken;
+		}
+
+		const response = await fetch(`${apiBase}/api/contact`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		});
+
+		const data = await response.json().catch(() => ({}));
 		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
+			throw new Error(data.error || `HTTP error! status: ${response.status}`);
 		}
 
 		submitMessage.value = "Thank you! Your message has been sent.";
@@ -63,7 +80,9 @@ async function handleSubmit() {
 	} catch (error) {
 		console.error("Form submission error:", error);
 		submitMessage.value =
-			"Sorry, there was an error sending your message. Please try again.";
+			error instanceof Error && error.message.includes("recaptcha")
+				? "Verification failed. Please try again."
+				: "Sorry, there was an error sending your message. Please try again.";
 	} finally {
 		isSubmitting.value = false;
 	}
@@ -182,6 +201,32 @@ async function handleSubmit() {
 								{{ submitMessage }}
 							</p>
 						</div>
+
+						<!-- reCAPTCHA notice -->
+						<p
+							v-if="isRecaptchaEnabled"
+							class="text-xs text-gray-500 dark:text-gray-400"
+						>
+							This site is protected by reCAPTCHA and the Google
+							<a
+								href="https://policies.google.com/privacy"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="underline hover:text-secondary-600 dark:hover:text-secondary-400"
+							>
+								Privacy Policy
+							</a>
+							and
+							<a
+								href="https://policies.google.com/terms"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="underline hover:text-secondary-600 dark:hover:text-secondary-400"
+							>
+								Terms of Service
+							</a>
+							apply.
+						</p>
 
 						<!-- Submit Button -->
 						<div class="pt-1">

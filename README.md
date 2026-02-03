@@ -7,6 +7,8 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 ## 🚀 Features
 
 - **Static Site Generation (SSG)** - Pre-rendered at build time for optimal performance
+- **AI Chat Popup** - Chat widget powered by n8n webhooks with feedback (thumbs up/down)
+- **Contact Form** - With Google reCAPTCHA v3 protection
 - **Dark/Light Mode** - System preference detection with manual toggle
 - **Responsive Design** - Mobile-first approach with smooth animations
 - **SEO Optimized** - Complete meta tags, structured data (JSON-LD), and Open Graph support
@@ -20,32 +22,38 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 - **Styling:** Tailwind CSS
 - **Language:** TypeScript
 - **Package Manager:** pnpm
+- **API:** Express (Node.js), forwards to n8n webhooks
 
 ## 📁 Project Structure
 
 ```
-app/
-├── assets/
-│   └── css/
-│       └── main.css          # Global styles and theme configuration
-├── components/
-│   ├── AboutSection.vue      # About section component
-│   ├── AppButton.vue         # Reusable button component
-│   ├── AppFooter.vue         # Footer component
-│   ├── AppHeader.vue         # Navigation header
-│   ├── ContactSection.vue    # Contact form section
-│   ├── HeroSection.vue       # Hero/landing section
-│   ├── ProjectCard.vue       # Project card component
-│   ├── ProjectSection.vue    # Projects showcase section
-│   ├── SectionDivider.vue    # Section divider component
-│   ├── SkillBadge.vue        # Skill badge component
-│   └── ThemeToggle.vue       # Dark/light mode toggle
-├── composables/
-│   └── useProjects.ts        # Projects data composable
-├── layouts/
-│   └── default.vue           # Default layout
-└── pages/
-    └── index.vue             # Home page
+├── api/                      # Express API (chat, contact, feedback → n8n)
+│   ├── src/server.js
+│   └── Dockerfile
+├── app/
+│   ├── assets/css/main.css   # Global styles and theme configuration
+│   ├── components/
+│   │   ├── AiChatPopup.vue   # AI chat widget (bottom-right)
+│   │   ├── AboutSection.vue
+│   │   ├── AppButton.vue
+│   │   ├── AppFooter.vue
+│   │   ├── AppHeader.vue
+│   │   ├── ContactSection.vue
+│   │   ├── HeroSection.vue
+│   │   ├── ProjectCard.vue
+│   │   ├── ProjectSection.vue
+│   │   ├── SectionDivider.vue
+│   │   ├── SkillBadge.vue
+│   │   └── ThemeToggle.vue
+│   ├── composables/
+│   │   ├── useAbout.ts
+│   │   ├── useNavigation.ts
+│   │   ├── useProjects.ts
+│   │   └── useRecaptcha.ts   # reCAPTCHA v3 for contact form
+│   ├── layouts/default.vue
+│   └── pages/index.vue
+├── docker-compose.yml        # Site + API services
+└── Dockerfile                # Frontend (Nuxt SSG → nginx)
 ```
 
 ## 🚦 Getting Started
@@ -53,7 +61,7 @@ app/
 ### Prerequisites
 
 - Node.js 18+
-- pnpm 10.23.0+ (or npm/yarn)
+- npm
 
 ### Installation
 
@@ -67,23 +75,32 @@ cd my-portfolio
 2. Install dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 ## 💻 Development
 
-Start the development server on `http://localhost:3000`:
+The frontend runs on port **3001**, the API on port **3000**. For full functionality (chat, contact, feedback), run both:
 
+**Terminal 1 – Frontend:**
 ```bash
-pnpm dev
+npm run dev
 ```
+Opens at `http://localhost:3001`. Nuxt proxies `/api/*` to the API.
+
+**Terminal 2 – API:**
+```bash
+cd api && npm run dev
+```
+
+Create `.env` with your n8n webhook URLs and reCAPTCHA secret (see Environment variables).
 
 ## 🏗️ Building for Production
 
 Build the application for production (generates static files):
 
 ```bash
-pnpm build
+npm run build
 ```
 
 The static site will be generated in `.output/public/` directory.
@@ -91,27 +108,55 @@ The static site will be generated in `.output/public/` directory.
 Preview the production build locally:
 
 ```bash
-pnpm preview
+npm run preview
 ```
 
 ## 🚢 Deployment
 
-This site is configured for static site generation (SSG), making it deployable to any static hosting service:
+The primary deployment uses **Docker** with two services (frontend + API) and Traefik for routing. The frontend is static (Nuxt SSG); the API handles chat, contact, and feedback via n8n webhooks.
 
-- **Vercel** - Automatic deployments with zero configuration
-- **Netlify** - Drag and drop the `.output/public` folder
-- **GitHub Pages** - Deploy the static files
-- **Cloudflare Pages** - Connect your repository
-- **Any CDN** - Serve the static files from `.output/public/`
+The static output (`.output/public/`) can also be deployed to Vercel, Netlify, GitHub Pages, or any CDN if you host the API separately.
 
 ### Docker Deployment
 
-The project includes Docker configuration for containerized deployment:
+Two images: frontend (site) and API. Deployed via `docker compose` with Traefik.
+
+**On the server** – create env files next to `docker-compose.yml`:
+
+| File | Used by | Contents |
+|------|---------|----------|
+| `.env` | api | `N8N_WEBHOOK_URL`, `N8N_API_KEY`, `RECAPTCHA_SECRET_KEY`, `PORT` |
 
 ```bash
-docker build -t portfolio .
-docker run -p 80:80 portfolio
+docker compose pull
+docker compose up -d
 ```
+
+**CI/CD** – GitHub Actions build and push both images. Add these **repository secrets** for the frontend build:
+
+| Secret | Required | Description |
+|--------|----------|-------------|
+| `NUXT_PUBLIC_RECAPTCHA_SITE_KEY` | For reCAPTCHA | Site key from [reCAPTCHA Admin](https://www.google.com/recaptcha/admin) |
+
+### API and n8n Webhooks
+
+The API service (`api/`) forwards requests to n8n webhooks. Configure in `.env`:
+
+| Variable | Description |
+|----------|-------------|
+| `N8N_WEBHOOK_URL` | Base n8n webhook URL |
+| `N8N_API_KEY` | API key sent in `apikey` header to n8n webhooks |
+
+### reCAPTCHA (Contact Form)
+
+The contact form uses Google reCAPTCHA v3 (invisible, badge bottom-left). Get keys from [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin).
+
+| Variable | Where | Description |
+|----------|-------|-------------|
+| `NUXT_PUBLIC_RECAPTCHA_SITE_KEY` | GitHub secret (build) | Site key (public), baked into frontend at build time |
+| `RECAPTCHA_SECRET_KEY` | `.env` | Secret key (private) |
+
+If reCAPTCHA keys are not set, the contact form works without verification (useful for local dev).
 
 ## ⚡ Performance Optimizations
 
@@ -163,7 +208,7 @@ This project is private and proprietary.
 **Mihail Mihaylov**
 
 - Website: [mihaylov.io](https://mihaylov.io)
-- Email: m.mihaylov94@gmail.com
+- Email: [mihaylov.dev@gmail.com](mailto:mihaylov.dev@gmail.com)
 - LinkedIn: [mihail-mihaylov](https://www.linkedin.com/in/mihail-mihaylov)
 - GitHub: [mihaylov-dev](https://github.com/mihaylov-dev)
 

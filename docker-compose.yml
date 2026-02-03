@@ -20,6 +20,8 @@ services:
     container_name: my-portfolio-api
     restart: unless-stopped
     networks: [traefik_proxy]
+    env_file:
+      - .env
     environment:
       - PORT=3000
     labels:

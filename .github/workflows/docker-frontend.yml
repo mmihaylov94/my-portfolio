@@ -35,6 +35,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            NUXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NUXT_PUBLIC_RECAPTCHA_SITE_KEY }}
           tags: |
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ github.sha }}

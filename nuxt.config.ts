@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
 	modules: ["@nuxt/eslint", "@nuxt/ui"],
 
+	runtimeConfig: {
+		public: {
+			recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY || "",
+		},
+	},
+
 	devtools: {
 		enabled: true,
 	},
@@ -42,6 +48,21 @@ export default defineNuxtConfig({
 		prerender: {
 			routes: ["/"],
 			crawlLinks: true,
+		},
+	},
+
+	devServer: {
+		port: 3001,
+	},
+
+	vite: {
+		server: {
+			proxy: {
+				"/api": {
+					target: "http://localhost:3000",
+					changeOrigin: true,
+				},
+			},
 		},
 	},
 
