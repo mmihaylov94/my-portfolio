@@ -167,11 +167,11 @@ If reCAPTCHA keys are not set, the contact form works without verification (usef
 
 ## 📝 Available Scripts
 
-- `npm dev` - Start development server
-- `npm build` - Build for production
-- `npm preview` - Preview production build
-- `npm lint` - Run ESLint
-- `npm typecheck` - Run TypeScript type checking
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run typecheck` - Run TypeScript type checking
 
 ## 🎨 Customization
 

@@ -15,11 +15,8 @@ const projects: Project[] = [
 	{
 		id: "1",
 		title: "AI Marketing Reporter",
-		description: `Weekly automated reporting AI agent that analyses advertising and analytics data and produces a client-ready performance summary
-      with clear recommendations. Pulls data from Meta Ads, Google Ads, and Google Analytics, generates insights, and outputs a report plus a
-      ready-to-send email.`,
-		outcome:
-			"Automates weekly reporting and generates client-ready recommendations.",
+		description: "Weekly automated reporting AI agent that analyses advertising and analytics data and produces a client-ready performance summary with clear recommendations. Pulls data from Meta Ads, Google Ads, and Google Analytics, generates insights, and outputs a report plus a ready-to-send email.",
+		outcome: "Automates weekly reporting and generates client-ready recommendations.",
 		image: "n8n-marketing-reporter.png",
 		liveUrl: "https://www.youtube.com/@mihaylov-dev",
 		technologies: ["n8n", "JavaScript", "REST API"],
@@ -27,9 +24,8 @@ const projects: Project[] = [
 	{
 		id: "2",
 		title: "n8n Pro Automation Framework",
-		description: `Production-ready automation framework for n8n with reusable utility sub-workflows, idempotency handling, run logging, observability, and structured metrics. Includes outcome-driven packs such as Stripe Webhook Pro, Lead Intake Pro, API Sync Pro, and Inbound Email Intake Pro.`,
-		outcome:
-			"Enables reliable, scalable, client-ready automation systems with built-in observability and error handling.",
+		description: "Production-ready automation framework for n8n with reusable utility sub-workflows, idempotency handling, run logging, observability, and structured metrics. Includes outcome-driven packs such as Stripe Webhook Pro, Lead Intake Pro, API Sync Pro, and Inbound Email Intake Pro.",
+		outcome: "Enables reliable, scalable, client-ready automation systems with built-in observability and error handling.",
 		image: "n8n-pro-pack.png",
 		liveUrl: "https://mihaylov.io",
 		githubUrl: "https://github.com/mmihaylov94/n8n-lite-automations",
@@ -65,11 +61,8 @@ const projects: Project[] = [
 	{
 		id: "4",
 		title: "OmniRetail",
-		description: `Retail operations platform consolidating product management, inventory, orders, and checkout in one system. Supports POS
-			workflows, real-time stock tracking, order lifecycle management, role-based access, and essential sales reporting for day-to-day
-			decision-making.`,
-		outcome:
-			"Centralises retail operations and reduces stock/sales admin overhead.",
+		description: "Retail operations platform consolidating product management, inventory, orders, and checkout in one system. Supports POS workflows, real-time stock tracking, order lifecycle management, role-based access, and essential sales reporting for day-to-day decision-making.",
+		outcome: "Centralises retail operations and reduces stock/sales admin overhead.",
 		image: "omni-retail.png",
 		liveUrl: "https://omniretail.mihaylov.io",
 		liveLabel: "Coming Soon",
@@ -88,10 +81,8 @@ const projects: Project[] = [
 	{
 		id: "5",
 		title: "Taskflow",
-		description: `Kanban-style project management tool for planning and tracking work across teams. Supports boards, lists, and cards with
-			drag-and-drop workflow, assignments, due dates, labels, comments, activity history, and role-based access for controlled collaboration.`,
-		outcome:
-			"Improves team visibility and delivery tracking in a Kanban workflow.",
+		description: "Kanban-style project management tool for planning and tracking work across teams. Supports boards, lists, and cards with drag-and-drop workflow, assignments, due dates, labels, comments, activity history, and role-based access for controlled collaboration.",
+		outcome: "Improves team visibility and delivery tracking in a Kanban workflow.",
 		image: "taskflow.png",
 		liveUrl: "https://taskflow.mihaylov.io",
 		liveLabel: "Coming Soon",
@@ -101,10 +92,8 @@ const projects: Project[] = [
 	{
 		id: "6",
 		title: "PawCircle",
-		description: `Niche social platform for dog owners to share updates and connect. Includes owner and dog profiles, photo posts, likes and
-			comments, follow-based feeds, private messaging, and baseline moderation features to support safe community engagement.`,
-		outcome:
-			"Drives community engagement through a focused, niche social feed.",
+		description: "Niche social platform for dog owners to share updates and connect. Includes owner and dog profiles, photo posts, likes and comments, follow-based feeds, private messaging, and baseline moderation features to support safe community engagement.",
+		outcome: "Drives community engagement through a focused, niche social feed.",
 		image: "paw-circle.png",
 		liveUrl: "https://paw-circle.mihaylov.io",
 		liveLabel: "Coming Soon",
