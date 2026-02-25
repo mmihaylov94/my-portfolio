@@ -11,8 +11,9 @@
 			<p
 				class="text-xl md:text-2xl lg:text-3xl text-gray-700 dark:text-gray-300 leading-relaxed"
 			>
-				I build full-stack systems that replace spreadsheets and manual work
-				with reliable, automated solutions - and I own them in production.
+				I design and build production-grade automation, integrations, and
+				full-stack systems that replace manual work with scalable, API-driven
+				solutions.
 			</p>
 		</div>
 		<!-- Section Divider -->

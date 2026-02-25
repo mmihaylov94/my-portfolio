@@ -21,7 +21,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 - **UI Library:** [Nuxt UI](https://ui.nuxt.com/)
 - **Styling:** Tailwind CSS
 - **Language:** TypeScript
-- **Package Manager:** pnpm
+- **Package Manager:** npm
 - **API:** Express (Node.js), forwards to n8n webhooks
 
 ## 📁 Project Structure
@@ -167,11 +167,11 @@ If reCAPTCHA keys are not set, the contact form works without verification (usef
 
 ## 📝 Available Scripts
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm preview` - Preview production build
-- `pnpm lint` - Run ESLint
-- `pnpm typecheck` - Run TypeScript type checking
+- `npm dev` - Start development server
+- `npm build` - Build for production
+- `npm preview` - Preview production build
+- `npm lint` - Run ESLint
+- `npm typecheck` - Run TypeScript type checking
 
 ## 🎨 Customization
 
@@ -199,10 +199,6 @@ The site uses an SVG logo (`public/logo.svg`) that:
 - Serves as the favicon with built-in dark mode support
 - Uses the primary color palette for consistent branding
 
-## 📄 License
-
-This project is private and proprietary.
-
 ## 👤 Author
 
 **Mihail Mihaylov**
@@ -213,5 +209,3 @@ This project is private and proprietary.
 - GitHub: [mihaylov-dev](https://github.com/mihaylov-dev)
 
 ---
-
-Built with ❤️ using Nuxt 4

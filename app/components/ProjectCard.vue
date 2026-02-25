@@ -84,15 +84,16 @@ const emit = defineEmits<{
 				<!-- Action Buttons -->
 				<div class="flex flex-col sm:flex-row gap-3 pt-8">
 					<AppButton
-						v-if="project.liveUrl"
+						v-if="project.liveUrl || project.liveDisabled"
 						variant="subtle"
 						size="md"
-						:href="project.liveUrl"
-						target="_blank"
-						rel="noopener noreferrer"
+						:href="project.liveDisabled ? undefined : project.liveUrl"
+						:target="project.liveDisabled ? undefined : '_blank'"
+						:rel="project.liveDisabled ? undefined : 'noopener noreferrer'"
+						:disabled="project.liveDisabled"
 						class="flex-1"
 					>
-						Visit Project
+						{{ project.liveLabel || "Visit Project" }}
 					</AppButton>
 					<AppButton
 						v-if="project.githubUrl"

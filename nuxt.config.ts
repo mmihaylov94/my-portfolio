@@ -44,6 +44,12 @@ export default defineNuxtConfig({
 		preference: "system",
 	},
 
+	icon: {
+		clientBundle: {
+			scan: true,
+		},
+	},
+
 	nitro: {
 		prerender: {
 			routes: ["/"],

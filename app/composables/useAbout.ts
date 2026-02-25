@@ -25,8 +25,8 @@ export interface AboutInfo {
 
 const aboutInfo: AboutInfo = {
 	description: [
-		"I work with small businesses and startups to design and build full-stack web systems from the ground up. I take ownership of the entire process, from shaping the initial idea and architecture to delivering, running, and improving production systems.",
-		"My background combines full-stack development with automation, allowing me to replace manual processes, reduce tool sprawl, and improve a company's digital presence. I focus on practical, maintainable solutions that solve real problems and continue to work as the business grows.",
+		"I work with small businesses and startups to design and build automation, integrations, and full-stack systems from the ground up. I take ownership of the entire lifecycle — from architecture and API design to delivery, deployment, and production support.",
+		"My background combines full-stack engineering with low-code automation and RPA, allowing me to eliminate manual processes, connect disconnected tools, and build reliable systems that scale with the business. I focus on practical, maintainable solutions that solve real operational problems."
 	],
 	skills: [
 		{ label: "PHP", icon: "i-simple-icons-php" },
@@ -44,6 +44,7 @@ const aboutInfo: AboutInfo = {
 		{ label: "Supabase", icon: "i-simple-icons-supabase" },
 		{ label: "Git", icon: "i-simple-icons-git" },
 		{ label: "GitHub", icon: "i-simple-icons-github" },
+		{ label: "Docker", icon: "i-simple-icons-docker" },
 		{ label: "SQL", icon: "i-heroicons-circle-stack" },
 		{ label: "MySQL", icon: "i-simple-icons-mysql" },
 		{ label: "MariaDB", icon: "i-simple-icons-mariadb" },
@@ -57,7 +58,7 @@ const aboutInfo: AboutInfo = {
 		{
 			title: "Software Developer",
 			company: "Businessmap LTD BG",
-			period: "2022 - Current",
+			period: "2023 - Current",
 			description: `Designed and delivered full-stack web systems aligned with business and client needs, replacing spreadsheets and manual
       workflows with reliable, automated solutions. Developed backend services and APIs using PHP (CodeIgniter) and implemented modern
       frontends with JavaScript, React, and Vue, including third-party integrations. Automated and optimised processes across finance, HR,
@@ -66,7 +67,7 @@ const aboutInfo: AboutInfo = {
 		{
 			title: "Solution Architect",
 			company: "Deloitte LLP UK, Glasgow, UK",
-			period: "2021 - 2022",
+			period: "2021 - 2023",
 			description: `Led delivery of end-to-end automation solutions from requirements and design through build, deployment, and production
       ownership. Managed automation infrastructure including servers, VDIs, and control environments, while improving governance,
       standards, and operating procedures. Delivered initiatives that reduced error rates, improved onboarding efficiency, and generated
@@ -100,6 +101,16 @@ const aboutInfo: AboutInfo = {
 	],
 	socialLinks: [
 		{
+			name: "LinkedIn",
+			url: "https://www.linkedin.com/in/mihail-m-mihaylov",
+			icon: "i-simple-icons-linkedin",
+		},
+		{
+			name: "GitHub",
+			url: "https://github.com/mmihaylov94",
+			icon: "i-simple-icons-github",
+		},
+		{
 			name: "Facebook",
 			url: "https://www.facebook.com/m.mihaylov94",
 			icon: "i-simple-icons-facebook",
@@ -110,19 +121,9 @@ const aboutInfo: AboutInfo = {
 			icon: "i-simple-icons-instagram",
 		},
 		{
-			name: "LinkedIn",
-			url: "https://www.linkedin.com/in/mihail-m-mihaylov",
-			icon: "i-simple-icons-linkedin",
-		},
-		{
 			name: "Email",
 			url: "mailto:mihaylov.dev@gmail.com",
 			icon: "i-heroicons-envelope",
-		},
-		{
-			name: "GitHub",
-			url: "https://github.com/mmihaylov94",
-			icon: "i-simple-icons-github",
 		},
 	],
 };

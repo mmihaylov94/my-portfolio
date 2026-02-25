@@ -24,8 +24,14 @@ const props = withDefaults(defineProps<Props>(), {
 				: '',
 		]"
 	>
+		<img
+			v-if="icon && icon.startsWith('/')"
+			:src="icon"
+			:alt="label"
+			:class="props.variant === 'small-filled' ? 'w-4 h-4 shrink-0' : 'w-5 h-5 shrink-0'"
+		/>
 		<UIcon
-			v-if="icon"
+			v-else-if="icon"
 			:name="icon"
 			:class="props.variant === 'small-filled' ? 'w-4 h-4' : 'w-5 h-5'"
 		/>
