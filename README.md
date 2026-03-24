@@ -205,7 +205,7 @@ The site uses an SVG logo (`public/logo.svg`) that:
 
 - Website: [mihaylov.io](https://mihaylov.io)
 - Email: [mihaylov.dev@gmail.com](mailto:mihaylov.dev@gmail.com)
-- LinkedIn: [mihail-mihaylov](https://www.linkedin.com/in/mihail-mihaylov)
-- GitHub: [mihaylov-dev](https://github.com/mihaylov-dev)
+- LinkedIn: [mihail-m-mihaylov](https://www.linkedin.com/in/mihail-m-mihaylov)
+- GitHub: [mmihaylov94](https://github.com/mmihaylov94)
 
 ---

@@ -62,7 +62,7 @@ useHead({
 					addressCountry: "BG",
 				},
 				sameAs: [
-					"https://www.linkedin.com/in/mihail-mihaylov",
+					"https://www.linkedin.com/in/mihail-m-mihaylov",
 					"https://github.com/mmihaylov94",
 				],
 				knowsAbout: [
