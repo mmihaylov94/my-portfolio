@@ -7,6 +7,7 @@ const app = express();
 const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
 const N8N_API_KEY = process.env.N8N_API_KEY;
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+const CONTACT_WEBHOOK_PATH = process.env.N8N_CONTACT_WEBHOOK_PATH || "/contact";
 
 app.use(express.json({ limit: "1mb" }));
 
@@ -21,20 +22,28 @@ function createLimiter(limit, windowMs) {
 }
 
 const contactLimiter = createLimiter(5, 15 * 60 * 1000); // 5 requests / 15 minutes
-const chatLimiter = createLimiter(30, 60 * 1000); // 30 requests / minute
-const feedbackLimiter = createLimiter(20, 10 * 60 * 1000); // 20 requests / 10 minutes
 
 app.get("/api/health", (req, res) => {
 	res.json({ ok: true });
 });
 
-async function postToN8n(webhookUrl, payload, res) {
-	if (!webhookUrl) {
-		res.status(503).json({ error: "Webhook not configured" });
+function buildN8nWebhookUrl(webhookPath) {
+	const base = N8N_WEBHOOK_URL.replace(/\/$/, "");
+	const pathPart = webhookPath.startsWith("/") ? webhookPath : `/${webhookPath}`;
+	return `${base}${pathPart}`;
+}
+
+async function postToN8n(webhookPath, payload, res) {
+	if (!N8N_WEBHOOK_URL) {
+		res.status(503).json({ error: "Webhook not configured (set N8N_WEBHOOK_URL in api/.env)" });
+		return;
+	}
+	if (!webhookPath) {
+		res.status(500).json({ error: "Invalid webhook path" });
 		return;
 	}
 	try {
-		const response = await fetch(N8N_WEBHOOK_URL + webhookUrl, {
+		const response = await fetch(buildN8nWebhookUrl(webhookPath), {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -83,17 +92,22 @@ async function verifyRecaptcha(token) {
 	}
 }
 
+function asTrimmedString(value) {
+	return typeof value === "string" ? value.trim() : "";
+}
+
 app.post("/api/contact", contactLimiter, async (req, res) => {
 	const { email, subject, message, reason, recaptchaToken } = req.body || {};
+	const emailValue = asTrimmedString(email);
+	const subjectValue = asTrimmedString(subject);
+	const messageValue = asTrimmedString(message);
+	const reasonValue = asTrimmedString(reason);
+
 	if (
-		typeof email !== "string" ||
-		typeof subject !== "string" ||
-		typeof message !== "string" ||
-		typeof reason !== "string" ||
-		!email.trim() ||
-		!subject.trim() ||
-		!message.trim() ||
-		!reason.trim()
+		!emailValue ||
+		!subjectValue ||
+		!messageValue ||
+		!reasonValue
 	) {
 		res.status(400).json({ error: "Missing or invalid: email, subject, message, reason" });
 		return;
@@ -113,33 +127,8 @@ app.post("/api/contact", contactLimiter, async (req, res) => {
 			return;
 		}
 	}
-	const payload = { email, subject, message, reason };
-	postToN8n("/contact", payload, res);
-});
-
-app.post("/api/chat", chatLimiter, async (req, res) => {
-	const { message, history } = req.body || {};
-	if (typeof message !== "string" || !message.trim()) {
-		res.status(400).json({ error: "Missing or invalid: message" });
-		return;
-	}
-	const payload = { message: message.trim(), history: Array.isArray(history) ? history : [] };
-	await postToN8n("/chat", payload, res);
-});
-
-app.post("/api/feedback", feedbackLimiter, (req, res) => {
-	const { messageId, feedback, chatMessage, reply } = req.body || {};
-	if (typeof feedback !== "string" || !["positive", "negative"].includes(feedback)) {
-		res.status(400).json({ error: "Invalid feedback: must be 'positive' or 'negative'" });
-		return;
-	}
-	const payload = {
-		feedback,
-		messageId: messageId || null,
-		chatMessage: chatMessage || null,
-		reply: reply || null,
-	};
-	postToN8n("/feedback", payload, res);
+	const payload = { email: emailValue, subject: subjectValue, message: messageValue, reason: reasonValue };
+	await postToN8n(CONTACT_WEBHOOK_PATH, payload, res);
 });
 
 const port = Number(process.env.PORT || 3000);
