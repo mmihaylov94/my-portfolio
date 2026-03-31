@@ -5,7 +5,7 @@ page_type: contact
 url: https://mihaylov.io/knowledgebase/contact
 source_type: knowledgebase
 tags: [contact, email, social, collaboration, inquiry]
-last_verified: 2026-03-24
+last_verified: 2026-03-31
 ---
 
 ## Summary
@@ -19,7 +19,7 @@ Primary contact is available via email and website contact section. Social profi
 ## Website and Contact Entry Points
 
 - Main website: `https://mihaylov.io`
-- Contact section route anchor: `#contact` on the homepage.
+- Contact section link: `/?section=contact` on the main website.
 - Contact form reasons: project inquiry, collaboration, job opportunity, consultation, other.
 
 ## What to Use for Different Needs

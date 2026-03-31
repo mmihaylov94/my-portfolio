@@ -65,14 +65,14 @@ function toggleExpanded(index: number) {
 						<AppButton
 							variant="full"
 							size="lg"
-							@click="scrollToSection('#projects')"
+							@click="scrollToSection('projects')"
 						>
 							View work
 						</AppButton>
 						<AppButton
 							variant="outline"
 							size="lg"
-							@click="scrollToSection('#contact')"
+							@click="scrollToSection('contact')"
 						>
 							Contact me
 						</AppButton>

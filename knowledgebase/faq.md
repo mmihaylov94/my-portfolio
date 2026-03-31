@@ -5,7 +5,7 @@ page_type: faq
 url: https://mihaylov.io/knowledgebase/faq
 source_type: knowledgebase
 tags: [faq, profile, services, projects, contact]
-last_verified: 2026-03-24
+last_verified: 2026-03-31
 ---
 
 ## What does Mihail specialize in?
@@ -51,5 +51,5 @@ Full-stack web development, automation architecture, API integrations, and opera
 
 ## How can someone reach him quickly?
 
-By email at `mihaylov.dev@gmail.com`, through the contact section on `mihaylov.io`, or via LinkedIn.
+By email at `mihaylov.dev@gmail.com`, through the contact section (`/?section=contact`) on `mihaylov.io`, or via LinkedIn.
 
