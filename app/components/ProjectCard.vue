@@ -17,8 +17,10 @@ function buildSrcset(path: string) {
 	const normalized = normalizePublicPath(path);
 	const match = normalized.match(/^(.*)\.(png|jpe?g|webp)$/i);
 	if (!match) return "";
-	const stem = match[1];
-	const ext = match[2].toLowerCase();
+	const stem = match[1] ?? "";
+	const extRaw = match[2] ?? "";
+	if (!stem || !extRaw) return "";
+	const ext = extRaw.toLowerCase();
 	return [
 		`${stem}-480w.${ext} 480w`,
 		`${stem}-768w.${ext} 768w`,
