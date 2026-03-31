@@ -16,7 +16,7 @@ useSeoMeta({
 
 	ogTitle: title,
 	ogDescription: description,
-	ogImage: `${siteUrl}/og-image.png`,
+	ogImage: `${siteUrl}/images/og-image.png`,
 	ogUrl: siteUrl,
 	ogType: "website",
 	ogSiteName: siteName,
@@ -24,7 +24,7 @@ useSeoMeta({
 	twitterCard: "summary_large_image",
 	twitterTitle: title,
 	twitterDescription: description,
-	twitterImage: `${siteUrl}/og-image.png`,
+	twitterImage: `${siteUrl}/images/og-image.png`,
 
 	keywords:
 		"full-stack developer, business automation, workflow automation, internal tools, system integrations, replace spreadsheets, custom web app, PHP, JavaScript, React, Vue, Sofia, Bulgaria",
@@ -55,7 +55,7 @@ useHead({
 				jobTitle: "Full-Stack Developer & Automation Engineer",
 				description,
 				url: siteUrl,
-				image: `${siteUrl}/profile_picture.jpg`,
+				image: `${siteUrl}/images/profile_picture.jpg`,
 				address: {
 					"@type": "PostalAddress",
 					addressLocality: "Sofia",

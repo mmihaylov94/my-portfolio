@@ -5,7 +5,29 @@ interface Props {
 	project: Project;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+function normalizePublicPath(path: string) {
+	const trimmed = String(path || "").trim();
+	if (!trimmed) return "";
+	return trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+}
+
+function buildSrcset(path: string) {
+	const normalized = normalizePublicPath(path);
+	const match = normalized.match(/^(.*)\.(png|jpe?g|webp)$/i);
+	if (!match) return "";
+	const stem = match[1];
+	const ext = match[2].toLowerCase();
+	return [
+		`${stem}-480w.${ext} 480w`,
+		`${stem}-768w.${ext} 768w`,
+		`${stem}-960w.${ext} 960w`,
+	].join(", ");
+}
+
+const imageSrc = computed(() => normalizePublicPath(props.project.image));
+const imageSrcset = computed(() => buildSrcset(props.project.image));
 
 const emit = defineEmits<{
 	prev: [];
@@ -40,9 +62,13 @@ const emit = defineEmits<{
 				class="relative aspect-video sm:aspect-auto sm:h-64 lg:h-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center p-5 sm:p-7 lg:p-10"
 			>
 				<img
-					:src="project.image"
+					:src="imageSrc"
+					:srcset="imageSrcset || undefined"
+					sizes="(max-width: 639px) calc(100vw - 4rem), (max-width: 1023px) calc(100vw - 3rem), 50vw"
 					:alt="project.title"
 					class="w-full h-auto sm:h-full object-contain"
+					loading="lazy"
+					decoding="async"
 				/>
 			</div>
 

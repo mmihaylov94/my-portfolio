@@ -2,6 +2,10 @@
 const { scrollToSection } = useNavigation();
 const { skills, timeline, description } = useAbout();
 
+const profileImageSrc = "/images/profile_picture.jpg";
+const profileImageSrcset =
+	"/images/profile_picture-480w.jpg 480w, /images/profile_picture-768w.jpg 768w, /images/profile_picture-960w.jpg 960w";
+
 const expandedTimelineItems = ref<Record<number, boolean>>({});
 function isExpanded(index: number) {
 	return expandedTimelineItems.value[index] === true;
@@ -27,9 +31,13 @@ function toggleExpanded(index: number) {
 							class="aspect-square rounded-full overflow-hidden shadow-2xl border-4 sm:border-6 lg:border-8 border-primary-100 dark:border-primary-900"
 						>
 							<img
-								src="/profile_picture.jpg"
+								:src="profileImageSrc"
+								:srcset="profileImageSrcset"
+								sizes="(max-width: 639px) calc(100vw - 6rem), (max-width: 1023px) 384px, 512px"
 								alt="Mihail Mihaylov"
 								class="w-full h-full object-cover"
+								loading="lazy"
+								decoding="async"
 							/>
 						</div>
 					</div>
