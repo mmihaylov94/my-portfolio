@@ -14,7 +14,10 @@ let onSmallMqlChange: (() => void) | undefined;
 const touchStartX = ref<number | null>(null);
 const touchStartY = ref<number | null>(null);
 
-function setSlideEl(index: number, el: Element | ComponentPublicInstance | null) {
+function setSlideEl(
+	index: number,
+	el: Element | ComponentPublicInstance | null,
+) {
 	if (!el) {
 		slideEls.value[index] = null;
 		return;
@@ -115,23 +118,22 @@ function onTouchEnd(event: TouchEvent) {
 	touchStartY.value = null;
 }
 
-// onMounted(() => {
-// 	const interval = setInterval(() => {
-// 		nextProject();
-// 	}, 5000);
-// 	onUnmounted(() => clearInterval(interval));
-// });
-
 onMounted(() => {
 	if (typeof window === "undefined") return;
 	window.addEventListener("keydown", onKeyDown, { passive: false });
 
 	smallMql = window.matchMedia("(max-width: 639px)");
 	onSmallMqlChange = () => queueMicrotask(updateCarouselViewportHeight);
-	if (typeof smallMql.addEventListener === "function") smallMql.addEventListener("change", onSmallMqlChange);
-	else (smallMql as unknown as { addListener: (cb: () => void) => void }).addListener(onSmallMqlChange);
+	if (typeof smallMql.addEventListener === "function")
+		smallMql.addEventListener("change", onSmallMqlChange);
+	else
+		(
+			smallMql as unknown as { addListener: (cb: () => void) => void }
+		).addListener(onSmallMqlChange);
 
-	slideResizeObserver = new ResizeObserver(() => updateCarouselViewportHeight());
+	slideResizeObserver = new ResizeObserver(() =>
+		updateCarouselViewportHeight(),
+	);
 	const el = slideEls.value[currentIndex.value];
 	if (el) slideResizeObserver.observe(el);
 	queueMicrotask(updateCarouselViewportHeight);
@@ -143,8 +145,12 @@ onUnmounted(() => {
 
 	slideResizeObserver?.disconnect();
 	if (smallMql && onSmallMqlChange) {
-		if (typeof smallMql.removeEventListener === "function") smallMql.removeEventListener("change", onSmallMqlChange);
-		else (smallMql as unknown as { removeListener: (cb: () => void) => void }).removeListener(onSmallMqlChange);
+		if (typeof smallMql.removeEventListener === "function")
+			smallMql.removeEventListener("change", onSmallMqlChange);
+		else
+			(
+				smallMql as unknown as { removeListener: (cb: () => void) => void }
+			).removeListener(onSmallMqlChange);
 	}
 });
 
@@ -177,7 +183,9 @@ watch(currentIndex, async () => {
 					A collection of projects I've built, showcasing my skills and
 					experience in full-stack development and automation.
 				</p>
-				<p class="sm:hidden mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
+				<p
+					class="sm:hidden mt-4 text-center text-sm text-gray-600 dark:text-gray-300"
+				>
 					Swipe left or right to explore projects.
 				</p>
 			</div>
@@ -191,7 +199,11 @@ watch(currentIndex, async () => {
 					@touchmove="onTouchMove"
 					@touchend="onTouchEnd"
 					@touchcancel="onTouchEnd"
-					:style="carouselViewportHeight ? { height: carouselViewportHeight } : undefined"
+					:style="
+						carouselViewportHeight
+							? { height: carouselViewportHeight }
+							: undefined
+					"
 				>
 					<div
 						class="flex items-start lg:items-stretch transition-transform duration-500 ease-in-out"

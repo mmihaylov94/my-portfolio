@@ -13,14 +13,21 @@ function escapeXml(value: string) {
 		.replaceAll("'", "&apos;");
 }
 
-function urlEntry(loc: string, lastmod: Date, changefreq?: string, priority?: number) {
+function urlEntry(
+	loc: string,
+	lastmod: Date,
+	changefreq?: string,
+	priority?: number,
+) {
 	const parts = [
 		`<loc>${escapeXml(loc)}</loc>`,
 		`<lastmod>${escapeXml(toIsoDate(lastmod))}</lastmod>`,
 	];
 
-	if (changefreq) parts.push(`<changefreq>${escapeXml(changefreq)}</changefreq>`);
-	if (typeof priority === "number") parts.push(`<priority>${priority.toFixed(1)}</priority>`);
+	if (changefreq)
+		parts.push(`<changefreq>${escapeXml(changefreq)}</changefreq>`);
+	if (typeof priority === "number")
+		parts.push(`<priority>${priority.toFixed(1)}</priority>`);
 
 	return `<url>${parts.join("")}</url>`;
 }
@@ -39,4 +46,3 @@ export default defineEventHandler((event) => {
 		"</urlset>",
 	].join("");
 });
-
