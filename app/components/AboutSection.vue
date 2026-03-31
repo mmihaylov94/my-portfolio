@@ -1,12 +1,20 @@
 <script setup lang="ts">
 const { scrollToSection } = useNavigation();
 const { skills, timeline, description } = useAbout();
+
+const expandedTimelineItems = ref<Record<number, boolean>>({});
+function isExpanded(index: number) {
+	return expandedTimelineItems.value[index] === true;
+}
+function toggleExpanded(index: number) {
+	expandedTimelineItems.value[index] = !isExpanded(index);
+}
 </script>
 
 <template>
 	<section class="bg-white dark:bg-gray-900 pt-16 lg:pt-24">
 		<div
-			class="w-full px-4 sm:px-6 lg:px-16 xl:px-24 max-w-7xl mx-auto space-y-16"
+			class="w-full px-4 sm:px-6 lg:px-16 xl:px-24 max-w-7xl mx-auto space-y-10 sm:space-y-12 lg:space-y-16"
 		>
 			<!-- Top Section: About Me and Profile Picture -->
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -14,9 +22,9 @@ const { skills, timeline, description } = useAbout();
 				<div
 					class="flex items-center justify-center order-1 lg:order-2 lg:justify-end"
 				>
-					<div class="w-full max-w-md lg:max-w-lg">
+					<div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
 						<div
-							class="aspect-square rounded-full overflow-hidden shadow-2xl border-8 border-primary-100 dark:border-primary-900"
+							class="aspect-square rounded-full overflow-hidden shadow-2xl border-4 sm:border-6 lg:border-8 border-primary-100 dark:border-primary-900"
 						>
 							<img
 								src="/profile_picture.jpg"
@@ -38,7 +46,7 @@ const { skills, timeline, description } = useAbout();
 						<p
 							v-for="(paragraph, index) in description"
 							:key="index"
-							class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+							class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed text-justify"
 						>
 							{{ paragraph }}
 						</p>
@@ -68,11 +76,11 @@ const { skills, timeline, description } = useAbout();
 			<div class="flex justify-center">
 				<div class="w-full max-w-4xl">
 					<h3
-						class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center"
+						class="text-xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 md:mb-6 text-center"
 					>
 						Skills & Technologies
 					</h3>
-					<div class="flex flex-wrap gap-4 justify-center">
+					<div class="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center">
 						<SkillBadge
 							v-for="skill in skills"
 							:key="skill.label"
@@ -102,7 +110,7 @@ const { skills, timeline, description } = useAbout();
 						<div
 							v-for="(item, index) in timeline"
 							:key="index"
-							class="relative pl-12 lg:pl-16"
+							class="relative pl-0 sm:pl-6 lg:pl-16"
 						>
 							<!-- Timeline dot -->
 							<div
@@ -126,12 +134,25 @@ const { skills, timeline, description } = useAbout();
 										{{ item.period }}
 									</span>
 								</div>
-								<p class="text-gray-600 dark:text-gray-400 font-medium">
+								<p class="text-gray-600 dark:text-gray-400 font-medium text-justify">
 									{{ item.company }}
 								</p>
-								<p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+								<p
+									:class="[
+										'text-gray-600 dark:text-gray-400 leading-relaxed text-justify',
+										!isExpanded(index) ? 'timeline-mobile-clamp' : '',
+									]"
+								>
 									{{ item.description }}
 								</p>
+								<button
+									type="button"
+									class="sm:hidden text-sm font-semibold text-secondary-600 dark:text-secondary-400 hover:underline"
+									@click="toggleExpanded(index)"
+									:aria-expanded="isExpanded(index)"
+								>
+									{{ isExpanded(index) ? "Read less" : "Read more" }}
+								</button>
 							</div>
 						</div>
 					</div>
@@ -141,3 +162,15 @@ const { skills, timeline, description } = useAbout();
 		<SectionDivider />
 	</section>
 </template>
+
+<style scoped>
+/* Clamp timeline descriptions only on small screens */
+@media (max-width: 639px) {
+	.timeline-mobile-clamp {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+	}
+}
+</style>

@@ -24,6 +24,30 @@ const chatToggleSelector = `${chatRootSelector} .chat-window-toggle`;
 let chatObserver: MutationObserver | undefined;
 let isRestarting = false;
 
+function normalizeChatHeadingSemantics() {
+	const heading = document.querySelector(chatHeadingSelector);
+	if (!heading) return;
+
+	// Ensure the chat title does not introduce an extra H1.
+	const titleEl =
+		heading.querySelector("h1") ??
+		heading.querySelector("h2") ??
+		heading.querySelector(".chat-title");
+
+	if (!titleEl) return;
+
+	// If the library renders a heading element, replace it with an h3,
+	// preserving attributes/classes and content for identical styling.
+	if (titleEl.tagName.toLowerCase() === "h3") return;
+
+	const h3 = document.createElement("h3");
+	for (const { name, value } of Array.from(titleEl.attributes)) {
+		h3.setAttribute(name, value);
+	}
+	h3.innerHTML = titleEl.innerHTML;
+	titleEl.replaceWith(h3);
+}
+
 function mountStartOverButton() {
 	const heading = document.querySelector(chatHeadingSelector);
 	if (!heading || heading.querySelector(".portfolio-chat-reset")) return;
@@ -61,8 +85,12 @@ function startObserver() {
 	const root = document.querySelector(chatRootSelector);
 	if (!root) return;
 	chatObserver?.disconnect();
-	chatObserver = new MutationObserver(mountStartOverButton);
+	chatObserver = new MutationObserver(() => {
+		normalizeChatHeadingSemantics();
+		mountStartOverButton();
+	});
 	chatObserver.observe(root, { childList: true, subtree: true });
+	normalizeChatHeadingSemantics();
 	mountStartOverButton();
 }
 

@@ -5,9 +5,9 @@ definePageMeta({
 
 const siteUrl = "https://mihaylov.io";
 const siteName = "Mihail Mihaylov";
-const title = "Mihail Mihaylov | Full-Stack Developer & Automation";
+const title = "Mihail Mihaylov | Automation & Full-Stack Developer";
 const description =
-	"I build full-stack web systems that replace spreadsheets and manual work with reliable automation. End-to-end delivery and production ownership for small businesses and startups.";
+	"Automation & full-stack developer building integrations and workflows that replace manual work and spreadsheets for startups and small businesses.";
 
 useSeoMeta({
 	title,

@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
 				: '',
 			// Large outline variant
 			props.variant === 'large-outline'
-				? 'gap-2 px-4 py-2 text-base font-semibold bg-transparent border-2 border-secondary-500 dark:border-secondary-400 text-secondary-600 dark:text-secondary-400 shadow-md hover:shadow-lg hover:bg-secondary-50 dark:hover:bg-secondary-950/20 hover:scale-105'
+				? 'gap-2 px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base font-semibold bg-transparent border-2 border-secondary-500 dark:border-secondary-400 text-secondary-600 dark:text-secondary-400 shadow-md hover:shadow-lg hover:bg-secondary-50 dark:hover:bg-secondary-950/20 hover:scale-105'
 				: '',
 		]"
 	>
