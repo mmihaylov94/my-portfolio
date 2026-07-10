@@ -66,14 +66,13 @@ const projects: Project[] = [
 	},
 	{
 		id: "4",
-		title: "DueNote",
+		title: "Glotsmith",
 		description:
-			"Language-learning notebook for studying from real content. Organize courses and workbooks made of reorderable sections (translations, vocabulary, grammar notes, and embedded videos) with auto-save, plus a course-wide aggregated vocabulary view.",
+			"Language-learning SaaS for studying from real content. Import PDFs, video, and audio into one workbench, translate side-by-side, capture vocabulary as you read, and organise everything into courses and workbooks. Includes OCR for scanned documents, speech-to-text transcription, read-aloud, and shareable, forkable public courses.",
 		outcome:
-			"Turns real-world learning materials into structured, searchable study notes with integrated vocabulary building.",
-		image: "images/duenote.png",
-		liveUrl: "https://duenote.mihaylov.io",
-		githubUrl: "https://github.com/mmihaylov94/duenote",
+			"Replaces a multi-tool language-study workflow with one notebook, from OCR and transcription through translation, vocabulary capture, and course sharing.",
+		image: "images/glotsmith.png",
+		liveUrl: "https://glotsmith.com",
 		technologies: [
 			"Vue 3",
 			"Vite",
@@ -81,8 +80,10 @@ const projects: Project[] = [
 			"Node.js",
 			"Express",
 			"PostgreSQL",
-			"DeepL API",
-			"OAuth 2.0",
+			"AWS",
+			"Docker",
+			"Paddle",
+			"Google Cloud AI",
 		],
 	},
 	{

@@ -5,7 +5,7 @@ page_type: services
 url: https://mihaylov.io/knowledgebase/services
 source_type: knowledgebase
 tags: [services, automation, integrations, web-development, consulting]
-last_verified: 2026-03-24
+last_verified: 2026-07-09
 ---
 
 ## Summary
@@ -62,6 +62,7 @@ Mihail provides full-stack and automation-focused engineering services, with emp
 - Reporting automation: AI Marketing Reporter.
 - Production automation architecture: n8n Pro Automation Framework.
 - Community platform and moderation systems: Threadline.
+- Commercial SaaS product with cloud AI integrations and subscription billing: Glotsmith.
 - Retail operations workflow consolidation: OmniRetail.
 - Team delivery workflow tooling: Taskflow.
 - Niche social engagement platform: PawCircle.

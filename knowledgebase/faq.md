@@ -5,7 +5,7 @@ page_type: faq
 url: https://mihaylov.io/knowledgebase/faq
 source_type: knowledgebase
 tags: [faq, profile, services, projects, contact]
-last_verified: 2026-03-31
+last_verified: 2026-07-09
 ---
 
 ## What does Mihail specialize in?
@@ -33,6 +33,7 @@ Bulgarian (native) and English (fluent).
 - AI Marketing Reporter
 - n8n Pro Automation Framework
 - Threadline
+- Glotsmith
 - OmniRetail
 - Taskflow
 - PawCircle

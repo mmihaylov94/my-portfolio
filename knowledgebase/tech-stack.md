@@ -4,8 +4,20 @@ title: Technical Skills and Tools
 page_type: tech-stack
 url: https://mihaylov.io/knowledgebase/tech-stack
 source_type: knowledgebase
-tags: [technical-skills, languages, frameworks, automation, tools, infrastructure]
-last_verified: 2026-03-24
+tags:
+  [
+    technical-skills,
+    languages,
+    frameworks,
+    automation,
+    tools,
+    infrastructure,
+    cloud,
+    aws,
+    ai-services,
+    billing,
+  ]
+last_verified: 2026-07-09
 ---
 
 ## Summary
@@ -57,8 +69,23 @@ Mihail's technical profile combines full-stack web engineering, automation/integ
 
 - Git
 - GitHub
+- GitHub Actions (CI/CD pipelines)
 - Docker
+- Docker Compose
+- AWS (EC2, RDS, S3)
+- Cloudflare (DNS, proxy, TLS)
 - Node.js ecosystem tooling
+
+## Cloud AI Services
+
+- Translation: DeepL, Google Cloud Translation
+- Text-to-speech: Google Cloud Text-to-Speech, Azure AI Speech
+- Optical character recognition: Google Cloud Vision, Azure AI Document Intelligence, Tesseract
+- Speech-to-text: Google Cloud Speech-to-Text
+
+## Payments and Billing
+
+- Paddle (Merchant of Record, subscription billing)
 
 ## Technical Strength Profile
 
