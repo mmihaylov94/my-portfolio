@@ -4,12 +4,14 @@ import "@n8n/chat/style.css";
 
 declare global {
 	interface Window {
-		__portfolioN8nChatInitialized?: boolean
+		__portfolioN8nChatInitialized?: boolean;
 	}
 }
 
 const config = useRuntimeConfig();
-const webhookPath = computed(() => String(config.public.n8nChatWebhookPath ?? "").trim());
+const webhookPath = computed(() =>
+	String(config.public.n8nChatWebhookPath ?? "").trim(),
+);
 const webhookUrl = computed(() => {
 	if (!webhookPath.value) return "";
 	return `https://n8n.mihaylov.io/webhook/${webhookPath.value}`;
@@ -70,7 +72,8 @@ function mountStartOverButton() {
 			await initChat();
 			if (wasOpen) {
 				requestAnimationFrame(() => {
-					const toggle = document.querySelector<HTMLElement>(chatToggleSelector);
+					const toggle =
+						document.querySelector<HTMLElement>(chatToggleSelector);
 					if (toggle) toggle.click();
 				});
 			}
@@ -108,8 +111,8 @@ async function initChat() {
 		loadPreviousSession: true,
 		i18n: {
 			en: {
-				title: "Rachel",
-				subtitle: "",
+				title: "Rachel · AI assistant",
+				subtitle: "Automated chatbot — answers may not be perfect",
 				footer: "",
 				getStarted: "New Conversation",
 				inputPlaceholder: "Type your question...",
@@ -117,7 +120,7 @@ async function initChat() {
 			},
 		},
 		initialMessages: [
-			"Hello, I am Rachel, Mihail's personal assistant. I am here to answer any questions you may have about him or his projects. How can I help you?",
+			"Hello, I am Rachel, Mihail's personal AI assistant. I am here to answer any questions you may have about him or his projects to the best of my knowledge. How can I help you?",
 		],
 	});
 	startObserver();
@@ -150,7 +153,9 @@ onUnmounted(() => {
 	--chat--color-light-shade-100: #d3e3eb;
 	--chat--color-typing: #486d81;
 
-	--chat--font-family: "Teachers", "Cantarell", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--chat--font-family:
+		"Teachers", "Cantarell", -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, sans-serif;
 	--chat--border-radius: 1rem;
 	--chat--window--width: 360px;
 	--chat--window--height: 560px;
@@ -284,7 +289,9 @@ html.dark .chat-window-wrapper .chat-window-toggle:focus-visible {
 	background: transparent;
 	color: rgb(255 255 255 / 0.9);
 	cursor: pointer;
-	transition: background-color 0.2s ease, border-color 0.2s ease;
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease;
 }
 
 .portfolio-chat-reset:hover {
