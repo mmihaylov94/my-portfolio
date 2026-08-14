@@ -2,74 +2,72 @@
 doc_id: services
 title: Services
 page_type: services
-url: https://mihaylov.io/knowledgebase/services
+url: https://mihaylov.io/?section=contact
 source_type: knowledgebase
-tags: [services, automation, integrations, web-development, consulting]
-last_verified: 2026-07-09
+tags: [services, consulting, solution-architecture, automation, integrations, ai, compliance, web-development]
+last_verified: 2026-08-13
 ---
 
 ## Summary
 
-Mihail provides full-stack and automation-focused engineering services, with emphasis on building reliable systems that reduce manual operational work.
+Mihail takes on consulting and freelance work alongside his employment, covering solution architecture, automation, API-led integrations, enterprise RPA, and production AI systems. The emphasis is on reducing manual work, connecting fragmented tools, and turning complex operational processes into reliable software.
 
-## Service Areas and Delivery Scope
+## What services does Mihail offer?
 
-### Automation Systems
+### Solution architecture
 
-- Designs and implements workflow automation for recurring business processes.
-- Builds production-ready automation flows with API-driven integrations.
-- Supports process optimization and reliability improvements.
-- Builds and maintains n8n-based automation patterns including webhook-led flows and integration packs.
+- Chooses the right technical approach for the problem rather than forcing every solution into the same stack.
+- Runs discovery, requirements gathering, architecture, and implementation planning.
+- Generalises client-specific builds into reusable products.
+
+### Automation systems
+
+- Builds automation using n8n, Zapier, and Microsoft Power Automate when speed, maintainability, and platform fit make sense.
+- Builds production-ready automation with idempotency, run logging, and observability.
 - Delivers enterprise automation using UiPath, Automation Anywhere, and Microsoft Power Platform where appropriate.
 
-### System Integrations
+### System integrations
 
-- Integrates third-party platforms and APIs into unified workflows.
-- Connects disconnected business tools to reduce duplicate manual operations.
-- Implements webhook and REST-based integration patterns.
+- Designs and builds API-led integrations between business platforms.
+- Implements webhook-driven and bi-directional integration patterns at scale.
+- Connects disconnected business tools to remove duplicate manual operations.
 
-### Full-Stack Web Development
+### Custom application development
 
-- Builds full-stack applications from architecture to production deployment.
-- Develops backend APIs and frontend user experiences for operational use cases.
-- Delivers systems designed for maintainability and scalability.
-- Implements role-based access, workflow tooling, reporting, and operations-oriented UIs.
+- Architects and develops custom applications using PHP, CodeIgniter, Node.js, Vue, React, and REST APIs when requirements demand flexibility, control, or scale.
+- Builds backend APIs and operational front ends, including role-based access and reporting.
 
-### Delivery and Production Ownership
+### Production AI systems
+
+- Builds retrieval-augmented systems over curated knowledge bases, using vector search and pgvector.
+- Builds AI agents with tool calling, plus the authentication and data-filtering layers that decide what an agent may see.
+- Builds Claude Skills and authenticated proxies so business teams can query systems conversationally without exposing personal data.
+
+### Compliance engineering
+
+- Implements GDPR, EU Digital Services Act, CCPA, and DMCA obligations in code and database schema rather than in policy documents alone.
+- Builds retention sweeps, consent lawful-basis handling, sub-processor records, and CI tests that fail the build when published legal statements and running configuration drift apart.
+
+### Delivery and production ownership
 
 - Owns the lifecycle from requirements and architecture to go-live and support.
-- Includes deployment and post-release production support as part of delivery.
-- Works across discovery, architecture, implementation, rollout, and operational improvement.
+- Covers deployment, optimisation, and production support as part of delivery.
 
-## Engagement Intents Reflected in Contact Form
-
-- Project inquiry
-- Collaboration
-- Job opportunity
-- Consultation
-- Other
-
-## Typical Outcomes
+## What does an engagement typically produce?
 
 - Reduced manual data handling and repetitive admin work.
 - More reliable workflows and clearer operational visibility.
 - Faster reporting and improved execution consistency.
-- Better collaboration between business teams and technical systems.
-- Career highlights include 10,000+ client hours saved, 250,000 GBP annual value impact, and significant support/governance efficiency gains.
+- Track record includes over 10,000 client hours and £250,000 saved annually through document processing automation, a further 5,000 hours a year from timesheet and forecasting solutions, over £80,000 in additional revenue from automation change design, and a 50% increase in Solution Architecture team revenue at Businessmap.
 
-## Evidence from Portfolio Projects
+## What evidence is there that he can do this work?
 
-- Reporting automation: AI Marketing Reporter.
-- Production automation architecture: n8n Pro Automation Framework.
-- Community platform and moderation systems: Threadline.
-- Commercial SaaS product with cloud AI integrations and subscription billing: Glotsmith.
-- Retail operations workflow consolidation: OmniRetail.
-- Team delivery workflow tooling: Taskflow.
-- Niche social engagement platform: PawCircle.
+- Commercial SaaS designed, built, deployed, and operated single-handedly, including regulatory obligations implemented in code and schema: Glotsmith.
+- Retrieval-augmented assistant with agent tool calling: the AI assistant on this site.
+- Production automation architecture with idempotency and observability: n8n Pro Automation Framework.
+- Reporting automation across three advertising and analytics platforms: AI Marketing Reporter.
+- Community platform, moderation workflow, and audit trails: Threadline.
 
-## Typical Client Fit
+## How does someone start a conversation about work?
 
-- Small businesses modernizing internal operations.
-- Startups needing end-to-end product and automation support.
-- Teams replacing spreadsheets and repetitive manual processes with reliable systems.
-
+Email `mihaylov.dev@gmail.com`, the address published on the site, or use the contact form at `/?section=contact`. The form asks for a reason: project inquiry, collaboration, job opportunity, consultation, or other. Recruitment inquiries should use `m.mihaylov94@gmail.com` instead, which is the address on his CV.

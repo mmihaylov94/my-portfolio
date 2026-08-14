@@ -2,7 +2,7 @@
 doc_id: project-glotsmith
 title: Glotsmith
 page_type: project
-url: https://mihaylov.io/projects/glotsmith
+url: https://mihaylov.io/case-studies/glotsmith
 source_type: knowledgebase
 tags:
   [
@@ -23,7 +23,7 @@ tags:
     paddle,
     oauth2,
   ]
-last_verified: 2026-07-09
+last_verified: 2026-08-13
 ---
 
 ## Summary
@@ -70,6 +70,8 @@ A **course** is a top-level group, usually one per language. A **workbook** belo
 | Billing | **Paddle** (Merchant of Record) |
 | Logging | Structured **pino** logs with a per-request correlation id |
 | Migrations | **node-pg-migrate**, applied at boot |
+
+The full case study is at `https://mihaylov.io/case-studies/glotsmith`. Compliance is part of this project rather than a separate one, and is covered below.
 
 ## Integrations and third-party services
 
@@ -134,7 +136,7 @@ A forked workbook copies the referenced material files and recreates the referen
 
 ## Planned or not yet available
 
-The product is newly launched and deliberately small. The interface itself ships in English only, even though it supports nine study languages. There is no mobile app; the web app is responsive instead. There is no spaced-repetition review scheduler in the vocabulary view yet.
+The product is live at `https://glotsmith.com` and deliberately small in scope. The interface itself ships in English only, even though it supports nine study languages. There is no mobile app; the web app is responsive instead. There is no spaced-repetition review scheduler in the vocabulary view yet.
 
 ## Questions visitors often ask
 
@@ -144,6 +146,54 @@ The product is newly launched and deliberately small. The interface itself ships
 - **Do I need to pay to use it?** There is a Free tier alongside paid Scholar and Master tiers, each with monthly usage allowances.
 - **Can I study from a scanned book?** Yes. Scanned PDFs and images are put through OCR so their text becomes selectable, translatable, and readable aloud.
 - **Can I share a workbook with a student or a friend?** Yes — generate a read-only link, and optionally let them copy it into their own account.
+
+## What were the hardest engineering problems in Glotsmith?
+
+**Search across unstructured workbook content.** Workbook bodies are stored as JSON. Three interactive endpoints needed to read inside that JSON, and each was loading an entire course's content into memory, parsing it, and scanning it on the event loop, with pagination applied only after everything had been parsed. Mihail solved this with derived tables rebuilt transactionally on every workbook write, turning search into a single indexed SQL query with database-side pagination. The fix introduced a write-amplification problem, which he caught and solved with a signature check that skips the rebuild entirely when nothing relevant has changed.
+
+**Metering paid AI providers correctly.** Every OCR page, translation, and speech request costs real money at a third-party provider. Quota was counted in words, but providers bill in characters, and a five thousand character string with no spaces counts as a single word. A free account could have consumed millions of provider characters against a thousand-word allowance. The fix keeps words as the user-facing unit, because that is the honest unit for a language product, and re-prices only abnormally long tokens.
+
+**Preventing double-billing on concurrent requests.** Two simultaneous requests for the same uncached page would both pay for the same OCR call. The first fix used a database advisory lock, which was correct in principle but held a pooled database connection across a multi-second external call, so a burst of traffic would have exhausted the connection pool. Mihail reverted it and replaced it with an in-process lock that re-checks the cache once acquired, so the second request finds the result already there.
+
+## Did Mihail measure performance in Glotsmith, or just assume it?
+
+He measured, and twice deleted his own database indexes as a result.
+
+A trigram index was added to accelerate in-course search. Running `EXPLAIN ANALYZE` against a seeded table of 50,000 sections across 500 courses showed the query planner never chose it, because the query always filters on course first and the plain index on that column is always cheaper. The index cost real time on every save and delivered nothing on reads, so a migration dropped it. A second index was measured the same way, found to be more expensive than the sequential scan it was meant to replace, and dropped as well.
+
+## What infrastructure does Glotsmith run on?
+
+Glotsmith runs on AWS. A single EC2 instance runs Docker Compose behind Cloudflare, with Amazon RDS for PostgreSQL, S3 for file storage, SES and SNS for email and bounce handling, and IAM instance roles rather than static access keys. Deployment runs through GitHub Actions to a container registry, with separate staging and production environments, immutable image tags, an automated database snapshot before any migration, and a scripted rollback.
+
+The database has point-in-time recovery, and Mihail rehearsed the restore rather than assuming it worked: a point-in-time restore into a throwaway instance, verified for tables, row counts, and migration history, then torn down.
+
+## What infrastructure did Mihail reject for Glotsmith, and why?
+
+Aurora Serverless was rejected because continuous connections and daily scheduled jobs mean it never actually pauses, so the savings are illusory while cold-start risk is real. Managed container platforms with scale-to-zero were rejected because scale-to-zero breaks scheduled work. Kubernetes was rejected as heavily over-engineered at this scale. A cheap bare VPS was rejected for the opposite reason: without a managed database he would own backups and point-in-time recovery himself, which was the responsibility he most wanted to avoid holding alone.
+
+Redis was also deliberately avoided. Sessions live in PostgreSQL and scheduled jobs elect a leader through a database advisory lock, so the application can scale horizontally later without adding a component now.
+
+## Why did Glotsmith move from Stripe to Paddle?
+
+The decision was commercial and legal rather than technical, and it is the mistake that cost Mihail the most time.
+
+The original plan was a limited company taking payments through Stripe, and the Stripe integration was fully built and tested. Working out the real cost of running a limited company before having any customers made that structure disproportionate, so he restructured as a self-employed sole trader. That change invalidated the payment integration, because invoicing as a freelancer did not work the way the Stripe setup assumed and the accountancy costs the restructure was meant to avoid would have returned through the payment model.
+
+The answer was Paddle as a Merchant of Record. A Merchant of Record is the seller rather than a payment processor, so VAT, sales tax, and invoicing become Paddle's obligation. There is no tax configuration in the application at all, which for a product selling into both the EU and US is worth more than any billing code.
+
+The lesson Mihail draws from it: decide the legal and commercial structure before writing the code that depends on it, because the structure determines the architecture rather than the other way round.
+
+## How is Glotsmith tested?
+
+Roughly 41,000 lines of production code sit behind a test suite of around 20,000 lines, with an 85% line coverage gate enforced in continuous integration. Tests run at four levels: unit tests using the Node.js built-in test runner, integration tests using supertest, Vue component tests, and end-to-end tests in Playwright. Automated accessibility checks run inside the Playwright suite.
+
+## How does Glotsmith handle legal compliance?
+
+Glotsmith implements GDPR, EU Digital Services Act, CCPA, and DMCA obligations in code and database schema rather than only in published documents.
+
+The principle Mihail works to is that a published privacy policy is not a document but a set of factual claims about a running system, and nothing in an ordinary codebase stops those claims quietly becoming false. So data retention limits are enforced by scheduled sweeps and hard-capped in code at the published figure, the terms version stamped on consent records is pinned by a test to the effective date printed in the terms, and the build fails if a legal document renders with an unfilled field.
+
+Data processing agreements are in place with all five sub-processors, and consent records were migrated to explicit lawful bases. Copyright takedown is a shipped subsystem with a registered DMCA agent, a durable strike ledger, a soft-disable, a section 512(g) counter-notice put-back flow, and a litigation hold.
 
 ## Links and status
 

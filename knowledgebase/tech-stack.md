@@ -2,102 +2,83 @@
 doc_id: tech-stack
 title: Technical Skills and Tools
 page_type: tech-stack
-url: https://mihaylov.io/knowledgebase/tech-stack
+url: https://mihaylov.io/?section=about
 source_type: knowledgebase
 tags:
   [
     technical-skills,
-    languages,
-    frameworks,
+    ai,
     automation,
-    tools,
-    infrastructure,
+    backend,
+    frontend,
+    data,
     cloud,
+    devops,
     aws,
     ai-services,
     billing,
   ]
-last_verified: 2026-07-09
+last_verified: 2026-08-13
 ---
 
 ## Summary
 
-Mihail's technical profile combines full-stack web engineering, automation/integration platforms, and delivery tooling used to ship maintainable business systems.
+Mihail's technical profile combines solution architecture, automation and integration platforms, full-stack web engineering, and the cloud and delivery tooling used to run systems in production.
 
-## Programming Languages
+## What is Mihail's current technology stack?
 
-- PHP
-- JavaScript
-- SQL
-- TypeScript
-- Python
-- C#
+### AI
 
-## Frameworks and Web Technologies
+LLM APIs, retrieval-augmented generation, vector search, pgvector, AI agents, tool calling, MCP, and Claude Skills.
 
-- CodeIgniter (including CodeIgniter 4)
-- Laravel
-- React
-- Vue.js
-- Nuxt
-- Tailwind CSS
-- HTML
-- CSS
+### Automation
 
-## Databases and Data Platforms
+n8n, Microsoft Power Automate, Zapier, UiPath, Automation Anywhere, and Microsoft Power Platform.
 
-- MySQL
-- MariaDB
-- PostgreSQL
-- Firebase
-- Supabase
-- SQL Server
+### Backend
 
-## Automation and Integration Platforms
+PHP (CodeIgniter, Laravel), Node.js, Express, TypeScript, REST APIs, and webhooks.
 
-- n8n
-- Microsoft Power Automate
-- Zapier
-- Make.com
-- UiPath
-- Automation Anywhere
-- Azure Forms Recogniser
-- REST API integration patterns
-- Webhook-driven architecture patterns
+### Frontend
 
-## Tooling and Infrastructure
+Vue 3, Nuxt, React, Vite, and Tailwind CSS.
 
-- Git
-- GitHub
-- GitHub Actions (CI/CD pipelines)
-- Docker
-- Docker Compose
-- AWS (EC2, RDS, S3)
-- Cloudflare (DNS, proxy, TLS)
-- Node.js ecosystem tooling
+### Data
 
-## Cloud AI Services
+PostgreSQL, pgvector, MySQL, and SQL Server.
+
+### Cloud and DevOps
+
+AWS (EC2, RDS, S3, IAM, SES, SNS), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, and Linux.
+
+## What AI experience does Mihail have specifically?
+
+He has built retrieval-augmented generation over a curated knowledge base with embeddings and vector search in PostgreSQL using pgvector, AI agents that use tool calling to decide their own retrieval steps, Claude Skills, and a custom SSO-authenticated proxy that filters personal data out of what an agent is allowed to see.
+
+Two production examples exist: the Claude Skills and proxy built for business teams at Businessmap, and the retrieval-augmented assistant running on this portfolio site.
+
+## What has Mihail used in past delivery that is not in the current stack?
+
+Python, C#, and SQL Server work from his enterprise RPA period, plus Azure AI Document Intelligence, which was previously named Azure Forms Recogniser.
+
+## Which cloud AI services does Glotsmith use?
 
 - Translation: DeepL, Google Cloud Translation
 - Text-to-speech: Google Cloud Text-to-Speech, Azure AI Speech
 - Optical character recognition: Google Cloud Vision, Azure AI Document Intelligence, Tesseract
 - Speech-to-text: Google Cloud Speech-to-Text
 
-## Payments and Billing
+Billing runs through Paddle as Merchant of Record, which handles VAT, GST, and US sales tax.
 
-- Paddle (Merchant of Record, subscription billing)
+## What is Mihail strongest at technically?
 
-## Technical Strength Profile
+- Solution architecture across discovery, requirements, design, and delivery.
+- API and integration design, including webhook-driven and bi-directional integrations.
+- Workflow and process automation on both low-code platforms and custom code.
+- RPA programme delivery in enterprise environments.
+- Production AI systems, including retrieval-augmented generation and agent tool calling.
+- Operational reliability, maintainability, and production ownership.
 
-- End-to-end full-stack implementation.
-- API and integration design.
-- Workflow and process automation.
-- RPA program delivery in enterprise environments.
-- Operational reliability and maintainability focus.
-- Practical, business-aligned delivery.
+## What professional certifications does Mihail hold?
 
-## Professional Certifications
-
-- Certified Advanced RPA Developer v1.0 (UiPath).
-- Certified Advanced RPA Professional (Automation Anywhere A360).
-
+Certified Advanced RPA Developer v1.0 (UiPath) and Certified Advanced RPA Professional (Automation Anywhere A360).

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { scrollToSection } = useNavigation();
-const { skills, timeline, description } = useAbout();
+const { skillGroups, timeline, description } = useAbout();
 
 const profileImageSrc = "/images/profile_picture.jpg";
 const profileImageSrcset =
@@ -88,14 +88,23 @@ function toggleExpanded(index: number) {
 					>
 						Skills & Technologies
 					</h3>
-					<div class="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center">
-						<SkillBadge
-							v-for="skill in skills"
-							:key="skill.label"
-							:label="skill.label"
-							:icon="skill.icon"
-							variant="large-outline"
-						/>
+					<div class="space-y-6 md:space-y-8">
+						<div v-for="group in skillGroups" :key="group.label">
+							<h4
+								class="text-sm md:text-base font-semibold uppercase tracking-wide text-secondary-600 dark:text-secondary-400 mb-3 text-center"
+							>
+								{{ group.label }}
+							</h4>
+							<div class="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center">
+								<SkillBadge
+									v-for="skill in group.skills"
+									:key="skill.label"
+									:label="skill.label"
+									:icon="skill.icon"
+									variant="large-outline"
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

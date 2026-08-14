@@ -180,8 +180,8 @@ watch(currentIndex, async () => {
 				<p
 					class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-justify"
 				>
-					A collection of projects I've built, showcasing my skills and
-					experience in full-stack development and automation.
+					Work I have designed, built, and taken into production, across
+					automation, integrations, compliance, and AI systems.
 				</p>
 				<p
 					class="sm:hidden mt-4 text-center text-sm text-gray-600 dark:text-gray-300"

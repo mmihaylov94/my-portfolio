@@ -5,9 +5,9 @@ definePageMeta({
 
 const siteUrl = "https://mihaylov.io";
 const siteName = "Mihail Mihaylov";
-const title = "Mihail Mihaylov | Automation & Full-Stack Developer";
+const title = "Solutions Architect | Mihail Mihaylov";
 const description =
-	"Automation & full-stack developer building integrations and workflows that replace manual work and spreadsheets for startups and small businesses.";
+	"Solutions Architect specialising in automation, API-led integrations, enterprise RPA, and production AI systems. Based in Sofia, working remotely.";
 
 useSeoMeta({
 	title,
@@ -27,7 +27,7 @@ useSeoMeta({
 	twitterImage: `${siteUrl}/images/og-image.png`,
 
 	keywords:
-		"full-stack developer, business automation, workflow automation, internal tools, system integrations, replace spreadsheets, custom web app, PHP, JavaScript, React, Vue, Sofia, Bulgaria",
+		"solutions architect, solution architecture, business automation, API-led integrations, enterprise RPA, production AI systems, retrieval-augmented generation, n8n, PHP, Node.js, Vue, PostgreSQL, AWS, Sofia, Bulgaria, remote",
 	author: siteName,
 	robots: "index, follow",
 	themeColor: "#ECCAA4",
@@ -52,7 +52,7 @@ useHead({
 				"@context": "https://schema.org",
 				"@type": "Person",
 				name: siteName,
-				jobTitle: "Full-Stack Developer & Automation Engineer",
+				jobTitle: "Solutions Architect",
 				description,
 				url: siteUrl,
 				image: `${siteUrl}/images/profile_picture.jpg`,
@@ -61,23 +61,35 @@ useHead({
 					addressLocality: "Sofia",
 					addressCountry: "BG",
 				},
+				worksFor: {
+					"@type": "Organization",
+					name: "Businessmap",
+				},
+				alumniOf: {
+					"@type": "CollegeOrUniversity",
+					name: "University of Strathclyde",
+				},
 				sameAs: [
 					"https://www.linkedin.com/in/mihail-m-mihaylov",
 					"https://github.com/mmihaylov94",
 				],
 				knowsAbout: [
-					"Full-Stack Web Development",
+					"Solution Architecture",
 					"Business Process Automation",
-					"System Integrations",
-					"Workflow Automation",
-					"PHP",
-					"JavaScript",
-					"React",
-					"Vue",
-					"SQL",
+					"API-Led Integrations",
+					"Enterprise RPA",
+					"Production AI Systems",
+					"Retrieval-Augmented Generation",
 					"n8n",
 					"Microsoft Power Automate",
-					"Make.com",
+					"PHP",
+					"Node.js",
+					"TypeScript",
+					"Vue",
+					"React",
+					"PostgreSQL",
+					"AWS",
+					"Docker",
 				],
 			}),
 		},
@@ -87,7 +99,7 @@ useHead({
 
 <template>
 	<!-- Hero -->
-	<section id="hero" class="h-screen">
+	<section id="hero" class="min-h-screen">
 		<HeroSection />
 	</section>
 

@@ -53,7 +53,13 @@ export default defineNuxtConfig({
 
 	nitro: {
 		prerender: {
-			routes: ["/", "/sitemap.xml"],
+			// The case study is also reachable via crawlLinks from the index page.
+			// It is listed explicitly so it still prerenders if that link changes.
+			routes: [
+				"/",
+				"/case-studies/glotsmith",
+				"/sitemap.xml"
+			],
 			crawlLinks: true,
 		},
 	},

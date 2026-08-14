@@ -7,6 +7,8 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const { openChat } = useAiChat();
+
 function normalizePublicPath(path: string) {
 	const trimmed = String(path || "").trim();
 	if (!trimmed) return "";
@@ -61,12 +63,12 @@ const emit = defineEmits<{
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:h-full">
 			<!-- Image Side -->
 			<div
-				class="relative aspect-video sm:aspect-auto sm:h-64 lg:h-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center p-5 sm:p-7 lg:p-10"
+				class="relative aspect-video sm:aspect-auto sm:h-64 lg:h-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden"
 			>
 				<img
 					:src="imageSrc"
 					:srcset="imageSrcset || undefined"
-					sizes="(max-width: 639px) calc(100vw - 4rem), (max-width: 1023px) calc(100vw - 3rem), 50vw"
+					sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 50vw"
 					:alt="project.title"
 					class="w-full h-auto sm:h-full object-contain"
 					loading="lazy"
@@ -76,7 +78,7 @@ const emit = defineEmits<{
 
 			<!-- Content Side -->
 			<div
-				class="p-5 sm:p-7 lg:p-10 pr-5 sm:pr-10 lg:pr-20 flex flex-col lg:justify-between lg:h-full"
+				class="p-5 sm:p-7 lg:px-10 lg:py-6 pr-5 sm:pr-10 lg:pr-20 flex flex-col lg:justify-between lg:h-full"
 			>
 				<div class="space-y-5">
 					<!-- Title -->
@@ -112,16 +114,31 @@ const emit = defineEmits<{
 				<!-- Action Buttons -->
 				<div class="flex flex-col sm:flex-row gap-3 pt-8">
 					<AppButton
-						v-if="project.liveUrl || project.liveDisabled"
+						v-if="project.liveUrl"
 						variant="subtle"
 						size="md"
-						:href="project.liveDisabled ? undefined : project.liveUrl"
-						:target="project.liveDisabled ? undefined : '_blank'"
-						:rel="project.liveDisabled ? undefined : 'noopener noreferrer'"
-						:disabled="project.liveDisabled"
+						:href="project.liveUrl"
 						class="flex-1"
 					>
-						{{ project.liveLabel || "Visit Project" }}
+						Visit Project
+					</AppButton>
+					<AppButton
+						v-if="project.caseStudyUrl"
+						variant="subtle"
+						size="md"
+						:to="project.caseStudyUrl"
+						class="flex-1"
+					>
+						Read the case study
+					</AppButton>
+					<AppButton
+						v-if="project.opensChat"
+						variant="subtle"
+						size="md"
+						class="flex-1"
+						@click="openChat"
+					>
+						Ask the assistant
 					</AppButton>
 					<AppButton
 						v-if="project.githubUrl"

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { NuxtLink } from "#components";
+
 interface Props {
 	variant?: "full" | "outline" | "subtle" | "subtle-outline";
 	size?: "sm" | "md" | "lg";
@@ -6,6 +8,7 @@ interface Props {
 	href?: string;
 	type?: "button" | "submit" | "reset";
 	disabled?: boolean;
+	download?: boolean;
 	class?: string;
 }
 
@@ -14,6 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 	size: "md",
 	type: "button",
 	disabled: false,
+	download: false,
 	class: "",
 });
 
@@ -26,11 +30,11 @@ function handleClick() {
 }
 
 function getComponentType() {
-	if (props.to) return "NuxtLink";
-	if (props.href) {
-		// Use regular <a> tag for external URLs
-		return props.href.startsWith("http") ? "a" : "NuxtLink";
-	}
+	// Resolved component, not a name string, so it renders as a real anchor
+	// during prerendering rather than an unresolved <NuxtLink> element.
+	if (props.to) return NuxtLink;
+	// Plain <a> for external URLs, mailto links, and static files in public/
+	if (props.href) return "a";
 	return "button";
 }
 </script>
@@ -42,6 +46,7 @@ function getComponentType() {
 		:href="getComponentType() === 'a' ? props.href : undefined"
 		:type="getComponentType() === 'button' ? type : undefined"
 		:disabled="disabled"
+		:download="download ? '' : undefined"
 		:target="props.href && props.href.startsWith('http') ? '_blank' : undefined"
 		:rel="props.href && props.href.startsWith('http') ? 'noopener noreferrer' : undefined"
 		:class="[

@@ -2,7 +2,7 @@
 doc_id: project-threadline
 title: Threadline
 page_type: project
-url: https://mihaylov.io/projects/threadline
+url: https://mihaylov.io/?section=projects
 source_type: knowledgebase
 tags:
   [
@@ -18,7 +18,7 @@ tags:
     quill,
     rag,
   ]
-last_verified: 2026-04-05
+last_verified: 2026-08-13
 ---
 
 ## Summary
@@ -48,6 +48,7 @@ The interface uses **progressive enhancement**: rich text for posts and replies 
 | Bot protection | **Google reCAPTCHA v3** on sensitive public forms |
 | UI | **Bootstrap 5** |
 | Rich text | **Quill** (loaded for editing threads and replies) |
+| Hosting | **Docker** containers on Mihail's own infrastructure, behind **Traefik** |
 
 ## Integrations and third-party services
 
@@ -128,3 +129,21 @@ From the project roadmap: full **in-app notifications**, **draft** posts, **bloc
 ## Outcome
 
 Threadline demonstrates **secure authentication** (including optional Google sign-in), **bot-resistant public forms**, **role-based access**, **moderation workflows**, **auditability**, and a **clear, maintainable** server-side codebase—useful as a portfolio piece and as a reference for how a moderated forum can be structured.
+
+## How was Threadline engineered?
+
+Threadline is built with CodeIgniter 4 and PostgreSQL, and runs in Docker on Mihail's own infrastructure behind Traefik with automated certificate issuance. It sits alongside his other self-hosted applications on a shared PostgreSQL instance.
+
+## Why did Mihail build Threadline?
+
+Threadline was built to work through the parts of a community platform that are genuinely difficult rather than the parts that are visible: moderation workflow, role-based permissions with safeguards, audit trails, and abuse resistance. The forum itself is the straightforward part.
+
+## What is technically interesting about Threadline?
+
+The moderation system is the substantial piece. Reports carry guideline reasons and move through a queue with resolve, dismiss, and escalate actions. Moderator edits are marked distinctly from author edits so readers can tell them apart. Audit logs record moderation and system actions for accountability. Role management includes safeguards preventing an administrator from removing their own access by mistake.
+
+Abuse resistance is handled with reCAPTCHA scoring on registration, login, and password reset, and email verification before an account is fully usable.
+
+## What technologies does Threadline demonstrate?
+
+CodeIgniter 4, PostgreSQL, Docker, Traefik, Google OAuth, reCAPTCHA, transactional email, and role-based access control. It is Mihail's clearest example of PHP and CodeIgniter work outside his employment, which matters because CodeIgniter is also the framework behind the internal platform he maintains at Businessmap.

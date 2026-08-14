@@ -3,6 +3,11 @@ const config = useRuntimeConfig();
 const apiBase = (config.public.apiBase as string) || "";
 const { execute: executeRecaptcha, isEnabled: isRecaptchaEnabled } = useRecaptcha();
 
+const { contactEmails } = useAbout();
+const cvUrl = "/Mihail_Mihaylov_CV.pdf";
+// Paste the Cal.com URL here to show the booking button.
+const bookingUrl = "";
+
 const form = ref({
 	email: "",
 	subject: "",
@@ -103,8 +108,54 @@ async function handleSubmit() {
 					<p
 						class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
 					>
-						Have a project in mind or want to collaborate? I'd love to hear from
-						you. Send me a message and I'll respond as soon as possible.
+						The quickest way to reach me is by email. I read every message and
+						reply as soon as I can.
+					</p>
+				</div>
+
+				<!-- Direct contact -->
+				<div class="space-y-4 text-center">
+					<ul class="grid gap-4 sm:grid-cols-2 text-left">
+						<li
+							v-for="email in contactEmails"
+							:key="email.address"
+							class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4"
+						>
+							<div class="flex items-center gap-2 mb-1">
+								<UIcon
+									:name="email.icon"
+									class="w-5 h-5 text-secondary-600 dark:text-secondary-400 shrink-0"
+								/>
+								<span class="font-semibold text-gray-900 dark:text-gray-100">
+									{{ email.label }}
+								</span>
+							</div>
+							<a
+								:href="`mailto:${email.address}`"
+								class="block font-medium text-secondary-600 dark:text-secondary-400 underline underline-offset-4 hover:text-secondary-700 dark:hover:text-secondary-300 break-all"
+							>
+								{{ email.address }}
+							</a>
+							<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+								{{ email.purpose }}
+							</p>
+						</li>
+					</ul>
+					<div class="flex flex-col sm:flex-row gap-3 justify-center">
+						<AppButton variant="full" size="md" :href="cvUrl" download>
+							Download CV
+						</AppButton>
+						<AppButton
+							v-if="bookingUrl"
+							variant="outline"
+							size="md"
+							:href="bookingUrl"
+						>
+							Book a call
+						</AppButton>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						Prefer a form? Use the one below.
 					</p>
 				</div>
 

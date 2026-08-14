@@ -35,9 +35,13 @@ function urlEntry(
 export default defineEventHandler((event) => {
 	setHeader(event, "content-type", "application/xml; charset=utf-8");
 
-	// Single-page site. Hash anchors (/#about) are not separate sitemap URLs.
+	// Homepage sections are query parameters, not separate sitemap URLs.
+	// Standalone routes, such as case studies, are listed individually.
 	const now = new Date();
-	const urls = [urlEntry(`${SITE_URL}/`, now, "weekly", 1.0)];
+	const urls = [
+		urlEntry(`${SITE_URL}/`, now, "weekly", 1.0),
+		urlEntry(`${SITE_URL}/case-studies/glotsmith`, now, "monthly", 0.8),
+	];
 
 	return [
 		'<?xml version="1.0" encoding="UTF-8"?>',

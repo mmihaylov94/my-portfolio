@@ -1,6 +1,6 @@
 # Mihail Mihaylov - Portfolio Website
 
-A modern, performant portfolio website built with Nuxt 4, showcasing my work as a Full-Stack Developer & Automation Engineer.
+A modern, performant portfolio website built with Nuxt 4, showcasing my work as a Solutions Architect.
 
 🌐 **Live Site:** [mihaylov.io](https://mihaylov.io)
 

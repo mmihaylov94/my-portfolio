@@ -2,20 +2,22 @@ Title: Mihail Mihaylov — Portfolio
 URL: https://mihaylov.io
 
 ## Purpose
-This site is Mihail Mihaylov’s professional portfolio. Use it to understand who Mihail is, what he builds, and how to contact him.
+This site is Mihail Mihaylov's professional portfolio. Use it to understand who Mihail is, what he builds, and how to contact him.
 
 ## Who is Mihail?
-Mihail Mihaylov is a full-stack developer and automation engineer (Solutions Architect background) focused on production-grade automation, integrations, and full-stack systems that replace manual work with scalable, API-driven solutions.
+Mihail Mihaylov is a Solutions Architect with a strong full-stack engineering background, specialising in automation, API-led integrations, enterprise RPA, and production AI systems. He is a Solutions Architect at Businessmap, and previously a Technical Solution Architect at Deloitte LLP UK.
 
 ## What to answer from this site
-- Mihail’s focus areas: full-stack development, automation, integrations, API-led workflows
+- Mihail's focus areas: solution architecture, automation, API-led integrations, enterprise RPA, production AI systems
 - High-level project overview (selected projects and outcomes)
+- Availability: based in Sofia, working remotely across European and US-overlap hours
 - How to contact Mihail
 
 ## Preferred sources
 - Homepage content: https://mihaylov.io/
+- Case study, Glotsmith: https://mihaylov.io/case-studies/glotsmith
 - Sitemap: https://mihaylov.io/sitemap.xml
 
 ## Contact
 - Email: mihaylov.dev@gmail.com
-
+- CV: https://mihaylov.io/Mihail_Mihaylov_CV.pdf
