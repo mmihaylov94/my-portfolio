@@ -61,6 +61,12 @@ Two production examples exist: the Claude Skills and proxy built for business te
 
 Python, C#, and SQL Server work from his enterprise RPA period, plus Azure AI Document Intelligence, which was previously named Azure Forms Recogniser.
 
+## Does Mihail know Python?
+
+Yes, from his enterprise RPA work at Deloitte, where he used it alongside UiPath, Automation Anywhere, C#, and SQL Server.
+
+It is not part of his current stack, and none of the projects in his portfolio use it. Describe it as prior experience from the RPA period rather than a language he works in day to day, and do not attribute any portfolio project to it.
+
 ## Which cloud AI services does Glotsmith use?
 
 - Translation: DeepL, Google Cloud Translation
