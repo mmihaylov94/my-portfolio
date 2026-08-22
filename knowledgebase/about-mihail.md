@@ -34,13 +34,13 @@ When speed, maintainability, and platform fit make sense, he builds automation u
 
 - Migrated a PHP monolith into a single sign-on portal, consolidating 60 internal tools.
 - Generalised client-specific builds into reusable products now used by over 100 clients. That work became the basis for a 50% increase in Solution Architecture team revenue.
-- Built a bi-directional HubSpot integration running live over webhooks across 100,000 records.
-- Built a Partner Hub that cut quarterly commission processing from two weeks to two days.
-- Delivered 30+ custom full-stack applications, saving hundreds of manual hours annually.
+- Built a bi-directional integration with an external CRM, running live over webhooks across 100,000 records.
+- Built a Partner Hub integrating external CRM and billing systems, cutting quarterly commission processing from two weeks to two days.
+- Delivered 40+ custom full-stack applications, saving hundreds of manual hours annually.
 
 ## What AI systems has Mihail built in production?
 
-At Businessmap he built a set of Claude Skills and a custom SSO-authenticated proxy that lets HR, sales, customer success, and partnerships teams query HubSpot and Businessmap data conversationally.
+At Businessmap he built a custom MCP server and supporting Claude Skills, backed by an SSO-authenticated proxy, that let business teams query CRM and internal platform data conversationally from Claude Desktop, Claude Code, and the browser.
 
 The interesting part was not the AI. It was letting business teams ask questions about customer data without ever seeing a name, address, phone number, or email address, which meant building the filtering and authentication layer himself.
 
@@ -94,7 +94,7 @@ Earlier delivery work also used Python, C#, SQL, and Azure AI Document Intellige
 ## Experience timeline
 
 - **Solutions Architect** - Businessmap (Jun 2023 - Present)  
-  Designs and delivers automation, integration, and full-stack systems across the business. Migrated a PHP monolith into a single sign-on portal, consolidating 60 internal tools into reusable products now used by over 100 clients, which became the basis for a 50% increase in Solution Architecture team revenue. Built a bi-directional HubSpot integration, a Partner Hub that cut quarterly commission processing from two weeks to two days, and a set of Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.
+  Designs and delivers automation, integration, and full-stack systems across the business. Migrated a PHP monolith into a single sign-on portal, consolidating 60 internal tools into reusable products now used by over 100 clients, which became the basis for a 50% increase in Solution Architecture team revenue. Built a bi-directional integration with an external CRM, a Partner Hub integrating external CRM and billing systems that cut quarterly commission processing from two weeks to two days, and a custom MCP server with supporting Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.
 
 - **Technical Solution Architect** - Deloitte LLP UK, Glasgow, UK (Mar 2022 - Jun 2023)  
   Led end-to-end RPA delivery from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and timesheet and forecasting solutions that saved a further 5,000 hours a year. Owned the RPA infrastructure, including servers, VDIs, and control rooms. Technology exposure in this period included UiPath, Automation Anywhere, Python, SQL Server, C#, Microsoft Power Platform, and Azure AI Document Intelligence.

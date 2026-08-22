@@ -125,9 +125,9 @@ const aboutInfo: AboutInfo = {
 			period: "Jun 2023 – Present",
 			description: `Design and deliver automation, integration, and full-stack systems across the business. Migrated a PHP monolith into a
       single sign-on portal, consolidating 60 internal tools into reusable products now used by over 100 clients, which became the basis
-      for a 50% increase in Solution Architecture team revenue. Built a bi-directional HubSpot integration, a Partner Hub that cut
-      quarterly commission processing from two weeks to two days, and a set of Claude Skills behind an SSO-authenticated proxy that
-      filters personal data out of every response.`,
+      for a 50% increase in Solution Architecture team revenue. Built a bi-directional integration with an external CRM, a Partner Hub
+      integrating external CRM and billing systems that cut quarterly commission processing from two weeks to two days, and a custom
+      MCP server with supporting Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.`,
 		},
 		{
 			title: "Technical Solution Architect",
