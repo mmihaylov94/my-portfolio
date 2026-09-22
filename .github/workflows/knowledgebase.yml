@@ -1,0 +1,42 @@
+name: knowledgebase
+
+# The articles in knowledgebase/ are the only source the site's AI assistant can
+# answer from. A malformed one is not a broken build here -- it is an article that
+# silently stops being indexed, noticed days later when the assistant cannot
+# answer something it used to.
+#
+# So they are validated where they are written, at the moment they are written.
+
+on:
+  push:
+    paths:
+      - "knowledgebase/**"
+      - ".github/workflows/knowledgebase.yml"
+  pull_request:
+    paths:
+      - "knowledgebase/**"
+      - ".github/workflows/knowledgebase.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # The checker is a command in the ingestion project, not a script kept here.
+      # That is deliberate: it calls the same parser the pipeline runs, so
+      # "passes CI" and "will be indexed" cannot drift apart. A local
+      # reimplementation would eventually disagree with the real thing, and a
+      # checker that disagrees is worse than none.
+      #
+      # Running the published image rather than installing Python keeps this
+      # repository free of a second toolchain, and pins the check to the exact
+      # build that runs in production.
+      - name: Validate articles
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/knowledgebase:/kb:ro" \
+            ghcr.io/mmihaylov94/portfolio-ai:latest \
+            portfolio-ai-validate /kb
