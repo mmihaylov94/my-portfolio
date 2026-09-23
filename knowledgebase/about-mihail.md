@@ -5,7 +5,7 @@ page_type: about
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [profile, biography, solutions-architect, automation, integrations, ai, experience, education, career, availability]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
@@ -36,7 +36,8 @@ When speed, maintainability, and platform fit make sense, he builds automation u
 - Generalised client-specific builds into reusable products now used by over 100 clients. That work became the basis for a 50% increase in Solution Architecture team revenue.
 - Built a bi-directional integration with an external CRM, running live over webhooks across 100,000 records.
 - Built a Partner Hub integrating external CRM and billing systems, cutting quarterly commission processing from two weeks to two days.
-- Delivered 40+ custom full-stack applications, saving hundreds of manual hours annually.
+- Architected and developed 40+ custom full-stack applications that make administrative operations and reporting scalable.
+- Built business process automation with Zapier, Microsoft Power Automate, and n8n across finance, HR, and operations, saving hundreds of hours of manual effort annually.
 
 ## What AI systems has Mihail built in production?
 
@@ -46,9 +47,11 @@ The interesting part was not the AI. It was letting business teams ask questions
 
 He also built the retrieval-augmented assistant on his own portfolio site, using n8n agent orchestration with tool calling and PostgreSQL with pgvector for retrieval.
 
+And he built the AI Marketing Reporter, an n8n pipeline in which a language model writes weekly marketing performance reports from Meta Ads, Google Ads, and Google Analytics data. It runs in production for a client, on the client's own n8n instance.
+
 ## What did Mihail do at Deloitte and Momenta?
 
-At Deloitte LLP UK he led end-to-end RPA delivery from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. He won four new client projects by introducing the Microsoft Power Platform into the team's stack, delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and delivered timesheet and forecasting solutions that saved a further 5,000 hours a year. He owned the RPA infrastructure, including servers, VDIs, and control rooms.
+At Deloitte LLP UK he contributed to end-to-end RPA delivery, from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. He won four new client projects by introducing the Microsoft Power Platform into the team's stack, delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and delivered timesheet and forecasting solutions that saved a further 5,000 hours a year. He owned the RPA infrastructure, including servers, VDIs, and control rooms.
 
 At Momenta Group Global, contracting for Deloitte, he progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and team leadership. He generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements, and cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform.
 
@@ -58,7 +61,7 @@ Yes. At Momenta Group Global he line-managed a team of nine engineers and advanc
 
 ## Where is Mihail based?
 
-Sofia, Bulgaria. He works remotely across European and US-overlap hours. Bulgaria joined the eurozone in January 2026, and employment through an Employer of Record is straightforward there via Deel, Remote.com, G-P, Safeguard Global, and WorkMotion. Hiring specifics are covered in the hiring document.
+Sofia, Bulgaria. He works remotely across European and US-overlap hours. Bulgaria joined the eurozone in January 2026, and employment through an Employer of Record is straightforward there via Deel, Remote, G-P, Safeguard Global, and WorkMotion. Hiring specifics are covered in the hiring document.
 
 He lived in the United Kingdom for ten years, from September 2013 until June 2023, where he studied and then worked.
 
@@ -77,6 +80,7 @@ He lived in the United Kingdom for ten years, from September 2013 until June 202
 ## What certifications does Mihail hold, and which languages does he speak?
 
 - Certified Advanced RPA Developer v1.0 (UiPath).
+- Certified RPA Associate (UiRPA, UiPath).
 - Certified Advanced RPA Professional A360 (Automation Anywhere).
 - Bulgarian is his native language. English is fluent.
 
@@ -89,7 +93,7 @@ He lived in the United Kingdom for ten years, from September 2013 until June 202
 - **Data**: PostgreSQL, pgvector, MySQL, SQL Server.
 - **Cloud and DevOps**: AWS (EC2, RDS, S3, IAM, SES, SNS), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, Linux.
 
-Earlier delivery work also used Python, C#, SQL, and Azure AI Document Intelligence, previously named Azure Forms Recogniser.
+Earlier delivery work at Deloitte also used Python and C#. Azure AI Document Intelligence, previously named Azure Forms Recogniser, dates from the same period and is still in use: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
 
 ## Experience timeline
 
@@ -97,7 +101,7 @@ Earlier delivery work also used Python, C#, SQL, and Azure AI Document Intellige
   Designs and delivers automation, integration, and full-stack systems across the business. Migrated a PHP monolith into a single sign-on portal, consolidating 60 internal tools into reusable products now used by over 100 clients, which became the basis for a 50% increase in Solution Architecture team revenue. Built a bi-directional integration with an external CRM, a Partner Hub integrating external CRM and billing systems that cut quarterly commission processing from two weeks to two days, and a custom MCP server with supporting Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.
 
 - **Technical Solution Architect** - Deloitte LLP UK, Glasgow, UK (Mar 2022 - Jun 2023)  
-  Led end-to-end RPA delivery from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and timesheet and forecasting solutions that saved a further 5,000 hours a year. Owned the RPA infrastructure, including servers, VDIs, and control rooms. Technology exposure in this period included UiPath, Automation Anywhere, Python, SQL Server, C#, Microsoft Power Platform, and Azure AI Document Intelligence.
+  Contributed to end-to-end RPA delivery, from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and timesheet and forecasting solutions that saved a further 5,000 hours a year. Owned the RPA infrastructure, including servers, VDIs, and control rooms. Technology exposure in this period included UiPath, Automation Anywhere, Python, SQL Server, C#, Microsoft Power Platform, and Azure AI Document Intelligence.
 
 - **Automation Engineer to Solution Architect** - Momenta Group Global (contractor for Deloitte LLP UK) (May 2020 - Mar 2022)  
   Progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and team leadership. Generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements. Cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform. Line-managed a team of nine engineers, advancing two to senior within six months.

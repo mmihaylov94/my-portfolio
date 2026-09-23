@@ -133,7 +133,7 @@ const aboutInfo: AboutInfo = {
 			title: "Technical Solution Architect",
 			company: "Deloitte LLP UK, Glasgow, UK",
 			period: "Mar 2022 – Jun 2023",
-			description: `Led end-to-end RPA delivery from proposal and requirements through build, testing, deployment, and hypercare, while
+			description: `Contributed to end-to-end RPA delivery, from proposal and requirements through build, testing, deployment, and hypercare, while
       mentoring developers. Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered
       document processing automation that saved clients over 10,000 hours and £250,000 annually, and timesheet and forecasting solutions
       that saved a further 5,000 hours a year. Owned the RPA infrastructure, including servers, VDIs, and control rooms.`,

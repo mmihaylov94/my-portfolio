@@ -18,7 +18,7 @@ tags:
     ai-services,
     billing,
   ]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
@@ -53,13 +53,15 @@ AWS (EC2, RDS, S3, IAM, SES, SNS), Docker, Docker Compose, GitHub Actions, Traef
 
 ## What AI experience does Mihail have specifically?
 
-He has built retrieval-augmented generation over a curated knowledge base with embeddings and vector search in PostgreSQL using pgvector, AI agents that use tool calling to decide their own retrieval steps, Claude Skills, and a custom SSO-authenticated proxy that filters personal data out of what an agent is allowed to see.
+He has built retrieval-augmented generation over a curated knowledge base with embeddings and vector search in PostgreSQL using pgvector, AI agents that use tool calling to decide their own retrieval steps, a custom MCP server with supporting Claude Skills, and a custom SSO-authenticated proxy that filters personal data out of what an agent is allowed to see.
 
-Two production examples exist: the Claude Skills and proxy built for business teams at Businessmap, and the retrieval-augmented assistant running on this portfolio site.
+Three production examples exist: the MCP server, Claude Skills, and proxy built for business teams at Businessmap; the retrieval-augmented assistant running on this portfolio site; and the AI Marketing Reporter, an n8n pipeline in which a language model writes weekly marketing performance reports, running for a client on the client's own n8n instance.
 
 ## What has Mihail used in past delivery that is not in the current stack?
 
-Python, C#, and SQL Server work from his enterprise RPA period, plus Azure AI Document Intelligence, which was previously named Azure Forms Recogniser.
+Python and C#, both from his enterprise RPA period at Deloitte.
+
+Azure AI Document Intelligence, previously named Azure Forms Recogniser, also dates from that period, but he still uses it: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
 
 ## Does Mihail know Python?
 
@@ -69,10 +71,14 @@ It is not part of his current stack, and none of the projects in his portfolio u
 
 ## Which cloud AI services does Glotsmith use?
 
-- Translation: DeepL, Google Cloud Translation
-- Text-to-speech: Google Cloud Text-to-Speech, Azure AI Speech
-- Optical character recognition: Google Cloud Vision, Azure AI Document Intelligence, Tesseract
+In production, Glotsmith uses Google Cloud for all four:
+
+- Translation: Google Cloud Translation
+- Text-to-speech: Google Cloud Text-to-Speech
+- Optical character recognition: Google Cloud Vision
 - Speech-to-text: Google Cloud Speech-to-Text
+
+The provider layer is pluggable, and alternatives are implemented but switched off: DeepL for translation, Azure AI Speech for text-to-speech, and Azure AI Document Intelligence or Tesseract.js, running on the server, for OCR.
 
 Billing runs through Paddle as Merchant of Record, which handles VAT, GST, and US sales tax.
 
@@ -87,4 +93,4 @@ Billing runs through Paddle as Merchant of Record, which handles VAT, GST, and U
 
 ## What professional certifications does Mihail hold?
 
-Certified Advanced RPA Developer v1.0 (UiPath) and Certified Advanced RPA Professional (Automation Anywhere A360).
+Certified Advanced RPA Developer v1.0 (UiPath), Certified RPA Associate (UiRPA, UiPath), and Certified Advanced RPA Professional (Automation Anywhere A360).

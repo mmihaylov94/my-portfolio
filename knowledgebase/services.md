@@ -5,7 +5,7 @@ page_type: services
 url: https://mihaylov.io/?section=contact
 source_type: knowledgebase
 tags: [services, consulting, solution-architecture, automation, integrations, ai, compliance, web-development]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
@@ -41,7 +41,7 @@ Mihail takes on consulting and freelance work alongside his employment, covering
 
 - Builds retrieval-augmented systems over curated knowledge bases, using vector search and pgvector.
 - Builds AI agents with tool calling, plus the authentication and data-filtering layers that decide what an agent may see.
-- Builds Claude Skills and authenticated proxies so business teams can query systems conversationally without exposing personal data.
+- Builds MCP servers, Claude Skills, and authenticated proxies so business teams can query systems conversationally without exposing personal data.
 
 ### Compliance engineering
 
@@ -58,7 +58,7 @@ Mihail takes on consulting and freelance work alongside his employment, covering
 - Reduced manual data handling and repetitive admin work.
 - More reliable workflows and clearer operational visibility.
 - Faster reporting and improved execution consistency.
-- Track record includes over 10,000 client hours and £250,000 saved annually through document processing automation, a further 5,000 hours a year from timesheet and forecasting solutions, over £80,000 in additional revenue from automation change design, and a 50% increase in Solution Architecture team revenue at Businessmap.
+- Track record from his employment includes, at Deloitte, over 10,000 client hours and £250,000 saved annually through document processing automation and a further 5,000 hours a year from timesheet and forecasting solutions; at Momenta Group Global, over £80,000 in additional revenue from automation change design; and at Businessmap, a 50% increase in Solution Architecture team revenue.
 
 ## What evidence is there that he can do this work?
 

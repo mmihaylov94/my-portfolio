@@ -5,7 +5,7 @@ page_type: contact
 url: https://mihaylov.io/?section=contact
 source_type: knowledgebase
 tags: [contact, email, social, hiring, cv, inquiry]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
@@ -22,7 +22,7 @@ Both reach Mihail. Neither is a fallback for the other, so quote the one that ma
 ## How else can someone get in touch?
 
 - Main website: `https://mihaylov.io`
-- Contact section: `/?section=contact` on the main website, which offers a direct email link above the form.
+- Contact section: `/?section=contact` on the main website, which lists both email addresses, each with its purpose, above the form.
 - CV download: `https://mihaylov.io/Mihail_Mihaylov_CV.pdf`, linked from both the hero and the contact section.
 - LinkedIn: `https://www.linkedin.com/in/mihail-m-mihaylov`
 - GitHub: `https://github.com/mmihaylov94`
@@ -34,12 +34,12 @@ The contact form asks for a reason: project inquiry, collaboration, job opportun
 - **Hiring and job opportunities**: Email `m.mihaylov94@gmail.com`, or LinkedIn.
 - **Forwarding his details to a colleague**: Send the CV download link.
 - **Project inquiries**: Email `mihaylov.dev@gmail.com`, or the contact form.
-- **Collaboration opportunities**: Email or LinkedIn.
-- **General questions**: Email is the most direct channel.
+- **Collaboration opportunities**: Email `mihaylov.dev@gmail.com`, or LinkedIn.
+- **General questions**: Email `mihaylov.dev@gmail.com`, the most direct channel.
 
 ## When is Mihail available?
 
-He is based in Sofia and works remotely across European and US-overlap hours. Employment through an Employer of Record is straightforward in Bulgaria via Deel, Remote.com, G-P, Safeguard Global, and WorkMotion. Hiring specifics, including roles and notice, are covered in the hiring document.
+He is based in Sofia and works remotely across European and US-overlap hours. Employment through an Employer of Record is straightforward in Bulgaria via Deel, Remote, G-P, Safeguard Global, and WorkMotion. Hiring specifics, including roles and notice, are covered in the hiring document.
 
 ## Which languages does Mihail speak?
 

@@ -5,12 +5,12 @@ page_type: hiring
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [hiring, availability, remote, contract, employment, eor, roles, relocation, notice, recruiter]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
 
-Mihail Mihaylov is open to new roles as of August 2026. He is a Solutions Architect based in Sofia, Bulgaria, working remotely for European and US companies.
+Mihail Mihaylov is open to new roles. He is a Solutions Architect based in Sofia, Bulgaria.
 
 ## What roles is Mihail looking for?
 
@@ -24,9 +24,9 @@ Yes. Mihail works remotely from Sofia, Bulgaria, and is available across Europea
 
 ## Can a company hire someone based in Bulgaria?
 
-Yes, and it is straightforward. Bulgaria joined the eurozone in January 2026, so payroll runs in euros and there is no currency conversion risk for a European employer.
+Yes, and it is straightforward. Bulgaria adopted the euro on 1 January 2026, so payroll runs in euros, and an employer based in the eurozone carries no currency conversion risk.
 
-Employer of Record providers with full Bulgaria coverage include Deel, Remote.com, G-P (Globalization Partners), Safeguard Global, and WorkMotion. Providers with limited Bulgaria coverage include Oyster HR, Multiplier, and Papaya Global, so a company using one of those should check before assuming.
+Employer of Record providers that offer employment in Bulgaria include Deel, Remote, G-P (Globalization Partners), Safeguard Global, WorkMotion, Oyster, Multiplier, and Papaya Global. Some employ through their own Bulgarian entity and others through a local partner, so it is worth confirming how a given provider handles Bulgaria.
 
 Mihail can also work as an independent contractor and invoice directly.
 
@@ -50,7 +50,7 @@ He is looking for work with more scope in AI systems and solution architecture, 
 
 Three things distinguish him from a typical full-stack engineer:
 
-First, he is genuinely client-facing. He has run requirements gathering, technical discovery, and proposal work with enterprise clients since his time at Deloitte, which most engineers have never done.
+First, he is genuinely client-facing. He has worked on requirements gathering, technical discovery, and proposal work with enterprise clients since his time at Deloitte, which most engineers have never done.
 
 Second, he spans enterprise RPA, modern AI systems, and full-stack development. Few engineers can credibly claim all three.
 

@@ -5,7 +5,7 @@ page_type: faq
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [faq, profile, projects, portfolio, site]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## What is Mihail's job title?
@@ -26,7 +26,7 @@ Automation, API-led integrations, enterprise RPA, and production AI systems, bac
 
 ## Which of Mihail's projects are open source?
 
-Threadline and the n8n Pro Automation Framework have public repositories under `https://github.com/mmihaylov94`. Glotsmith is a commercial product and its source is private.
+Threadline and the lite edition of the n8n Pro Automation Framework (`n8n-lite-automations`) are public repositories under `https://github.com/mmihaylov94`, both under the MIT licence. The source of this website is public too, at `https://github.com/mmihaylov94/my-portfolio`, also under the MIT licence. The pro edition of the n8n framework is private, and Glotsmith is a commercial product whose source is private.
 
 ## Which project best shows what Mihail can do?
 
@@ -38,7 +38,7 @@ An MSc in Advanced Computer Science, awarded with Distinction, and a BEng (Hons)
 
 ## What certifications does Mihail hold?
 
-Certified Advanced RPA Developer v1.0 (UiPath) and Certified Advanced RPA Professional A360 (Automation Anywhere).
+Certified Advanced RPA Developer v1.0 (UiPath), Certified RPA Associate (UiRPA, UiPath), and Certified Advanced RPA Professional A360 (Automation Anywhere).
 
 ## What technical areas is he strongest in?
 

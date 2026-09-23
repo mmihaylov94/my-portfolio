@@ -5,7 +5,7 @@ page_type: project
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [rag, retrieval-augmented-generation, pgvector, n8n, ai-agent, tool-calling, nuxt, typescript, vector-search]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
@@ -21,11 +21,8 @@ Orchestration runs through a self-hosted n8n instance using its AI agent node wi
 ## What technology does the mihaylov.io AI assistant use?
 
 - Nuxt 4 and TypeScript for the front end
-- An Express API that forwards requests to n8n webhooks
 - Self-hosted n8n for orchestration, using the AI agent node with tool calling
 - PostgreSQL with the pgvector extension for embeddings and vector search
-- Google reCAPTCHA to protect the endpoint from abuse
-- Thumbs-up and thumbs-down feedback capture on every answer
 
 ## Why did Mihail build the mihaylov.io AI assistant?
 

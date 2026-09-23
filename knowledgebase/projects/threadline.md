@@ -16,9 +16,8 @@ tags:
     recaptcha,
     bootstrap-5,
     quill,
-    rag,
   ]
-last_verified: 2026-08-13
+last_verified: 2026-09-23
 ---
 
 ## Summary
@@ -33,7 +32,7 @@ Communities need **structured threads**, **roles and trust levels**, **reporting
 
 ## How it is built (high level)
 
-The application separates **screens and user actions** from **business rules** and **data access**, so features like login, moderation, and reporting stay maintainable. After you sign in, the site remembers who you are for your session. If you try to open something that requires an account, you may be sent to log in first and then returned to what you were viewing.
+The application separates **screens and user actions** from **business rules** and **data access**, so features like login, moderation, and reporting stay maintainable. After you sign in, the site remembers who you are for your session. If you try to open something that requires an account, you are sent to log in first.
 
 The interface uses **progressive enhancement**: rich text for posts and replies (**Quill**), **Bootstrap** for layout and dialogs, and the browser’s **local storage** for things like cookie consent and recently viewed threads.
 
@@ -53,15 +52,15 @@ The interface uses **progressive enhancement**: rich text for posts and replies 
 ## Integrations and third-party services
 
 - **Google Sign-In (optional):** Lets people log in with a Google account instead of a local password. The site verifies the login securely with Google before creating or linking an account.
-- **Google reCAPTCHA v3:** Reduces automated abuse on **registration**, **login**, and **password reset** by scoring requests in the background (users generally do not solve a puzzle).
+- **Google reCAPTCHA v3:** Scores requests on the **registration**, **login**, and **forgot-password** forms in the background, so users generally do not solve a puzzle.
 - **Email:** Used to send **email verification** links and **password reset** links for accounts that use email and password. A working mail setup is required for those flows to complete.
-- **Newsletter:** Visitors can sign up for updates; subscribers can be kept in sync with account preferences where that option exists.
+- **Newsletter:** Visitors can sign up on the home page, and signed-in users can opt in or out in their settings. The app stores sign-ups but does not send newsletters itself.
 
 ## Authentication and roles
 
 ### Accounts
 
-- **Registration** with email and password, plus **email verification** when enabled.
+- **Registration** with an email address, a username, and a password, followed by **email verification**, which is always required: an unverified account cannot sign in.
 - **Login** with **email or username** and password.
 - **Password reset** via email when you forget your password.
 - **Sign in with Google** when the feature is enabled on the deployment.
@@ -74,38 +73,39 @@ The interface uses **progressive enhancement**: rich text for posts and replies 
 
 ### Protections
 
-- Failed **login attempts** are limited: too many failures in a short window temporarily blocks further tries for that identifier.
-- Forms use standard web **security practices** (for example CSRF protection on submissions, safe handling of user-generated HTML, and secure connections where configured).
+- Every form submission is protected against **cross-site request forgery (CSRF)**.
+- User-generated HTML is sanitised with **HTMLPurifier** against an allow-list of tags and attributes, and a **Content Security Policy** is enforced.
+- Secure cookies and HTTPS enforcement are supported where the deployment configures them.
 
 ## Core functionality
 
 ### Forum
 
 - **Categories** — Browse approved categories. New categories can be **requested** and go through **approval**; moderators and admins can approve, reject, or create categories directly.
-- **Threads** — Create threads, open them by link, read **paginated** replies, and **edit or delete** your own threads; moderators can act on others’ threads when needed. Threads can include an optional **background image**. The main thread list shows a fixed number of threads per page (for example **10**).
-- **Replies** — Post replies; edit or delete your own; moderators can intervene. Edits by moderators can be **marked** so readers can tell moderator changes from author edits.
+- **Threads** — Create threads, open them by link, read **paginated** replies, and **edit or delete** your own threads; moderators can act on others’ threads when needed. Threads can include an optional **background image**. The main thread list shows **10** threads per page.
+- **Replies** — Post replies; edit or delete your own; moderators can intervene. Moderator edits are recorded and written to the audit log.
 - **Search** — Search threads by title and body (case-insensitive).
-- **Sorting** — Options such as newest, most replies, latest activity, and top votes (depending on what the deployment exposes).
+- **Sorting** — Latest activity (the default), newest, most replies, and top votes.
 - **Voting** — Upvotes and downvotes on threads and replies, with scores shown for sorting and display.
 - **Favorites** — Save favorite threads; a sidebar can show favorites and **recently viewed** threads.
 
 ### Moderation and administration
 
 - A **moderation area** summarizes work such as pending reports and category requests.
-- **Reports** can be reviewed one by one or from a **queue**, with actions such as resolve, dismiss, or escalate, and space for notes.
+- **Reports** can be reviewed one by one or from a **queue**, and resolved or dismissed with notes.
 - **Categories** pending approval can be accepted or rejected, sometimes with a reason.
-- **Audit logs** record important moderation and system actions for accountability.
+- **Audit logs** record important moderation and administrative actions for accountability.
 - **Admins** can manage **users** (roles and active status) from the user-management part of the admin tools.
 
 ### Profiles and settings
 
 - **Public profiles** show community identity (for example display name and avatar where set).
-- **Settings** typically include profile fields, **timezone**, **theme** (light, dark, or automatic), notification or marketing preferences where available, **newsletter** alignment, and **password** changes for local accounts.
+- **Settings** include profile fields, **timezone**, **theme** (light, dark, or automatic), **newsletter** subscription, and **password** changes for local accounts.
 
 ### Legal, support, and site experience
 
 - Dedicated pages for **Support** (FAQ and contact pointers), **Privacy Policy**, **Terms of Service**, and **Community Guidelines**.
-- A **cookie consent** banner and, for logged-out visitors, an optional **newsletter** prompt.
+- A **cookie consent** banner and, on the home page, an optional **newsletter** prompt for logged-out visitors.
 - A tailored **page not found** experience so people are not left on a blank error.
 
 ## Planned or not yet available
@@ -114,8 +114,8 @@ From the project roadmap: full **in-app notifications**, **draft** posts, **bloc
 
 ## Questions visitors often ask
 
-- **How do I join?** Register with email and password, then complete **email verification** if the site asks for it before you can use your account fully.
-- **Can I use Google?** If **Sign in with Google** appears on the login page, you can use it; the first sign-in may create or link your account automatically.
+- **How do I join?** Register with an email address, a username, and a password, then complete **email verification**. An account cannot sign in until its email address is verified.
+- **Can I use Google?** **Sign in with Google** works when the deployment has it configured; the first sign-in may create or link your account automatically.
 - **I forgot my password.** Use the **forgot password** flow and follow the link sent to your email.
 - **How do I report a problem post?** Use the **report** action on a thread or reply, pick at least one **guideline** reason, and submit. Moderators will see it in their tools.
 - **What do moderators do?** They review reports, handle category requests, and use the moderation tools they are allowed to use. **Admins** additionally manage user roles and whether accounts are active.
@@ -123,12 +123,12 @@ From the project roadmap: full **in-app notifications**, **draft** posts, **bloc
 ## Links and status
 
 - **Live:** `https://threadline.mihaylov.io`
-- **GitHub:** `https://github.com/mmihaylov94/threadline`
+- **GitHub:** `https://github.com/mmihaylov94/threadline` (MIT licence)
 - **Status:** Active portfolio project with a public demo and repository.
 
 ## Outcome
 
-Threadline demonstrates **secure authentication** (including optional Google sign-in), **bot-resistant public forms**, **role-based access**, **moderation workflows**, **auditability**, and a **clear, maintainable** server-side codebase—useful as a portfolio piece and as a reference for how a moderated forum can be structured.
+Threadline demonstrates **authentication** with optional Google sign-in, **reCAPTCHA-scored public forms**, **sanitised user content** under a Content Security Policy, **role-based access**, **moderation workflows**, and **audit logging** in a **clear, maintainable** server-side codebase, useful as a portfolio piece and as a reference for how a moderated forum can be structured.
 
 ## How was Threadline engineered?
 
@@ -140,9 +140,9 @@ Threadline was built to work through the parts of a community platform that are 
 
 ## What is technically interesting about Threadline?
 
-The moderation system is the substantial piece. Reports carry guideline reasons and move through a queue with resolve, dismiss, and escalate actions. Moderator edits are marked distinctly from author edits so readers can tell them apart. Audit logs record moderation and system actions for accountability. Role management includes safeguards preventing an administrator from removing their own access by mistake.
+The moderation system is the substantial piece. Reports carry guideline reasons and move through a queue where moderators resolve or dismiss them with notes. Moderator edits are recorded and written to the audit log. Audit logs record moderation and administrative actions for accountability. Role management includes safeguards preventing an administrator from removing their own access by mistake.
 
-Abuse resistance is handled with reCAPTCHA scoring on registration, login, and password reset, and email verification before an account is fully usable.
+User-generated HTML is sanitised with HTMLPurifier and served under a Content Security Policy. Registration, login, and forgot-password requests are scored by reCAPTCHA v3, and an account must verify its email address before it can sign in.
 
 ## What technologies does Threadline demonstrate?
 

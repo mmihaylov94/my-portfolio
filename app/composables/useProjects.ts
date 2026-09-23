@@ -51,19 +51,18 @@ const projects: Project[] = [
 		id: "3",
 		title: "n8n Pro Automation Framework",
 		description:
-			"Production automation framework with contract-defined reusable sub-workflows, idempotency handling, and run observability, published in tiered lite and pro editions with documentation.",
+			"Productised automation framework with contract-defined reusable sub-workflows, idempotency handling, and run observability, built in tiered lite and pro editions, with the lite edition open source on GitHub.",
 		image: "images/n8n-pro-pack.png",
 		githubUrl: "https://github.com/mmihaylov94/n8n-lite-automations",
-		technologies: ["n8n", "Automation", "Webhooks", "PostgreSQL"],
+		technologies: ["n8n", "Automation", "Webhooks", "Data Tables"],
 	},
 	{
 		id: "4",
 		title: "AI Marketing Reporter",
 		description:
-			"Automated weekly reporting pipeline built in n8n, pulling Meta Ads, Google Ads, and Google Analytics data into LLM-written performance summaries.",
+			"Automated weekly reporting pipeline built in n8n, pulling Meta Ads, Google Ads, and Google Analytics data into LLM-written performance summaries, in production for a client.",
 		image: "images/n8n-marketing-reporter.png",
-		liveUrl: "https://www.youtube.com/@mihaylov-dev",
-		technologies: ["n8n", "LLM", "Google Analytics", "Meta Ads"],
+		technologies: ["n8n", "LLM", "Google Ads", "Google Analytics", "Meta Ads"],
 	},
 	{
 		id: "5",
