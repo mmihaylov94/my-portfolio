@@ -61,11 +61,13 @@ The `@n8n/chat` widget is mounted by `AiChatPopup.vue` in the default layout and
 
 ## Knowledgebase
 
-`knowledgebase/**/*.md` is **not** part of the build and is never served. It is the corpus for the RAG chat assistant, embedded into PostgreSQL with pgvector **outside this repository**. Editing these files changes nothing until they are re-embedded, which is a manual step the owner performs.
+`knowledgebase/**/*.md` is **not** part of the build and is never served. It is the corpus for the RAG chat assistant, embedded into PostgreSQL with pgvector **outside this repository**. Changes reach the live assistant only once they are on `main`: the n8n workflow "Portfolio | Knowledgebase -> RAG Vector Store" re-indexes the folder from GitHub `main` every Monday at 06:00, and the owner can run it by hand in n8n for an immediate refresh. Nothing on a branch is indexed. The `portfolio-ai` project that will replace the n8n assistant already ingests `main` hourly, but into its own database, which the live assistant does not read until the switchover.
 
-Because the assistant answers hiring questions, the knowledgebase must not contradict the site. When site copy changes (job titles, project descriptions, achievements, contact details), update the corresponding knowledgebase documents in the same change, and say that re-embedding is required.
+Because the assistant answers hiring questions, the knowledgebase must not contradict the site. When site copy changes (job titles, project descriptions, achievements, contact details), update the corresponding knowledgebase documents in the same change, and say that the change reaches the assistant after it is pushed to `main` and the next re-index runs.
 
 Conventions in these files: YAML front matter with `doc_id`, `title`, `page_type`, `url`, `source_type`, `tags`, and `last_verified` (bump it when editing). `url` must point at a page that actually exists. Headings are phrased as questions, which matches how the retrieval layer is queried.
+
+Validate articles with the same parser the ingestion pipeline uses. CI runs it on every push that touches `knowledgebase/**` (`.github/workflows/knowledgebase.yml`). Locally, without Docker: `uvx --from git+https://github.com/mmihaylov94/portfolio-ai portfolio-ai-validate knowledgebase`.
 
 ## Images
 
