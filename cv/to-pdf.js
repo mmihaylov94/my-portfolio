@@ -13,11 +13,12 @@ const DOCX = path.join(__dirname, 'build', 'Mihail_Mihaylov_CV.docx');
 const PDF_BUILT = path.join(__dirname, 'build', 'Mihail_Mihaylov_CV.pdf');
 const PDF_PUBLIC = path.join(__dirname, '..', 'public', 'Mihail_Mihaylov_CV.pdf');
 
+// On Windows, use soffice.com, the console launcher. soffice.exe is a GUI
+// program, so `--version` allocates its own hidden console and blocks on it.
 const CANDIDATES = [
   'soffice',
-  'soffice.exe',
-  'C:\\Program Files\\LibreOffice\\program\\soffice.exe',
-  'C:\\Program Files (x86)\\LibreOffice\\program\\soffice.exe',
+  'C:\\Program Files\\LibreOffice\\program\\soffice.com',
+  'C:\\Program Files (x86)\\LibreOffice\\program\\soffice.com',
   '/usr/bin/soffice',
   '/Applications/LibreOffice.app/Contents/MacOS/soffice',
 ];
