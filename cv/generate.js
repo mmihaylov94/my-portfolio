@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const {
   Document, Packer, Paragraph, TextRun, TabStopType, AlignmentType,
-  BorderStyle, Footer, PageNumber, convertInchesToTwip,
+  BorderStyle, Footer, PageNumber, convertInchesToTwip, LineRuleType,
 } = require('docx');
 
 // ── design tokens ────────────────────────────────────────────────────────────
@@ -19,6 +19,10 @@ const RIGHT_TAB  = [{ type: TabStopType.RIGHT, position: RIGHT_EDGE }];
 
 const S = 18;   // base size, half-points (9pt)
 
+// Exact 11.4pt lines. Left as "auto", 228 means 95% of single spacing, which
+// LibreOffice 26.8 honours but 24.2 (the approved CV) read as a fixed 11.4pt.
+const LINE = { line: 228, lineRule: LineRuleType.EXACT };
+
 // ── run helpers ──────────────────────────────────────────────────────────────
 const t  = (text, o = {}) => new TextRun({ text, size: S, color: BODY, font: F, ...o });
 const tb = (text, o = {}) => t(text, { bold: true, ...o });
@@ -31,12 +35,13 @@ const sectionHeading = (text) => new Paragraph({
   children: [new TextRun({ text, bold: true, size: S + 3, color: BLUE, font: F })],
   spacing: { before: 150, after: 66 },
   border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: BLUE, space: 2 } },
+  keepNext: true,
 });
 
 const body = (children, o = {}) => new Paragraph({
   children,
   alignment: AlignmentType.JUSTIFIED,
-  spacing: { after: 48, line: 228 },
+  spacing: { after: 48, ...LINE },
   ...o,
 });
 
@@ -44,7 +49,7 @@ const body = (children, o = {}) => new Paragraph({
 const bullet = (children, o = {}) => new Paragraph({
   children: [t('▪  ', { color: BLUE, bold: true }), ...children],
   alignment: AlignmentType.JUSTIFIED,
-  spacing: { after: 36, line: 228 },
+  spacing: { after: 36, ...LINE },
   indent: { left: 260, hanging: 180 },
   ...o,
 });
@@ -72,7 +77,7 @@ const subLine = (text) => new Paragraph({
 const intro = (text) => new Paragraph({
   children: [t(text)],
   alignment: AlignmentType.JUSTIFIED,
-  spacing: { after: 48, line: 228 },
+  spacing: { after: 48, ...LINE },
   indent: { left: 120 },
 });
 
@@ -90,7 +95,7 @@ const projectName = (name, url) => new Paragraph({
 const projectDesc = (text) => new Paragraph({
   children: [t(text)],
   alignment: AlignmentType.JUSTIFIED,
-  spacing: { after: 30, line: 228 },
+  spacing: { after: 30, ...LINE },
   indent: { left: 120 },
   keepNext: true,
 });
@@ -98,7 +103,7 @@ const projectDesc = (text) => new Paragraph({
 const pBullet = (children) => new Paragraph({
   children: [t('\u25AA  ', { color: BLUE, bold: true }), ...children],
   alignment: AlignmentType.JUSTIFIED,
-  spacing: { after: 30, line: 228 },
+  spacing: { after: 30, ...LINE },
   indent: { left: 380, hanging: 180 },
 });
 

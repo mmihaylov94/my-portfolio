@@ -65,11 +65,14 @@ Content is built from small helpers: `sectionHeading`, `body`, `bullet`,
 `pBullet`, `projectName`, `projectDesc`, `roleLine`, `subLine`, `intro`.
 Most edits are a string change inside one of those calls.
 
-Two things worth knowing before changing spacing:
+Three things worth knowing before changing spacing:
 
 - Dates sit hard right using a real right tab stop at `RIGHT_EDGE`, not spaces.
-- Role headers carry `keepNext: true`, which stops a job title stranding itself
-  at the foot of a page.
+- Role and section headers carry `keepNext: true`, which stops a heading
+  stranding itself at the foot of a page.
+- Body text spreads the `LINE` token, an exact 11.4pt line height. Without an
+  explicit rule, LibreOffice 24.2 and 26.8 space the same lines differently,
+  and the page break moves depending on which version builds the PDF.
 
 ## Check before you ship
 
