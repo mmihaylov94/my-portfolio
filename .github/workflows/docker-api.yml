@@ -12,7 +12,37 @@ permissions:
   packages: write
 
 jobs:
+  # The same tests as ci.yml's api job. Repeated here because a workflow cannot wait
+  # for another one, and a failing test must not publish :latest.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Only what the tests need: not the packages: write the build below uses.
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: api
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
   build-and-push:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:

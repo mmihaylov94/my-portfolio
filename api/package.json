@@ -4,7 +4,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "node --watch src/server.js",
-		"start": "node src/server.js"
+		"start": "node src/server.js",
+		"test": "node --test --test-timeout=60000"
 	},
 	"dependencies": {
 		"dotenv": "^16.4.5",

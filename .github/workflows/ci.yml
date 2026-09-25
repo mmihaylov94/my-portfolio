@@ -25,3 +25,30 @@ jobs:
 
       - name: Typecheck
         run: npm run typecheck
+
+  api:
+    runs-on: ubuntu-latest
+    # A test waiting on a response that never comes would otherwise hold the runner
+    # for GitHub's six hours.
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: api
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # The version the API image runs (api/Dockerfile), not the one above.
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test

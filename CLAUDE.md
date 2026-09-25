@@ -12,9 +12,10 @@ npm run lint       # ESLint
 npm run typecheck  # nuxt typecheck (vue-tsc)
 
 cd api && npm run dev    # Express API on port 3000 (separate npm project, own install)
+cd api && npm test       # API tests, Node's built-in runner, no extra dependencies
 ```
 
-There is no test suite and no test tooling in either package. CI (`.github/workflows/ci.yml`) runs only `lint` and `typecheck` on every push; it does not build. Verify builds locally before claiming a change works.
+The API has tests (`api/tests/`); the site has none. CI (`.github/workflows/ci.yml`) runs `lint` and `typecheck` for the site and the API tests on Node 20, the version the API image runs, on every push. It does not build the site. Verify builds locally before claiming a change works. `docker-api.yml` runs the API tests again before it publishes an image, so a failing test never becomes `:latest`.
 
 Builds are slow (minutes) and serialise on the shared `.nuxt` and `.output` caches. Do not run two builds concurrently, and do not edit source while one is running, or the output will be a mix of both states.
 
@@ -45,19 +46,26 @@ Two things are required and neither is automatic:
 
 ### Chat assistant bypasses the API
 
-The `@n8n/chat` widget is mounted by `AiChatPopup.vue` in the default layout and posts **directly** to `https://n8n.mihaylov.io/webhook/<NUXT_PUBLIC_N8N_CHAT_WEBHOOK_PATH>` from the browser. It does not go through `api/`. If that variable is unset, the widget never mounts, and anything depending on it (including `useAiChat().openChat()`) becomes a silent no-op.
+The API's `/api/chat` routes (below) exist for the chat UI that replaces the widget. Until it lands, the `@n8n/chat` widget is mounted by `AiChatPopup.vue` in the default layout and posts **directly** to `https://n8n.mihaylov.io/webhook/<NUXT_PUBLIC_N8N_CHAT_WEBHOOK_PATH>` from the browser. It does not go through `api/`. If that variable is unset, the widget never mounts, and anything depending on it (including `useAiChat().openChat()`) becomes a silent no-op.
 
 `useAiChat.ts` and the "Start over" button in `AiChatPopup.vue` both drive the widget by querying and clicking its DOM nodes (`#n8n-chat .chat-window-toggle`, `.chat-window`). This couples the app to `@n8n/chat` internals that no type checker guards.
 
 ### The Express API is small
 
-`api/src/server.js` exposes exactly `/api/health` and `/api/contact`. Contact posts are rate limited (5 per 15 minutes), optionally verified against reCAPTCHA v3 (score below 0.5 rejected), then forwarded to an n8n webhook. Missing `RECAPTCHA_SECRET_KEY` disables verification rather than failing, which is intended for local development. The README's claim that the API also handles chat and feedback is out of date.
+Four routes: `/api/health`; `/api/contact`, rate limited (5 per 15 minutes), optionally verified against reCAPTCHA v3 (score below 0.5 rejected), then forwarded to an n8n webhook; and `/api/chat` and `/api/chat/feedback`, which pass the chat to the AI assistant (the `portfolio-ai` service, private to the Docker network) with its key attached server-side. Missing `RECAPTCHA_SECRET_KEY` disables verification rather than failing, which is intended for local development. Missing `PORTFOLIO_AI_URL` switches the chat routes off (503), which is how they deploy before the new chat UI.
+
+`src/server.js` is only the entry point. `src/app.js` builds the app from a config object and never reads the environment, which is what lets the tests build their own on any port; `src/config.js` parses the environment. The chat routes follow the contract in portfolio-ai's `docs/API.md` ("What the proxy has to do"). Things that are easy to break there:
+
+- `/api/chat` streams server-sent events straight through as raw bytes, with no compression and `Cache-Control: no-transform`. A buffering change makes the whole answer arrive at the end; `tests/chat-stream.test.js` fails if it does.
+- A visitor who disconnects aborts the upstream request (`res.once("close")`, not `req.on("close")`, which fires as soon as the body has been read). The assistant still finishes and stores the answer.
+- `TRUST_PROXY` decides whether `req.ip` is the visitor or Traefik. It is parsed strictly in `config.js`: a hop count must reach Express as a number, since Express reads the string `"2"` as the address 0.0.0.2, and `true` is refused. Unset means every visitor shares one rate-limit bucket and no visitor address is forwarded.
+- Nothing a visitor typed goes into a log line, and neither does the error object from a failed body parse, which carries the raw body as `err.body`. Logs are one JSON object per line.
 
 `api/` has its own `package.json` and `node_modules`; the root install does not cover it. The `pnpm-workspace.yaml` present in the root only pins ignored build dependencies and does not make `api/` a workspace member.
 
 ### Environment variables
 
-`NUXT_PUBLIC_*` values are baked into the static bundle **at build time**, so changing them requires a rebuild, and in production they are supplied as Docker build arguments. Server-side secrets (`N8N_WEBHOOK_URL`, `N8N_API_KEY`, `RECAPTCHA_SECRET_KEY`) are read at runtime by the API container from its own `.env`.
+`NUXT_PUBLIC_*` values are baked into the static bundle **at build time**, so changing them requires a rebuild, and in production they are supplied as Docker build arguments. Server-side settings (`N8N_WEBHOOK_URL`, `N8N_API_KEY`, `RECAPTCHA_SECRET_KEY`, `TRUST_PROXY`, `PORTFOLIO_AI_URL`, `PORTFOLIO_AI_API_KEY`) are read at runtime by the API container from its own `.env`; `api/.env.example` lists and explains them.
 
 ## Knowledgebase
 

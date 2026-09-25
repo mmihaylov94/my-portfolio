@@ -22,13 +22,21 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 - **Styling:** Tailwind CSS
 - **Language:** TypeScript
 - **Package Manager:** npm
-- **API:** Express (Node.js), forwards to n8n webhooks
+- **API:** Express (Node.js): the contact form's n8n webhook, and the proxy to the AI assistant
 
 ## 📁 Project Structure
 
 ```
-├── api/                      # Express API (chat, contact, feedback → n8n)
-│   ├── src/server.js
+├── api/                      # Express API: contact form, and the AI assistant's proxy
+│   ├── src/
+│   │   ├── server.js         # Entry point: reads the environment, listens, stops cleanly
+│   │   ├── app.js            # The app, built from a config object (what the tests use)
+│   │   ├── config.js         # Environment parsing, including TRUST_PROXY
+│   │   ├── chat.js           # /api/chat and /api/chat/feedback → portfolio-ai
+│   │   ├── contact.js        # /api/contact → n8n webhook
+│   │   └── http.js           # Rate limits, errors, logging
+│   ├── tests/                # node --test
+│   ├── .env.example
 │   └── Dockerfile
 ├── app/
 │   ├── assets/css/main.css   # Global styles and theme configuration
@@ -60,7 +68,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20.19 or newer (the API image runs Node 20)
 - npm
 
 ### Installation
@@ -93,7 +101,12 @@ Opens at `http://localhost:3001`. Nuxt proxies `/api/*` to the API.
 cd api && npm run dev
 ```
 
-Create `.env` with your n8n webhook URLs and reCAPTCHA secret (see Environment variables).
+Copy `api/.env.example` to `api/.env` and fill in what you need: the n8n webhook and reCAPTCHA secret for the contact form, and `PORTFOLIO_AI_URL` and `PORTFOLIO_AI_API_KEY` for the chat. The chat needs the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) API running locally (`uv run python -m portfolio_ai.api`, on port 8000) with the same key. With `PORTFOLIO_AI_URL` empty, the chat routes answer 503.
+
+**API tests:**
+```bash
+cd api && npm test
+```
 
 ## 🏗️ Building for Production
 
@@ -113,7 +126,7 @@ npm run preview
 
 ## 🚢 Deployment
 
-The primary deployment uses **Docker** with two services (frontend + API) and Traefik for routing. The frontend is static (Nuxt SSG); the API handles chat, contact, and feedback via n8n webhooks.
+The primary deployment uses **Docker** with two services (frontend + API) and Traefik for routing. The frontend is static (Nuxt SSG). The API handles the contact form through an n8n webhook, and passes the chat and its feedback to the AI assistant (`portfolio-ai`), which is private to the Docker network.
 
 The static output (`.output/public/`) can also be deployed to Vercel, Netlify, GitHub Pages, or any CDN if you host the API separately.
 
@@ -125,7 +138,7 @@ Two images: frontend (site) and API. Deployed via `docker compose` with Traefik.
 
 | File | Used by | Contents |
 |------|---------|----------|
-| `.env` | api | `N8N_WEBHOOK_URL`, `N8N_API_KEY`, `RECAPTCHA_SECRET_KEY`, `PORT` |
+| `.env` | api | `N8N_WEBHOOK_URL`, `N8N_API_KEY`, `RECAPTCHA_SECRET_KEY`, `PORT`, `TRUST_PROXY`, `PORTFOLIO_AI_URL`, `PORTFOLIO_AI_API_KEY` (see `api/.env.example`) |
 
 ```bash
 docker compose pull
@@ -138,14 +151,27 @@ docker compose up -d
 |--------|----------|-------------|
 | `NUXT_PUBLIC_RECAPTCHA_SITE_KEY` | For reCAPTCHA | Site key from [reCAPTCHA Admin](https://www.google.com/recaptcha/admin) |
 
-### API and n8n Webhooks
+### API
 
-The API service (`api/`) forwards requests to n8n webhooks. Configure in `.env`:
+The API service (`api/`) has three routes besides `/api/health`:
+
+| Route | Goes to | Limit per visitor |
+|-------|---------|-------------------|
+| `POST /api/contact` | the n8n contact webhook | 5 per 15 minutes |
+| `POST /api/chat` | the assistant's `/v1/chat/stream`, streamed back as server-sent events | 60 per 15 minutes |
+| `POST /api/chat/feedback` | the assistant's `/v1/messages/{id}/feedback` | 30 per 15 minutes |
+
+Configure in `.env`:
 
 | Variable | Description |
 |----------|-------------|
 | `N8N_WEBHOOK_URL` | Base n8n webhook URL |
 | `N8N_API_KEY` | API key sent in `apikey` header to n8n webhooks |
+| `PORTFOLIO_AI_URL` | The assistant's address on the Docker network. Empty keeps the chat routes switched off (503). |
+| `PORTFOLIO_AI_API_KEY` | Identical to the assistant's own `PORTFOLIO_AI_API_KEY`; never sent to the browser |
+| `TRUST_PROXY` | How many proxies sit in front of the API (Traefik, then Cloudflare), so the limits are per visitor. Unset means one shared bucket for everyone. |
+
+The chat routes follow the contract in [portfolio-ai's docs/API.md](https://github.com/mmihaylov94/portfolio-ai/blob/main/docs/API.md), and never write anything a visitor typed to the log.
 
 ### reCAPTCHA (Contact Form)
 
@@ -172,6 +198,7 @@ If reCAPTCHA keys are not set, the contact form works without verification (usef
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 - `npm run typecheck` - Run TypeScript type checking
+- `cd api && npm test` - Run the API's tests
 
 ## 🎨 Customization
 
