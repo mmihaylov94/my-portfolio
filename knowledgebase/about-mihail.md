@@ -33,6 +33,7 @@ When speed, maintainability, and platform fit make sense, he builds automation u
 ## What has Mihail delivered at Businessmap?
 
 - Led the migration of a PHP CodeIgniter monolith to a single sign-on portal with a CodeIgniter API backend and a Vue.js front end, consolidating 60 tools and generalising client-specific builds into reusable products. The result is now used by over 100 clients and became the basis for a 50% increase in Solution Architecture team revenue through Support Package sales.
+- Built a custom MCP server and supporting Claude Skills, backed by an SSO-authenticated proxy that strips personally identifiable information, letting business teams query CRM and internal platform data conversationally from Claude Desktop, Claude Code, and the browser.
 - Designed and built a bi-directional, fully configurable integration between Businessmap's platform and an external CRM, running live over webhooks across more than 100,000 records, with queue-based conflict resolution and targeted updates limited to the fields that actually changed.
 - Built a Partner Hub integrating external CRM and billing systems, automating commission calculation across more than 50 partners and cutting a quarterly process from two weeks to two days.
 - Architected and developed 40+ custom full-stack applications that make administrative operations and reporting scalable.

@@ -14,7 +14,7 @@ Mihail Mihaylov is open to new roles. He is a Solutions Architect based in Sofia
 
 ## What roles is Mihail looking for?
 
-Mihail is open to Solutions Architect, Solutions Engineer, AI Engineer, Forward Deployed Engineer, Automation Engineer, and RPA Developer roles. He is also open to intelligent automation and agentic automation positions.
+Mihail is open to Solutions Architect, Solutions Engineer, AI Engineer, Forward Deployed Engineer, and Automation Engineer roles. He is also open to agentic automation positions.
 
 He is most interested in work that combines process understanding, automation architecture, API integration, and hands-on engineering. Roles that are purely one of those are a weaker fit than roles that span several.
 

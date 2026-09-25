@@ -5,14 +5,20 @@ page_type: services
 url: https://mihaylov.io/?section=contact
 source_type: knowledgebase
 tags: [services, consulting, solution-architecture, automation, integrations, ai, compliance, web-development]
-last_verified: 2026-09-24
+last_verified: 2026-09-25
 ---
 
 ## Summary
 
-Mihail takes on consulting and freelance work alongside his employment, covering solution architecture, automation, API-led integrations, enterprise RPA, and production AI systems. The emphasis is on reducing manual work, connecting fragmented tools, and turning complex operational processes into reliable software.
+Mihail takes on consulting and freelance work alongside his employment, covering production AI systems, solution architecture, automation, API-led integrations, and enterprise RPA. The emphasis is on reducing manual work, connecting fragmented tools, and turning complex operational processes into reliable software.
 
 ## What services does Mihail offer?
+
+### Production AI systems
+
+- Builds retrieval-augmented systems over curated knowledge bases, using vector search and pgvector.
+- Builds AI agents with tool calling, plus the authentication and data-filtering layers that decide what an agent may see.
+- Builds MCP servers, Claude Skills, and authenticated proxies so business teams can query systems conversationally without exposing personal data.
 
 ### Solution architecture
 
@@ -37,21 +43,24 @@ Mihail takes on consulting and freelance work alongside his employment, covering
 - Architects and develops custom applications using PHP, CodeIgniter, Node.js, Vue, React, and REST APIs when requirements demand flexibility, control, or scale.
 - Builds backend APIs and operational front ends, including role-based access and reporting.
 
-### Production AI systems
-
-- Builds retrieval-augmented systems over curated knowledge bases, using vector search and pgvector.
-- Builds AI agents with tool calling, plus the authentication and data-filtering layers that decide what an agent may see.
-- Builds MCP servers, Claude Skills, and authenticated proxies so business teams can query systems conversationally without exposing personal data.
-
-### Compliance engineering
+### Compliance implementation
 
 - Implements GDPR, EU Digital Services Act, CCPA, and DMCA obligations in code and database schema rather than in policy documents alone.
-- Builds retention sweeps, consent lawful-basis handling, sub-processor records, and CI tests that fail the build when published legal statements and running configuration drift apart.
+- Builds retention sweeps, consent lawful-basis handling, data processing agreements with every processor, and CI tests that fail the build when published legal statements and running configuration drift apart.
+- Implements obligations the client and their legal advisers have defined, and offers practical guidance from doing this for Glotsmith; this is not legal advice.
 
 ### Delivery and production ownership
 
 - Owns the lifecycle from requirements and architecture to go-live and support.
 - Covers deployment, optimisation, and production support as part of delivery.
+
+## Can Mihail help with GDPR or other compliance work?
+
+Yes, on the implementation side. Mihail is not a lawyer and does not give legal advice: deciding what the law requires of a particular business stays with that business and its legal advisers. What he does is turn those obligations into a running system, so that what a privacy policy says is actually true of the software.
+
+That means data retention enforced by scheduled sweeps, consent records with explicit lawful bases, data export for subject access requests, data processing agreements with every processor, and tests in continuous integration that fail the build when published legal statements and the running configuration drift apart.
+
+He did this for Glotsmith, his own commercial SaaS, covering GDPR, the EU Digital Services Act, CCPA, and DMCA, and can offer practical guidance from that experience on how such obligations are usually implemented.
 
 ## What does an engagement typically produce?
 
