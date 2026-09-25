@@ -61,7 +61,7 @@ const sections: CaseStudySection[] = [
 	},
 	{
 		id: "deciding-what-not-to-build",
-		heading: "Deciding what not to build",
+		heading: "Deciding what could wait",
 		paragraphs: [
 			"Working alone means the scarcest resource is your own time, so most of the real decisions are about what to defer. A full TypeScript migration, across roughly 41,000 lines of production code, was the obvious candidate. An AI estimate put it at fifty to sixty working days. Costing it myself, file by file, I put it at two to three weeks. Either way, it was not something to do before launch, when that time would have come directly out of shipping. I carried it out at the end of August, after launch, and it took one week. It genuinely improved the codebase, and the value of costing it myself was knowing the real size of the job rather than trusting the first number I was given.",
 			"The infrastructure decisions went the same way. What I ended up running is deliberately boring: a single EC2 instance running Docker Compose behind Cloudflare, with a managed PostgreSQL instance and S3. No Kubernetes and no Redis, because at this size neither justifies its operational cost. Both are on the path for scaling out later, and the application is already shaped for it. Sessions live in the database rather than in memory, and scheduled jobs elect a leader through a database advisory lock, so a second instance can be added without a rewrite when the load justifies one.",
