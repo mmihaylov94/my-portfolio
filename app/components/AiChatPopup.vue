@@ -112,7 +112,7 @@ async function initChat() {
 		i18n: {
 			en: {
 				title: "Rachel · AI assistant",
-				subtitle: "Automated chatbot — answers may not be perfect",
+				subtitle: "Automated chatbot. Answers may not be perfect.",
 				footer: "",
 				getStarted: "New Conversation",
 				inputPlaceholder: "Type your question...",

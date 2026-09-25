@@ -95,4 +95,4 @@ Point `--public-dir` at a scratch directory holding only the new images, then co
 
 British spelling, Oxford commas, no em dashes, no contractions. Plain, direct sentences of varied length. Do not invent facts, numbers, technologies, or achievements for this site: every claim on the page is a claim about a real person's career, so new copy must come from the owner or from existing repository content.
 
-Two email addresses are in use deliberately and must not be unified: `m.mihaylov94@gmail.com` for hiring and recruitment, which is the address printed on the CV in `public/`, and `mihaylov.dev@gmail.com` for project and general inquiries, which is the address published on the site.
+Two email addresses are in use deliberately and must not be unified: `m.mihaylov94@gmail.com` for hiring and recruitment, which is the address printed on the CV in `public/`, and `mihaylov.dev@gmail.com` for project and general inquiries. The site's contact section lists both, each with its purpose, so neither is "the address published on the site": describe each by what it is for.

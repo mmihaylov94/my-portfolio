@@ -18,7 +18,7 @@ tags:
     ai-services,
     billing,
   ]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## Summary
@@ -29,7 +29,7 @@ Mihail's technical profile combines solution architecture, automation and integr
 
 ### AI
 
-LLM APIs, retrieval-augmented generation, vector search, pgvector, AI agents, tool calling, MCP, and Claude Skills.
+LLM APIs, retrieval-augmented generation, vector search, pgvector, AI agents, tool calling, MCP, Claude Skills, Google Cloud AI, and Azure AI Document Intelligence.
 
 ### Automation
 
@@ -49,7 +49,11 @@ PostgreSQL, pgvector, MySQL, and SQL Server.
 
 ### Cloud and DevOps
 
-AWS (EC2, RDS, S3, IAM, SES, SNS), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, and Linux.
+AWS (EC2, RDS, S3, IAM, SES, SNS, VPC), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, and Linux.
+
+### Testing
+
+Vitest and Playwright.
 
 ## What AI experience does Mihail have specifically?
 
@@ -61,7 +65,7 @@ Three production examples exist: the MCP server, Claude Skills, and proxy built 
 
 Python and C#, both from his enterprise RPA period at Deloitte.
 
-Azure AI Document Intelligence, previously named Azure Forms Recogniser, also dates from that period, but he still uses it: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
+Azure AI Document Intelligence, previously named Azure Forms Recogniser, also dates from that period, but it is part of his current stack: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
 
 ## Does Mihail know Python?
 
@@ -93,4 +97,4 @@ Billing runs through Paddle as Merchant of Record, which handles VAT, GST, and U
 
 ## What professional certifications does Mihail hold?
 
-Certified Advanced RPA Developer v1.0 (UiPath), Certified RPA Associate (UiRPA, UiPath), and Certified Advanced RPA Professional (Automation Anywhere A360).
+Certified Advanced RPA Developer v1.0 (UiARD, UiPath), Certified RPA Associate (UiRPA, UiPath), and Certified Advanced RPA Professional A360 (Automation Anywhere).

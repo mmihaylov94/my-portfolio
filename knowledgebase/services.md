@@ -5,7 +5,7 @@ page_type: services
 url: https://mihaylov.io/?section=contact
 source_type: knowledgebase
 tags: [services, consulting, solution-architecture, automation, integrations, ai, compliance, web-development]
-last_verified: 2026-09-23
+last_verified: 2026-09-24
 ---
 
 ## Summary
@@ -70,4 +70,4 @@ Mihail takes on consulting and freelance work alongside his employment, covering
 
 ## How does someone start a conversation about work?
 
-Email `mihaylov.dev@gmail.com`, the address published on the site, or use the contact form at `/?section=contact`. The form asks for a reason: project inquiry, collaboration, job opportunity, consultation, or other. Recruitment inquiries should use `m.mihaylov94@gmail.com` instead, which is the address on his CV.
+Email `mihaylov.dev@gmail.com`, his address for project and general inquiries, or use the contact form at `/?section=contact`. The form asks for a reason: project inquiry, collaboration, job opportunity, consultation, or other. Recruitment inquiries should use `m.mihaylov94@gmail.com` instead, which is the address on his CV.

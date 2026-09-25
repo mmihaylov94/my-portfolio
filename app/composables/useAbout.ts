@@ -106,7 +106,7 @@ const aboutInfo: AboutInfo = {
 			label: "Cloud and DevOps",
 			skills: [
 				{
-					label: "AWS (EC2, RDS, S3, IAM, SES, SNS)",
+					label: "AWS (EC2, RDS, S3, IAM, SES, SNS, VPC)",
 					icon: "i-simple-icons-amazonwebservices",
 				},
 				{ label: "Docker", icon: "i-simple-icons-docker" },
@@ -123,9 +123,10 @@ const aboutInfo: AboutInfo = {
 			title: "Solutions Architect",
 			company: "Businessmap",
 			period: "Jun 2023 – Present",
-			description: `Design and deliver automation, integration, and full-stack systems across the business. Migrated a PHP monolith into a
-      single sign-on portal, consolidating 60 internal tools into reusable products now used by over 100 clients, which became the basis
-      for a 50% increase in Solution Architecture team revenue. Built a bi-directional integration with an external CRM, a Partner Hub
+			description: `Design and deliver integrations, custom applications, and internal tools that extend Businessmap's capabilities for
+      customers and the wider business. Led the migration of a PHP CodeIgniter monolith to a single sign-on portal, consolidating 60
+      tools and generalising client-specific builds into reusable products; the result is now used by over 100 clients and became the basis for a 50% increase in Solution Architecture team
+      revenue through Support Package sales. Built a bi-directional integration with an external CRM, a Partner Hub
       integrating external CRM and billing systems that cut quarterly commission processing from two weeks to two days, and a custom
       MCP server with supporting Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.`,
 		},
@@ -133,8 +134,10 @@ const aboutInfo: AboutInfo = {
 			title: "Technical Solution Architect",
 			company: "Deloitte LLP UK, Glasgow, UK",
 			period: "Mar 2022 – Jun 2023",
-			description: `Contributed to end-to-end RPA delivery, from proposal and requirements through build, testing, deployment, and hypercare, while
-      mentoring developers. Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered
+			description: `Designed and delivered automation solutions for enterprise clients, translating business requirements into technical
+      designs and leading developers through implementation and testing. Shaped solution proposals directly with clients, and supported
+      production rollouts and post-launch stabilisation. Won four new client projects by introducing the Microsoft Power Platform into
+      the team's stack. Delivered
       document processing automation that saved clients over 10,000 hours and £250,000 annually, and timesheet and forecasting solutions
       that saved a further 5,000 hours a year. Owned the RPA infrastructure, including servers, VDIs, and control rooms.`,
 		},
@@ -144,13 +147,13 @@ const aboutInfo: AboutInfo = {
 			period: "May 2020 – Mar 2022",
 			description: `Progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and
       team leadership. Generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements.
-      Cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform. Line-managed a
-      team of nine engineers, advancing two to senior within six months.`,
+      Cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform. Built and
+      line-managed a support engineering team that grew to fifteen people, advancing two engineers to senior roles within six months.`,
 		},
 		{
 			title: "MSc Advanced Computer Science (Distinction)",
 			company: "University of Strathclyde, Glasgow, UK",
-			period: "2018 - 2019",
+			period: "Sep 2018 – Sep 2019",
 			description: `Postgraduate degree focused on advanced software engineering and systems development, covering software architecture,
       distributed systems, databases, and advanced algorithms. Included hands-on labs and a substantial individual project focused on
       end-to-end solution design and implementation.`,
@@ -158,7 +161,7 @@ const aboutInfo: AboutInfo = {
 		{
 			title: "BEng (Hons) Computer and Electronic Systems",
 			company: "University of Strathclyde, Glasgow, UK",
-			period: "2013 - 2017",
+			period: "Sep 2013 – Jun 2017",
 			description: `Engineering degree with strong software foundations, covering software engineering, algorithms, databases, computer
       architecture, operating systems, and networked systems. Completed multiple hands-on projects and a final-year capstone focused on
       building complete, reliable applications.`,

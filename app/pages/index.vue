@@ -7,7 +7,7 @@ const siteUrl = "https://mihaylov.io";
 const siteName = "Mihail Mihaylov";
 const title = "Solutions Architect | Mihail Mihaylov";
 const description =
-	"Solutions Architect specialising in automation, API-led integrations, enterprise RPA, and production AI systems. Based in Sofia, working remotely.";
+	"Solutions Architect specialising in custom tools and AI systems: MCP servers, agentic workflows, and retrieval-augmented generation. Based in Sofia, working remotely.";
 
 useSeoMeta({
 	title,

@@ -24,7 +24,7 @@ tags:
     paddle,
     oauth2,
   ]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## Summary
@@ -89,7 +89,7 @@ A notable cost decision: **born-digital PDFs are read entirely in the browser** 
 
 ## Accounts and access
 
-- **Sign in** with a Google account, or with a passwordless one-time code sent to your email — there are no passwords to manage.
+- **Sign in** with a Google account, or with a passwordless one-time code sent to your email. There are no passwords to manage.
 - **Profile settings** cover display name, avatar, light/dark theme synced across devices, and an opt-in for product emails, which is off by default.
 - **Data export** produces a ZIP of everything you have stored (GDPR subject access).
 - **Account deletion** cascades: courses, workbooks, vocabulary, uploaded materials, and cached text are all removed, and stored files are cleaned up.
@@ -105,19 +105,19 @@ A notable cost decision: **born-digital PDFs are read entirely in the browser** 
 
 ### The eight section types
 
-- **Header** — titles and structure.
-- **Translation** — side-by-side source and target rows, translated on demand in either direction, each row readable aloud.
-- **Vocabulary** — word and meaning tables that feed the course-wide vocabulary view.
-- **Notes** — rich text for grammar notes and commentary.
-- **Table** — a rich-text data grid.
-- **Video** — a YouTube embed or an uploaded file, with timestamped annotations. Uploaded files also get a transcript and 0.5x to 2x playback speed; a YouTube video uses YouTube's own player, loads only after a consent click, and cannot be transcribed.
-- **Audio** — an uploaded track with timestamped annotations and on-demand transcription, capped at 6 minutes per transcription.
-- **Document** — a continuous-scroll PDF or image viewer with zoom, freehand drawing, highlights, and text notes layered over the pages.
+- **Header**: titles and structure.
+- **Translation**: side-by-side source and target rows, translated on demand in either direction, each row readable aloud.
+- **Vocabulary**: word and meaning tables that feed the course-wide vocabulary view.
+- **Notes**: rich text for grammar notes and commentary.
+- **Table**: a rich-text data grid.
+- **Video**: a YouTube embed or an uploaded file, with timestamped annotations. Uploaded files also get a transcript and 0.5x to 2x playback speed; a YouTube video uses YouTube's own player, loads only after a consent click, and cannot be transcribed.
+- **Audio**: an uploaded track with timestamped annotations and on-demand transcription, capped at 6 minutes per transcription.
+- **Document**: a continuous-scroll PDF or image viewer with zoom, freehand drawing, highlights, and text notes layered over the pages.
 
 ### While you read
 
 - **Highlight text** to translate it inline, add it to your vocabulary (automatically translated), or hear it read aloud. This works everywhere except inside Translation and Vocabulary sections and on shared links.
-- **OCR highlight mode** lays a selectable, invisible text layer over scanned pages so you can highlight them like ordinary text. It is intent-driven: nothing is recognised on load, scroll, or zoom — only on the page you actually act on.
+- **OCR highlight mode** lays a selectable, invisible text layer over scanned pages so you can highlight them like ordinary text. It is intent-driven: nothing is recognised on load, scroll, or zoom, only on the page you actually act on.
 - **Course vocabulary view** aggregates every vocabulary row across the whole course into one searchable list.
 - **Course search** spans every section of every workbook in a course, backed by derived search tables that make it a single indexed SQL query.
 - **Pinned sections** give you a labelled, reorderable quick-access list.
@@ -164,7 +164,7 @@ Glotsmith is for adults: users must be at least 18 years old. It is available in
 - **Can I see the source code?** No. Glotsmith is a commercial product and its repository is private. Mihail's public repositories include Threadline and the lite edition of the n8n Pro Automation Framework.
 - **Do I need to pay to use it?** No. There is a Free plan with no credit card needed, alongside paid Scholar ($12 a month) and Master ($24 a month) plans, each with monthly usage allowances.
 - **Can I study from a scanned book?** Yes. Scanned PDFs and images are put through OCR so their text becomes selectable, translatable, and readable aloud.
-- **Can I share a workbook with a student or a friend?** Yes — generate a read-only link, and optionally let them copy it into their own account.
+- **Can I share a workbook with a student or a friend?** Yes. Generate a read-only link, and optionally let them copy it into their own account.
 
 ## What were the hardest engineering problems in Glotsmith?
 
@@ -204,7 +204,11 @@ The lesson Mihail draws from it: decide the legal and commercial structure befor
 
 ## How is Glotsmith tested?
 
-As of September 2026, roughly 98,000 lines of production TypeScript sit behind a test suite of around 92,000 lines, with an 85% line coverage gate enforced in continuous integration for both the backend and the frontend. Tests run at four levels: backend unit tests using the Node.js built-in test runner, integration tests using supertest, frontend unit and Vue component tests using Vitest, and end-to-end tests in Playwright. Automated accessibility checks with axe run inside the Playwright suite.
+The front end and the back end are both TypeScript, with an 85% line coverage gate enforced in continuous integration for each. Tests run at four levels: backend unit tests using the Node.js built-in test runner, integration tests using supertest, frontend unit and Vue component tests using Vitest, and end-to-end tests in Playwright. Automated accessibility checks with axe run inside the Playwright suite.
+
+## How long did Glotsmith's TypeScript migration take?
+
+One week. The migration covered roughly 41,000 lines of production code and was completed on 28 August 2026, after launch. An AI estimate had put it at fifty to sixty working days, and Mihail's own estimate, costed file by file, was two to three weeks. Either way it was deferred until after launch, because before launch that time would have come directly out of shipping. It genuinely improved the codebase, and the value of costing it himself was knowing the real size of the job rather than trusting the first number he was given.
 
 ## How does Glotsmith handle legal compliance?
 
@@ -217,7 +221,7 @@ Data processing agreements are in place with all five processors in use: Google,
 ## Links and status
 
 - **Live:** `https://glotsmith.com`
-- **Source:** Private — Glotsmith is a commercial product.
+- **Source:** Private. Glotsmith is a commercial product.
 - **Status:** Live commercial SaaS, built and operated solo. The site went live on 18 August 2026, and public registration opened on 2 September 2026.
 
 ## Outcome

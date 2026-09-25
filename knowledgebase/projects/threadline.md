@@ -17,12 +17,12 @@ tags:
     bootstrap-5,
     quill,
   ]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## Summary
 
-Threadline is a **moderated community forum** built as a portfolio-grade full-stack application. It uses **CodeIgniter 4**, **PHP**, and **PostgreSQL**, with **server-rendered pages**, **Bootstrap 5**, and **vanilla JavaScript** (no React or Vue). The focus is **role-based moderation**, **clear accountability**, and a straightforward architecture—not a heavy single-page app.
+Threadline is a **moderated community forum** built as a portfolio-grade full-stack application. It uses **CodeIgniter 4**, **PHP**, and **PostgreSQL**, with **server-rendered pages**, **Bootstrap 5**, and **vanilla JavaScript** (no React or Vue). The focus is **role-based moderation**, **clear accountability**, and a straightforward architecture, not a heavy single-page app.
 
 Public instance: `https://threadline.mihaylov.io`. Repository: `https://github.com/mmihaylov94/threadline`.
 
@@ -47,7 +47,7 @@ The interface uses **progressive enhancement**: rich text for posts and replies 
 | Bot protection | **Google reCAPTCHA v3** on sensitive public forms |
 | UI | **Bootstrap 5** |
 | Rich text | **Quill** (loaded for editing threads and replies) |
-| Hosting | **Docker** containers on Mihail's own infrastructure, behind **Traefik** |
+| Hosting | **Docker** on **AWS EC2**, behind **Cloudflare** and **Traefik** |
 
 ## Integrations and third-party services
 
@@ -67,9 +67,9 @@ The interface uses **progressive enhancement**: rich text for posts and replies 
 
 ### Moderation roles
 
-- **Member** — default; can use the forum according to the community rules.
-- **Moderator** — can review reports, moderate categories, and take moderation actions on content as designed for the product.
-- **Administrator** — can do moderator work plus **user management** (roles, enabling or disabling accounts), with safeguards so an admin cannot lock themselves out by mistake.
+- **Member**: default; can use the forum according to the community rules.
+- **Moderator**: can review reports, moderate categories, and take moderation actions on content as designed for the product.
+- **Administrator**: can do moderator work plus **user management** (roles, enabling or disabling accounts), with safeguards so an admin cannot lock themselves out by mistake.
 
 ### Protections
 
@@ -81,20 +81,20 @@ The interface uses **progressive enhancement**: rich text for posts and replies 
 
 ### Forum
 
-- **Categories** — Browse approved categories. New categories can be **requested** and go through **approval**; moderators and admins can approve, reject, or create categories directly.
-- **Threads** — Create threads, open them by link, read **paginated** replies, and **edit or delete** your own threads; moderators can act on others’ threads when needed. Threads can include an optional **background image**. The main thread list shows **10** threads per page.
-- **Replies** — Post replies; edit or delete your own; moderators can intervene. Moderator edits are recorded and written to the audit log.
-- **Search** — Search threads by title and body (case-insensitive).
-- **Sorting** — Latest activity (the default), newest, most replies, and top votes.
-- **Voting** — Upvotes and downvotes on threads and replies, with scores shown for sorting and display.
-- **Favorites** — Save favorite threads; a sidebar can show favorites and **recently viewed** threads.
+- **Categories**: Browse approved categories. New categories can be **requested** and go through **approval**; moderators and admins can approve, reject, or create categories directly.
+- **Threads**: Create threads, open them by link, read **paginated** replies, and **edit or delete** your own threads; moderators can act on others’ threads when needed. Threads can include an optional **background image**. The main thread list shows **10** threads per page.
+- **Replies**: Post replies; edit or delete your own; moderators can intervene. Moderator edits are recorded and written to the audit log.
+- **Search**: Search threads by title and body (case-insensitive).
+- **Sorting**: Latest activity (the default), newest, most replies, and top votes.
+- **Voting**: Upvotes and downvotes on threads and replies, with scores shown for sorting and display.
+- **Favorites**: Save favorite threads; a sidebar can show favorites and **recently viewed** threads.
 
 ### Moderation and administration
 
-- A **moderation area** summarizes work such as pending reports and category requests.
+- A **moderation area** summarises work such as pending reports and category requests.
 - **Reports** can be reviewed one by one or from a **queue**, and resolved or dismissed with notes.
 - **Categories** pending approval can be accepted or rejected, sometimes with a reason.
-- **Audit logs** record important moderation and administrative actions for accountability.
+- **Audit logs** record every moderation and administrative action for accountability.
 - **Admins** can manage **users** (roles and active status) from the user-management part of the admin tools.
 
 ### Profiles and settings
@@ -132,7 +132,7 @@ Threadline demonstrates **authentication** with optional Google sign-in, **reCAP
 
 ## How was Threadline engineered?
 
-Threadline is built with CodeIgniter 4 and PostgreSQL, and runs in Docker on Mihail's own infrastructure behind Traefik with automated certificate issuance. It sits alongside his other self-hosted applications on a shared PostgreSQL instance.
+Threadline is built with CodeIgniter 4 and PostgreSQL, and runs in Docker on AWS EC2 behind Cloudflare and Traefik, with automated certificate issuance. It sits alongside his other self-hosted applications on a shared PostgreSQL instance.
 
 ## Why did Mihail build Threadline?
 

@@ -5,12 +5,12 @@ page_type: about
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [profile, biography, solutions-architect, automation, integrations, ai, experience, education, career, availability]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## Summary
 
-Mihail Mihaylov is a Solutions Architect with a strong full-stack engineering background, specialising in automation, API-led integrations, enterprise RPA, and production AI systems. He is currently a Solutions Architect at Businessmap, and was previously a Technical Solution Architect at Deloitte LLP UK.
+Mihail Mihaylov is a Solutions Architect specialising in custom tools and AI systems. Recent work includes production MCP servers, agentic workflows, and retrieval-augmented generation using vector search. His background spans full-stack engineering, automation, API-led integrations, and enterprise RPA. He is currently a Solutions Architect at Businessmap, and was previously a Technical Solution Architect at Deloitte LLP UK.
 
 ## What is Mihail's job title?
 
@@ -32,10 +32,9 @@ When speed, maintainability, and platform fit make sense, he builds automation u
 
 ## What has Mihail delivered at Businessmap?
 
-- Migrated a PHP monolith into a single sign-on portal, consolidating 60 internal tools.
-- Generalised client-specific builds into reusable products now used by over 100 clients. That work became the basis for a 50% increase in Solution Architecture team revenue.
-- Built a bi-directional integration with an external CRM, running live over webhooks across 100,000 records.
-- Built a Partner Hub integrating external CRM and billing systems, cutting quarterly commission processing from two weeks to two days.
+- Led the migration of a PHP CodeIgniter monolith to a single sign-on portal with a CodeIgniter API backend and a Vue.js front end, consolidating 60 tools and generalising client-specific builds into reusable products. The result is now used by over 100 clients and became the basis for a 50% increase in Solution Architecture team revenue through Support Package sales.
+- Designed and built a bi-directional, fully configurable integration between Businessmap's platform and an external CRM, running live over webhooks across more than 100,000 records, with queue-based conflict resolution and targeted updates limited to the fields that actually changed.
+- Built a Partner Hub integrating external CRM and billing systems, automating commission calculation across more than 50 partners and cutting a quarterly process from two weeks to two days.
 - Architected and developed 40+ custom full-stack applications that make administrative operations and reporting scalable.
 - Built business process automation with Zapier, Microsoft Power Automate, and n8n across finance, HR, and operations, saving hundreds of hours of manual effort annually.
 
@@ -51,13 +50,13 @@ And he built the AI Marketing Reporter, an n8n pipeline in which a language mode
 
 ## What did Mihail do at Deloitte and Momenta?
 
-At Deloitte LLP UK he contributed to end-to-end RPA delivery, from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. He won four new client projects by introducing the Microsoft Power Platform into the team's stack, delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and delivered timesheet and forecasting solutions that saved a further 5,000 hours a year. He owned the RPA infrastructure, including servers, VDIs, and control rooms.
+At Deloitte LLP UK he designed and delivered automation solutions for enterprise clients, translating business requirements into technical designs and leading developers through implementation and testing. He shaped solution proposals directly with clients, and supported production rollouts and post-launch stabilisation (hypercare). He won four new client projects by introducing the Microsoft Power Platform into the team's stack, delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and delivered two timesheet and forecasting solutions that saved a further 5,000 hours a year and improved governance by 30%. He owned the RPA infrastructure, including servers, VDIs, and control rooms.
 
-At Momenta Group Global, contracting for Deloitte, he progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and team leadership. He generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements, and cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform.
+At Momenta Group Global, contracting for Deloitte, he progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and team leadership. He generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements, and cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform. His titles there were Graduate Automation Engineer (May to September 2020), Senior Automation Engineer (September 2020 to April 2021), Principal Automation Engineer (April to November 2021), and Operational Solution Architect (November 2021 to March 2022).
 
 ## Has Mihail led or managed engineers?
 
-Yes. At Momenta Group Global he line-managed a team of nine engineers and advanced two of them to senior within six months. At Deloitte he mentored developers as part of his RPA delivery work.
+Yes. At Momenta Group Global he built and ran the support engineering function, hiring, training, and mentoring a team that grew to fifteen people. He advanced two engineers to senior roles within six months, with retention as high as 90%, and led delivery teams of three to four engineers per project. At Deloitte he led developers through implementation and testing on client projects.
 
 ## Where is Mihail based?
 
@@ -79,33 +78,34 @@ He lived in the United Kingdom for ten years, from September 2013 until June 202
 
 ## What certifications does Mihail hold, and which languages does he speak?
 
-- Certified Advanced RPA Developer v1.0 (UiPath).
+- Certified Advanced RPA Developer v1.0 (UiARD, UiPath).
 - Certified RPA Associate (UiRPA, UiPath).
 - Certified Advanced RPA Professional A360 (Automation Anywhere).
 - Bulgarian is his native language. English is fluent.
 
 ## What technologies does Mihail work with?
 
-- **AI**: LLM APIs, retrieval-augmented generation, vector search, pgvector, AI agents, tool calling, MCP, Claude Skills.
+- **AI**: LLM APIs, retrieval-augmented generation, vector search, pgvector, AI agents, tool calling, MCP, Claude Skills, Google Cloud AI, Azure AI Document Intelligence.
 - **Automation**: n8n, Microsoft Power Automate, Zapier, UiPath, Automation Anywhere, Microsoft Power Platform.
 - **Backend**: PHP (CodeIgniter, Laravel), Node.js, Express, TypeScript, REST APIs, webhooks.
 - **Frontend**: Vue 3, Nuxt, React, Vite, Tailwind CSS.
 - **Data**: PostgreSQL, pgvector, MySQL, SQL Server.
-- **Cloud and DevOps**: AWS (EC2, RDS, S3, IAM, SES, SNS), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, Linux.
+- **Cloud and DevOps**: AWS (EC2, RDS, S3, IAM, SES, SNS, VPC), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, Linux.
+- **Testing**: Vitest, Playwright.
 
 Earlier delivery work at Deloitte also used Python and C#. Azure AI Document Intelligence, previously named Azure Forms Recogniser, dates from the same period and is still in use: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
 
 ## Experience timeline
 
 - **Solutions Architect** - Businessmap (Jun 2023 - Present)  
-  Designs and delivers automation, integration, and full-stack systems across the business. Migrated a PHP monolith into a single sign-on portal, consolidating 60 internal tools into reusable products now used by over 100 clients, which became the basis for a 50% increase in Solution Architecture team revenue. Built a bi-directional integration with an external CRM, a Partner Hub integrating external CRM and billing systems that cut quarterly commission processing from two weeks to two days, and a custom MCP server with supporting Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.
+  Designs and delivers integrations, custom applications, and internal tools that extend Businessmap's capabilities for customers and the wider business. Led the migration of a PHP CodeIgniter monolith to a single sign-on portal, consolidating 60 tools and generalising client-specific builds into reusable products; the result is now used by over 100 clients and became the basis for a 50% increase in Solution Architecture team revenue through Support Package sales. Built a bi-directional integration with an external CRM, a Partner Hub integrating external CRM and billing systems that cut quarterly commission processing from two weeks to two days, and a custom MCP server with supporting Claude Skills behind an SSO-authenticated proxy that filters personal data out of every response.
 
 - **Technical Solution Architect** - Deloitte LLP UK, Glasgow, UK (Mar 2022 - Jun 2023)  
-  Contributed to end-to-end RPA delivery, from proposal and requirements through build, testing, deployment, and hypercare, while mentoring developers. Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and timesheet and forecasting solutions that saved a further 5,000 hours a year. Owned the RPA infrastructure, including servers, VDIs, and control rooms. Technology exposure in this period included UiPath, Automation Anywhere, Python, SQL Server, C#, Microsoft Power Platform, and Azure AI Document Intelligence.
+  Designed and delivered automation solutions for enterprise clients, translating business requirements into technical designs and leading developers through implementation and testing. Shaped solution proposals directly with clients, and supported production rollouts and post-launch stabilisation (hypercare). Won four new client projects by introducing the Microsoft Power Platform into the team's stack. Delivered document processing automation that saved clients over 10,000 hours and £250,000 annually, and two timesheet and forecasting solutions that saved a further 5,000 hours a year and improved governance by 30%. Owned the RPA infrastructure, including servers, VDIs, and control rooms. Technology exposure in this period included UiPath, Automation Anywhere, Python, SQL Server, C#, Microsoft Power Platform, and Azure AI Document Intelligence.
 
 - **Automation Engineer to Solution Architect** - Momenta Group Global (contractor for Deloitte LLP UK) (May 2020 - Mar 2022)  
-  Progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and team leadership. Generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements. Cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform. Line-managed a team of nine engineers, advancing two to senior within six months.
+  Progressed from graduate engineer to solution architect in under two years across RPA design, delivery, support, and team leadership. Generated over £80,000 in additional revenue by designing more than 40 automation changes to client requirements. Cut error rates by 25% and support time by 15% by leading the migration of internal automations onto a new platform. Built and line-managed a support engineering team that grew to fifteen people, advancing two engineers to senior roles within six months, with retention as high as 90%.
 
 ## How can someone contact Mihail?
 
-For hiring and recruitment, including anyone working from his CV, the address is `m.mihaylov94@gmail.com`. For project and general inquiries through the website, the published address is `mihaylov.dev@gmail.com`. Full details are in the contact document.
+For hiring and recruitment, including anyone working from his CV, the address is `m.mihaylov94@gmail.com`. For project and general inquiries, it is `mihaylov.dev@gmail.com`. The contact section of `mihaylov.io` lists both, and full details are in the contact document.

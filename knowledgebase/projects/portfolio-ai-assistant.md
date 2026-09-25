@@ -5,7 +5,7 @@ page_type: project
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [rag, retrieval-augmented-generation, pgvector, n8n, ai-agent, tool-calling, nuxt, typescript, vector-search]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## Summary
@@ -34,4 +34,4 @@ The assistant answers from a curated knowledge base rather than from general mod
 
 ## What infrastructure does the assistant run on?
 
-It runs on Mihail's own Docker infrastructure behind Traefik, alongside a self-hosted n8n instance and a shared PostgreSQL database with pgvector enabled, with automated certificate issuance.
+It runs in Docker on an AWS EC2 instance behind Cloudflare and Traefik, alongside a self-hosted n8n instance and a shared PostgreSQL database with pgvector enabled, with automated certificate issuance.

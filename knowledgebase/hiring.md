@@ -5,7 +5,7 @@ page_type: hiring
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [hiring, availability, remote, contract, employment, eor, roles, relocation, notice, recruiter]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## Summary
@@ -40,7 +40,7 @@ This depends on his current contract and is best discussed directly. Contact him
 
 ## What is Mihail's experience level?
 
-His professional career began in May 2020, progressing from graduate automation engineer to Solutions Architect. He has line-managed a team of nine engineers, acted as a technical escalation point for production systems, and worked directly with enterprise clients throughout.
+His professional career began in May 2020, progressing from graduate automation engineer to Solutions Architect. He has built and line-managed a support engineering team that grew to fifteen people, acted as a technical escalation point for production systems, and worked directly with enterprise clients throughout.
 
 ## Why is Mihail looking for a new role?
 
@@ -58,4 +58,4 @@ Third, he has designed, built, deployed, and operated a production SaaS entirely
 
 ## How can a recruiter contact Mihail?
 
-By email at `m.mihaylov94@gmail.com`, which is the address printed on his CV and the one to use for recruitment, through LinkedIn at `linkedin.com/in/mihail-m-mihaylov`, or via the contact form at `mihaylov.io`. The address published on the website, `mihaylov.dev@gmail.com`, is for project and general inquiries rather than hiring.
+By email at `m.mihaylov94@gmail.com`, which is the address printed on his CV and the one to use for recruitment, by phone on `+359 876 587 044`, also printed on his CV, through LinkedIn at `linkedin.com/in/mihail-m-mihaylov`, or via the contact form at `mihaylov.io`. His other address, `mihaylov.dev@gmail.com`, is for project and general inquiries rather than hiring.

@@ -5,7 +5,7 @@ page_type: faq
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [faq, profile, projects, portfolio, site]
-last_verified: 2026-09-23
+last_verified: 2026-09-25
 ---
 
 ## What is Mihail's job title?
@@ -14,7 +14,7 @@ Solutions Architect. He is a Solutions Architect at Businessmap, and was previou
 
 ## What does Mihail specialise in?
 
-Automation, API-led integrations, enterprise RPA, and production AI systems, backed by a strong full-stack engineering background.
+Custom tools and AI systems, including production MCP servers, agentic workflows, and retrieval-augmented generation, built on a background in automation, API-led integrations, enterprise RPA, and full-stack engineering.
 
 ## What projects are on the portfolio?
 
@@ -38,7 +38,7 @@ An MSc in Advanced Computer Science, awarded with Distinction, and a BEng (Hons)
 
 ## What certifications does Mihail hold?
 
-Certified Advanced RPA Developer v1.0 (UiPath), Certified RPA Associate (UiRPA, UiPath), and Certified Advanced RPA Professional A360 (Automation Anywhere).
+Certified Advanced RPA Developer v1.0 (UiARD, UiPath), Certified RPA Associate (UiRPA, UiPath), and Certified Advanced RPA Professional A360 (Automation Anywhere).
 
 ## What technical areas is he strongest in?
 
@@ -46,4 +46,4 @@ Solution architecture, automation and integration design, production AI systems,
 
 ## How can I contact Mihail?
 
-For hiring, use `m.mihaylov94@gmail.com`, the address on his CV. For project and general inquiries, use `mihaylov.dev@gmail.com`, the address published on the site. His CV is downloadable at `https://mihaylov.io/Mihail_Mihaylov_CV.pdf`. Full details are in the contact document, and hiring specifics are in the hiring document.
+For hiring, use `m.mihaylov94@gmail.com`, the address on his CV. For project and general inquiries, use `mihaylov.dev@gmail.com`. The contact section of the site lists both. His CV is downloadable at `https://mihaylov.io/Mihail_Mihaylov_CV.pdf`. Full details are in the contact document, and hiring specifics are in the hiring document.
