@@ -69,6 +69,10 @@ Conventions in these files: YAML front matter with `doc_id`, `title`, `page_type
 
 Validate articles with the same parser the ingestion pipeline uses. CI runs it on every push that touches `knowledgebase/**` (`.github/workflows/knowledgebase.yml`). Locally, without Docker: `uvx --from git+https://github.com/mmihaylov94/portfolio-ai portfolio-ai-validate knowledgebase`.
 
+## CV
+
+`public/Mihail_Mihaylov_CV.pdf` is a build artefact of `cv/generate.js`, a self-contained npm project (own `package.json` and lockfile, CommonJS, ignored by the root ESLint). Edit the CV there, never the PDF, and keep its claims consistent with the site and knowledgebase. `cv/README.md` covers fonts, LibreOffice, and the two-page check.
+
 ## Images
 
 `ProjectCard.buildSrcset` derives `-480w`, `-768w`, and `-960w` filenames from the base image path, unconditionally. A base image without those three siblings produces 404s in the srcset.

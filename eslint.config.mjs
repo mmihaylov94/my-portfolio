@@ -2,6 +2,9 @@
 import withNuxt from "./.nuxt/eslint.config.mjs";
 
 export default withNuxt({
+	// Self-contained CV generator with its own package.json and style
+	ignores: ["cv/**"],
+}, {
 	rules: {
 		// Allow tabs (codebase uses tabs)
 		"@stylistic/no-tabs": "off",

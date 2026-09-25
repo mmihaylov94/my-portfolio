@@ -1,0 +1,13 @@
+{
+  "name": "cv",
+  "private": true,
+  "description": "Generates Mihail_Mihaylov_CV.docx and the PDF served from public/",
+  "scripts": {
+    "build": "node generate.js",
+    "pdf": "node to-pdf.js",
+    "cv": "node generate.js && node to-pdf.js"
+  },
+  "dependencies": {
+    "docx": "^9.5.1"
+  }
+}
