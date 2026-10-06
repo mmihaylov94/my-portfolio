@@ -8,6 +8,6 @@
 		</main>
 
 		<AppFooter />
-		<AiChatPopup />
+		<ChatWidget />
 	</div>
 </template>

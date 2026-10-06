@@ -7,7 +7,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 ## 🚀 Features
 
 - **Static Site Generation (SSG)** - Pre-rendered at build time for optimal performance
-- **AI Chat Popup** - Chat widget powered by n8n webhooks with feedback (thumbs up/down)
+- **AI Chat** - Answers stream in as they are written, with the documents they drew on and thumbs up and down, from the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) assistant through the site's API. The conversation is kept in the browser for 24 hours
 - **Contact Form** - With Google reCAPTCHA v3 protection
 - **Dark/Light Mode** - System preference detection with manual toggle
 - **Responsive Design** - Mobile-first approach with smooth animations
@@ -41,7 +41,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 ├── app/
 │   ├── assets/css/main.css   # Global styles and theme configuration
 │   ├── components/
-│   │   ├── AiChatPopup.vue   # AI chat widget (bottom-right)
+│   │   ├── chat/             # The AI chat: launcher, panel, messages, feedback
 │   │   ├── AboutSection.vue
 │   │   ├── AppButton.vue
 │   │   ├── AppFooter.vue
@@ -55,11 +55,15 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 │   │   └── ThemeToggle.vue
 │   ├── composables/
 │   │   ├── useAbout.ts
+│   │   ├── useAiChat.ts      # Whether the chat is open
+│   │   ├── useChatConversation.ts  # The visitor's conversation, in the browser
 │   │   ├── useNavigation.ts
 │   │   ├── useProjects.ts
 │   │   └── useRecaptcha.ts   # reCAPTCHA v3 for contact form
+│   ├── utils/chat/           # The chat's logic: stream, parser, renderer, storage
 │   ├── layouts/default.vue
 │   └── pages/index.vue
+├── tests/unit/               # Vitest, for app/utils/chat
 ├── docker-compose.yml        # Site + API services
 └── Dockerfile                # Frontend (Nuxt SSG → nginx)
 ```
@@ -68,7 +72,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 
 ### Prerequisites
 
-- Node.js 20.19 or newer (the API image runs Node 20)
+- Node.js 22.12 or newer, which the site's tests need (the images build and run on Node 20)
 - npm
 
 ### Installation
@@ -103,9 +107,10 @@ cd api && npm run dev
 
 Copy `api/.env.example` to `api/.env` and fill in what you need: the n8n webhook and reCAPTCHA secret for the contact form, and `PORTFOLIO_AI_URL` and `PORTFOLIO_AI_API_KEY` for the chat. The chat needs the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) API running locally (`uv run python -m portfolio_ai.api`, on port 8000) with the same key. With `PORTFOLIO_AI_URL` empty, the chat routes answer 503.
 
-**API tests:**
+**Tests:**
 ```bash
-cd api && npm test
+npm test               # the site's: the chat's logic, with Vitest
+cd api && npm test     # the API's, with Node's built-in runner
 ```
 
 ## 🏗️ Building for Production
@@ -145,7 +150,7 @@ docker compose pull
 docker compose up -d
 ```
 
-**CI/CD** – GitHub Actions build and push both images. Add these **repository secrets** for the frontend build:
+**CI/CD** – GitHub Actions build and push both images, each only after its checks pass. Add these **repository secrets** for the frontend build:
 
 | Secret | Required | Description |
 |--------|----------|-------------|
@@ -197,7 +202,8 @@ If reCAPTCHA keys are not set, the contact form works without verification (usef
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
-- `npm run typecheck` - Run TypeScript type checking
+- `npm run typecheck` - Run TypeScript type checking, of the site and its tests
+- `npm test` - Run the site's tests
 - `cd api && npm test` - Run the API's tests
 
 ## 🎨 Customization

@@ -5,7 +5,6 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			recaptchaSiteKey: "",
-			n8nChatWebhookPath: "",
 		},
 	},
 
@@ -48,6 +47,22 @@ export default defineNuxtConfig({
 	icon: {
 		clientBundle: {
 			scan: true,
+			// The chat panel is never prerendered, so every icon it shows has to be in
+			// the client bundle, or the browser asks /api/_nuxt_icon for it, which does
+			// not exist in production. Scanning finds the names in its .vue files, but
+			// drops a misspelt one without a word; a name listed here that does not
+			// exist fails the build. tests/unit/chatIcons.test.ts keeps the two in step.
+			icons: [
+				"heroicons:arrow-path",
+				"heroicons:chat-bubble-left-right",
+				"heroicons:hand-thumb-down",
+				"heroicons:hand-thumb-down-solid",
+				"heroicons:hand-thumb-up",
+				"heroicons:hand-thumb-up-solid",
+				"heroicons:paper-airplane",
+				"heroicons:pencil-square",
+				"heroicons:x-mark",
+			],
 		},
 	},
 

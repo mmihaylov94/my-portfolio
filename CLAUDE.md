@@ -9,13 +9,14 @@ npm run dev        # Nuxt dev server on port 3001, proxies /api/* to localhost:3
 npm run build      # Static build; output lands in .output/public
 npm run preview    # Serve the production build
 npm run lint       # ESLint
-npm run typecheck  # nuxt typecheck (vue-tsc)
+npm run typecheck  # nuxt typecheck (vue-tsc), then the unit tests' own tsc -p tests
+npm test           # Vitest: the chat's logic in app/utils/chat (tests/unit)
 
 cd api && npm run dev    # Express API on port 3000 (separate npm project, own install)
 cd api && npm test       # API tests, Node's built-in runner, no extra dependencies
 ```
 
-The API has tests (`api/tests/`); the site has none. CI (`.github/workflows/ci.yml`) runs `lint` and `typecheck` for the site and the API tests on Node 20, the version the API image runs, on every push. It does not build the site. Verify builds locally before claiming a change works. `docker-api.yml` runs the API tests again before it publishes an image, so a failing test never becomes `:latest`.
+The site's unit tests (`tests/unit/`) cover the chat's logic, which is plain TypeScript run in Node without Nuxt; the components are checked by hand. They sit outside `app/` because no tsconfig Nuxt generates includes `tests/unit`, so `tests/tsconfig.json` type checks them and `npm run typecheck` runs it. `vitest.config.ts` keeps Vitest to `tests/unit`, or it would pick up the API's `node:test` files. Vitest needs Node 22.12 or newer. The API has its own tests (`api/tests/`). CI (`.github/workflows/ci.yml`) runs `lint`, `typecheck` and `test` for the site on Node 22, and the API tests on Node 20, the version the API image runs, on every push. It does not build the site. Verify builds locally before claiming a change works. `docker-frontend.yml` and `docker-api.yml` run their checks again before they publish an image, so a failing check never becomes `:latest`.
 
 Builds are slow (minutes) and serialise on the shared `.nuxt` and `.output` caches. Do not run two builds concurrently, and do not edit source while one is running, or the output will be a mix of both states.
 
@@ -44,15 +45,21 @@ Two things are required and neither is automatic:
 
 `app/components/AppButton.vue` picks its element from props: `to` returns the `NuxtLink` **component imported from `#components`**, `href` returns a plain `<a>`, otherwise `<button>`. Returning the string `"NuxtLink"` instead of the component silently emits a literal `<NuxtLink>` tag into prerendered HTML, producing a dead link with no build error. Use `to` for internal routes, `href` for external URLs, mailto, and files in `public/`.
 
-### Chat assistant bypasses the API
+### The AI chat
 
-The API's `/api/chat` routes (below) exist for the chat UI that replaces the widget. Until it lands, the `@n8n/chat` widget is mounted by `AiChatPopup.vue` in the default layout and posts **directly** to `https://n8n.mihaylov.io/webhook/<NUXT_PUBLIC_N8N_CHAT_WEBHOOK_PATH>` from the browser. It does not go through `api/`. If that variable is unset, the widget never mounts, and anything depending on it (including `useAiChat().openChat()`) becomes a silent no-op.
+`app/components/chat/ChatWidget.vue`, in the default layout, is the launcher: a prerendered button. The panel (`ChatPanel.vue`) loads on the first open and stays mounted, so an answer keeps arriving while it is closed. `useAiChat().openChat()` opens it from anywhere, which is how the assistant's project card does it. The panel posts to the site's own API (`/api/chat`, streamed as server-sent events, and `/api/chat/feedback`), which passes both to portfolio-ai; the browser never talks to the assistant directly. The logic lives in `app/utils/chat/` as plain TypeScript, so the unit tests run it without Nuxt; the components only render its state.
 
-`useAiChat.ts` and the "Start over" button in `AiChatPopup.vue` both drive the widget by querying and clicking its DOM nodes (`#n8n-chat .chat-window-toggle`, `.chat-window`). This couples the app to `@n8n/chat` internals that no type checker guards.
+Things that are easy to break:
+
+- **Answers are rendered from tokens, never as HTML.** `answerText.ts` turns an answer into paragraphs, lists, emphasis and links, and the components build elements from those. Its link grammar is a port of `_LINK` in portfolio-ai's `postprocess.py`, whose link filter decides which URLs a visitor may be sent to; linking anything that pattern does not match would bypass the filter. `tests/unit/linkParity.test.ts` checks the port against a fixture of Python's own matches. When `_LINK` or portfolio-ai's samples change, regenerate the fixture with `tests/unit/fixtures/link-parity.py`, and change `answerText.ts` to match. Only http, https and mailto become links, and never an address with a backslash, which a browser follows as a slash: the filter would have judged a different path from the one the visitor gets.
+- **The chat's icons must be listed in `icon.clientBundle.icons`** in `nuxt.config.ts`. The panel is never prerendered, so an icon missing from the client bundle is requested from `/api/_nuxt_icon`, which does not exist in production. The icon scanner drops a misspelt name silently; a misspelt listed name fails the build. `tests/unit/chatIcons.test.ts` fails when the components and the list disagree.
+- **Chat components never call `useNavigation()`.** Its `onMounted` scrolls the page to `?section`, or to the top when there is none, so a component that mounts when the panel opens would make the page jump. `ChatLink.vue` follows site links itself.
+- **The conversation is kept in `localStorage["portfolio-chat/v1"]`** (`sessionStore.ts`) and resumed within 24 hours of its last question; "New conversation" starts a new session id. A record that fails any check is discarded whole. The old widget's `n8n-chat/sessionId` is removed on load.
+- **The copy is the owner's.** The greeting, the suggested questions, and the retention notice ("kept for 90 days") are in `ChatPanel.vue`. The notice has to change if portfolio-ai's `CHAT_RETENTION_DAYS` does.
 
 ### The Express API is small
 
-Four routes: `/api/health`; `/api/contact`, rate limited (5 per 15 minutes), optionally verified against reCAPTCHA v3 (score below 0.5 rejected), then forwarded to an n8n webhook; and `/api/chat` and `/api/chat/feedback`, which pass the chat to the AI assistant (the `portfolio-ai` service, private to the Docker network) with its key attached server-side. Missing `RECAPTCHA_SECRET_KEY` disables verification rather than failing, which is intended for local development. Missing `PORTFOLIO_AI_URL` switches the chat routes off (503), which is how they deploy before the new chat UI.
+Four routes: `/api/health`; `/api/contact`, rate limited (5 per 15 minutes), optionally verified against reCAPTCHA v3 (score below 0.5 rejected), then forwarded to an n8n webhook; and `/api/chat` and `/api/chat/feedback`, which pass the chat to the AI assistant (the `portfolio-ai` service, private to the Docker network) with its key attached server-side. Missing `RECAPTCHA_SECRET_KEY` disables verification rather than failing, which is intended for local development. Missing `PORTFOLIO_AI_URL` switches the chat routes off (503), and the chat then says the assistant is not available.
 
 `src/server.js` is only the entry point. `src/app.js` builds the app from a config object and never reads the environment, which is what lets the tests build their own on any port; `src/config.js` parses the environment. The chat routes follow the contract in portfolio-ai's `docs/API.md` ("What the proxy has to do"). Things that are easy to break there:
 

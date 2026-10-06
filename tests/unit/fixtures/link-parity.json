@@ -1,0 +1,617 @@
+{
+ "samples": [
+  {
+   "text": "See https://mihaylov.io/projects/threadline for details.",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/threadline",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/threadline",
+     "stripped": "https://mihaylov.io/projects/threadline"
+    }
+   ]
+  },
+  {
+   "text": "Read [the case study](https://mihaylov.io/projects/threadline) or [contact him](https://mihaylov.io/#contact).",
+   "matches": [
+    {
+     "match": "[the case study](https://mihaylov.io/projects/threadline)",
+     "label": "the case study",
+     "target": "https://mihaylov.io/projects/threadline",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "[contact him](https://mihaylov.io/#contact)",
+     "label": "contact him",
+     "target": "https://mihaylov.io/#contact",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Allowed: https://mihaylov.io/#about, https://threadline.mihaylov.io and www.linkedin.com/in/mihail-m-mihaylov.",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/#about,",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/#about,",
+     "stripped": "https://mihaylov.io/#about"
+    },
+    {
+     "match": "https://threadline.mihaylov.io",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://threadline.mihaylov.io",
+     "stripped": "https://threadline.mihaylov.io"
+    },
+    {
+     "match": "www.linkedin.com/in/mihail-m-mihaylov.",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "www.linkedin.com/in/mihail-m-mihaylov.",
+     "stripped": "www.linkedin.com/in/mihail-m-mihaylov"
+    }
+   ]
+  },
+  {
+   "text": "A label with spaces: [Threadline project page](https://mihaylov.io/projects/threadline).",
+   "matches": [
+    {
+     "match": "[Threadline project page](https://mihaylov.io/projects/threadline)",
+     "label": "Threadline project page",
+     "target": "https://mihaylov.io/projects/threadline",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Brackets that are not links: [1] and [note], then (a parenthetical).",
+   "matches": []
+  },
+  {
+   "text": "An unclosed [bracket that never closes, then https://mihaylov.io/knowledgebase/faq.md",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/knowledgebase/faq.md",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/knowledgebase/faq.md",
+     "stripped": "https://mihaylov.io/knowledgebase/faq.md"
+    }
+   ]
+  },
+  {
+   "text": "<https://mihaylov.io/projects/x> and <https://mihaylov.io/>",
+   "matches": [
+    {
+     "match": "<https://mihaylov.io/projects/x>",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "<https://mihaylov.io/projects/x>",
+     "stripped": "https://mihaylov.io/projects/x"
+    },
+    {
+     "match": "<https://mihaylov.io/>",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "<https://mihaylov.io/>",
+     "stripped": "https://mihaylov.io/"
+    }
+   ]
+  },
+  {
+   "text": "Shouting: HTTPS://MIHAYLOV.IO/PROJECTS/THREADLINE.",
+   "matches": [
+    {
+     "match": "HTTPS://MIHAYLOV.IO/PROJECTS/THREADLINE.",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "HTTPS://MIHAYLOV.IO/PROJECTS/THREADLINE.",
+     "stripped": "HTTPS://MIHAYLOV.IO/PROJECTS/THREADLINE"
+    }
+   ]
+  },
+  {
+   "text": "[https://mihaylov.io/projects/x](https://mihaylov.io/projects/x)",
+   "matches": [
+    {
+     "match": "[https://mihaylov.io/projects/x](https://mihaylov.io/projects/x)",
+     "label": "https://mihaylov.io/projects/x",
+     "target": "https://mihaylov.io/projects/x",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Nested [a [b](https://mihaylov.io/projects/y) c",
+   "matches": [
+    {
+     "match": "[a [b](https://mihaylov.io/projects/y)",
+     "label": "a [b",
+     "target": "https://mihaylov.io/projects/y",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Lines:\n- one https://mihaylov.io/projects/a\n- [two](https://github.com/mmihaylov94/threadline)\n",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/a",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/a",
+     "stripped": "https://mihaylov.io/projects/a"
+    },
+    {
+     "match": "[two](https://github.com/mmihaylov94/threadline)",
+     "label": "two",
+     "target": "https://github.com/mmihaylov94/threadline",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Touching: https://mihaylov.io/projects/x[link](https://mihaylov.io/projects/y) end",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/x",
+     "stripped": "https://mihaylov.io/projects/x"
+    },
+    {
+     "match": "[link](https://mihaylov.io/projects/y)",
+     "label": "link",
+     "target": "https://mihaylov.io/projects/y",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "In brackets (https://mihaylov.io/projects/threadline) mid-sentence.",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/threadline",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/threadline",
+     "stripped": "https://mihaylov.io/projects/threadline"
+    }
+   ]
+  },
+  {
+   "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxhttps://mihaylov.io/projects/q",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/q",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/q",
+     "stripped": "https://mihaylov.io/projects/q"
+    }
+   ]
+  },
+  {
+   "text": "Mihail\u2019s site \u2014 https://mihaylov.io/#about \u2713 and nothing forbidden at all.",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/#about",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/#about",
+     "stripped": "https://mihaylov.io/#about"
+    }
+   ]
+  },
+  {
+   "text": "Bold **https://mihaylov.io/projects/threadline**. Italic _https://mihaylov.io/knowledgebase/faq.md_, and **(https://mihaylov.io/projects/x.)**",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/threadline**.",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/threadline**.",
+     "stripped": "https://mihaylov.io/projects/threadline"
+    },
+    {
+     "match": "https://mihaylov.io/knowledgebase/faq.md_,",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/knowledgebase/faq.md_,",
+     "stripped": "https://mihaylov.io/knowledgebase/faq.md"
+    },
+    {
+     "match": "https://mihaylov.io/projects/x.",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/x.",
+     "stripped": "https://mihaylov.io/projects/x"
+    }
+   ]
+  },
+  {
+   "text": "Titled: [the case study](https://mihaylov.io/projects/x \"The case study\") and [about](https://mihaylov.io/#about 'About him') end, [open](https://mihaylov.io/ \"x",
+   "matches": [
+    {
+     "match": "[the case study](https://mihaylov.io/projects/x \"The case study\")",
+     "label": "the case study",
+     "target": "https://mihaylov.io/projects/x",
+     "title": " \"The case study\"",
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "[about](https://mihaylov.io/#about 'About him')",
+     "label": "about",
+     "target": "https://mihaylov.io/#about",
+     "title": " 'About him'",
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "https://mihaylov.io/",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/",
+     "stripped": "https://mihaylov.io/"
+    }
+   ]
+  },
+  {
+   "text": "Elsewhere: https://github.com/u/projects/1, then https://mihaylov.io/projects and https://mihaylov.io/projects?tab=2 done.",
+   "matches": [
+    {
+     "match": "https://github.com/u/projects/1,",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://github.com/u/projects/1,",
+     "stripped": "https://github.com/u/projects/1"
+    },
+    {
+     "match": "https://mihaylov.io/projects",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects",
+     "stripped": "https://mihaylov.io/projects"
+    },
+    {
+     "match": "https://mihaylov.io/projects?tab=2",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects?tab=2",
+     "stripped": "https://mihaylov.io/projects?tab=2"
+    }
+   ]
+  },
+  {
+   "text": "[https://mihaylov.io](https://mihaylov.io/projects/x)/projects/x and on",
+   "matches": [
+    {
+     "match": "[https://mihaylov.io](https://mihaylov.io/projects/x)",
+     "label": "https://mihaylov.io",
+     "target": "https://mihaylov.io/projects/x",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "See https://mihaylov.io[/projects page](https://github.com/users/mmihaylov94/projects/1) now.",
+   "matches": [
+    {
+     "match": "https://mihaylov.io",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io",
+     "stripped": "https://mihaylov.io"
+    },
+    {
+     "match": "[/projects page](https://github.com/users/mmihaylov94/projects/1)",
+     "label": "/projects page",
+     "target": "https://github.com/users/mmihaylov94/projects/1",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Glued [https://mihaylov.io](https://github.com/u/projects/1)[/projects page](https://github.com/u/projects/2) end",
+   "matches": [
+    {
+     "match": "[https://mihaylov.io](https://github.com/u/projects/1)",
+     "label": "https://mihaylov.io",
+     "target": "https://github.com/u/projects/1",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "[/projects page](https://github.com/u/projects/2)",
+     "label": "/projects page",
+     "target": "https://github.com/u/projects/2",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "Stand-in: https://mihaylov.io/projects/x[/knowledgebase](https://mihaylov.io/projects/y) end",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/projects/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/projects/x",
+     "stripped": "https://mihaylov.io/projects/x"
+    },
+    {
+     "match": "[/knowledgebase](https://mihaylov.io/projects/y)",
+     "label": "/knowledgebase",
+     "target": "https://mihaylov.io/projects/y",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "[a b][](https://example.com/projects/1)(https://mihaylov.io/x'/../projects/x) end",
+   "matches": [
+    {
+     "match": "[](https://example.com/projects/1)",
+     "label": "",
+     "target": "https://example.com/projects/1",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "https://mihaylov.io/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/x",
+     "stripped": "https://mihaylov.io/x"
+    }
+   ]
+  },
+  {
+   "text": "[a b]https://github.com/u/projects/1(https://mihaylov.io/x'/../projects/x) end",
+   "matches": [
+    {
+     "match": "https://github.com/u/projects/1",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://github.com/u/projects/1",
+     "stripped": "https://github.com/u/projects/1"
+    },
+    {
+     "match": "https://mihaylov.io/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/x",
+     "stripped": "https://mihaylov.io/x"
+    }
+   ]
+  },
+  {
+   "text": "[[](https://example.com/projects/1)a b](https://mihaylov.io/x'/../projects/x) end",
+   "matches": [
+    {
+     "match": "[[](https://example.com/projects/1)",
+     "label": "[",
+     "target": "https://example.com/projects/1",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "https://mihaylov.io/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/x",
+     "stripped": "https://mihaylov.io/x"
+    }
+   ]
+  },
+  {
+   "text": "[[a](https://example.com/projects/1) b](https://mihaylov.io/x'/../projects/x) end",
+   "matches": [
+    {
+     "match": "[[a](https://example.com/projects/1)",
+     "label": "[a",
+     "target": "https://example.com/projects/1",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "https://mihaylov.io/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/x",
+     "stripped": "https://mihaylov.io/x"
+    }
+   ]
+  },
+  {
+   "text": "",
+   "matches": []
+  },
+  {
+   "text": "Separated\u001chttps://mihaylov.io/#about\u001dend",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/#about",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/#about",
+     "stripped": "https://mihaylov.io/#about"
+    }
+   ]
+  },
+  {
+   "text": "Next line\u0085https://mihaylov.io/\u0085more",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/",
+     "stripped": "https://mihaylov.io/"
+    }
+   ]
+  },
+  {
+   "text": "Marked\ufeffhttps://mihaylov.io/#contact\ufefftail",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/#contact\ufefftail",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/#contact\ufefftail",
+     "stripped": "https://mihaylov.io/#contact\ufefftail"
+    }
+   ]
+  },
+  {
+   "text": "Wide\u3000https://mihaylov.io/#projects\u3000gap",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/#projects",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/#projects",
+     "stripped": "https://mihaylov.io/#projects"
+    }
+   ]
+  },
+  {
+   "text": "Long s: http\u017f://mihaylov.io/x and HTTP\u017f://mihaylov.io/y",
+   "matches": [
+    {
+     "match": "http\u017f://mihaylov.io/x",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "http\u017f://mihaylov.io/x",
+     "stripped": "http\u017f://mihaylov.io/x"
+    },
+    {
+     "match": "HTTP\u017f://mihaylov.io/y",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "HTTP\u017f://mihaylov.io/y",
+     "stripped": "HTTP\u017f://mihaylov.io/y"
+    }
+   ]
+  },
+  {
+   "text": "[\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00](https://mihaylov.io/#about)",
+   "matches": [
+    {
+     "match": "[\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00](https://mihaylov.io/#about)",
+     "label": "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+     "target": "https://mihaylov.io/#about",
+     "title": null,
+     "url": null,
+     "stripped": null
+    }
+   ]
+  },
+  {
+   "text": "[\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00](https://mihaylov.io/#about)",
+   "matches": [
+    {
+     "match": "https://mihaylov.io/#about",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "https://mihaylov.io/#about",
+     "stripped": "https://mihaylov.io/#about"
+    }
+   ]
+  },
+  {
+   "text": "[click](javascript:alert(1)) and [mail](mailto:someone@example.com) and <www.example.com>.",
+   "matches": [
+    {
+     "match": "[click](javascript:alert(1)",
+     "label": "click",
+     "target": "javascript:alert(1",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "[mail](mailto:someone@example.com)",
+     "label": "mail",
+     "target": "mailto:someone@example.com",
+     "title": null,
+     "url": null,
+     "stripped": null
+    },
+    {
+     "match": "<www.example.com>",
+     "label": null,
+     "target": null,
+     "title": null,
+     "url": "<www.example.com>",
+     "stripped": "www.example.com"
+    }
+   ]
+  }
+ ]
+}

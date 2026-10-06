@@ -1,0 +1,21 @@
+{
+  // Type checks the unit tests, and the code they import, with the same strictness
+  // as Nuxt's own settings (.nuxt/tsconfig.app.json). `nuxt typecheck` does not
+  // cover tests/unit, so `npm run typecheck` runs this after it.
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "preserve",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["unit/**/*.ts", "../app/utils/chat/**/*.ts", "../vitest.config.ts"]
+}
