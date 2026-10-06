@@ -84,8 +84,9 @@ async function handleSubmit() {
 		};
 	} catch (error) {
 		console.error("Form submission error:", error);
+		// The API's reCAPTCHA errors spell it "reCAPTCHA", so the test ignores case.
 		submitMessage.value =
-			error instanceof Error && error.message.includes("recaptcha")
+			error instanceof Error && /recaptcha/i.test(error.message)
 				? "Verification failed. Please try again."
 				: "Sorry, there was an error sending your message. Please try again.";
 	} finally {
