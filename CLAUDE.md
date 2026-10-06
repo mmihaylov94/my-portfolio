@@ -61,7 +61,7 @@ Four routes: `/api/health`; `/api/contact`, rate limited (5 per 15 minutes), opt
 - `TRUST_PROXY` decides whether `req.ip` is the visitor or Traefik. It is parsed strictly in `config.js`: a hop count must reach Express as a number, since Express reads the string `"2"` as the address 0.0.0.2, and `true` is refused. Unset means every visitor shares one rate-limit bucket and no visitor address is forwarded.
 - Nothing a visitor typed goes into a log line, and neither does the error object from a failed body parse, which carries the raw body as `err.body`. Logs are one JSON object per line.
 
-`api/` has its own `package.json` and `node_modules`; the root install does not cover it. The `pnpm-workspace.yaml` present in the root only pins ignored build dependencies and does not make `api/` a workspace member.
+`api/` has its own `package.json` and `node_modules`; the root install does not cover it.
 
 ### Environment variables
 

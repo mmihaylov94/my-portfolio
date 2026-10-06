@@ -4,8 +4,8 @@ Generates `Mihail_Mihaylov_CV.docx` and the PDF the site serves from `public/`.
 
 This folder is deliberately self-contained. It has its own `package.json` so that
 `docx` never lands in the portfolio's dependency tree, and so nothing here can
-break `npm ci` in CI or the Docker build. `pnpm-workspace.yaml` defines no
-`packages:` globs, so this is not picked up as a workspace member. The root
+break `npm ci` in CI or the Docker build. The root `package.json` declares no
+workspaces, so this is not picked up as a workspace member. The root
 `eslint.config.mjs` ignores `cv/**`, since this code follows its own style.
 
 `generate.js` is CommonJS. That works because the nearest `package.json` is this
