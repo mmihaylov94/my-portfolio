@@ -181,7 +181,7 @@ const doc = new Document({
       bullet([t('Won '), tb('four new projects'), t(' by introducing new technology, the Microsoft Power Platform, within the technical stack of the team.')]),
       bullet([t('Saved clients '), tb('10,000+ hours and £250,000 annually'), t(' by developing and implementing effective document processing automation.')]),
       bullet([t('Optimised governance of timesheet and forecasting tools through development of two innovative solutions for clients, resulting in saving '), tb('5,000+ hours per year'), t(' and improving governance by 30%.')]),
-      bullet([t('Conceived, developed, and delivered multiple client projects leveraging advanced expertise in UiPath, Automation Anywhere, Python, SQL Server, C#, Microsoft Power Platform, and Azure Forms Recogniser.')]),
+      bullet([t('Conceived, developed, and delivered multiple client projects leveraging advanced expertise in UiPath, Automation Anywhere, SQL Server, Microsoft Power Platform, and Azure Forms Recogniser, with C# and Python for scripting.')]),
 
       roleLine('Automation Engineer to Solution Architect', 'Momenta Group Global', 'May 2020 – Mar 2022'),
       subLine('Contractor for Deloitte LLP UK • Glasgow, United Kingdom'),
@@ -216,9 +216,9 @@ const doc = new Document({
       projectName('Portfolio & AI Assistant', 'mihaylov.io'),
       projectDesc('My portfolio site with a RAG assistant that answers questions about my work from a curated knowledge base.'),
       pBullet([t('Nuxt 4 and TypeScript, statically prerendered.')]),
-      pBullet([t('Self-hosted n8n for orchestration, using its AI agent node with tool calling so the model chooses its own retrieval steps rather than following a fixed pipeline.')]),
+      pBullet([t('Python and FastAPI service with an agent that decides its own searches, answers streamed as they are written, and an evaluation harness with a golden dataset and an LLM judge.')]),
       pBullet([t('PostgreSQL with pgvector for embeddings and vector search over a versioned markdown knowledge base.')]),
-      pBullet([t('Runs in Docker on an AWS EC2 instance behind Cloudflare and Traefik, alongside the n8n instance and a shared pgvector database.')]),
+      pBullet([t('Runs in Docker on an AWS EC2 instance behind Cloudflare and Traefik, alongside a shared pgvector instance.')]),
 
       // ── education ───────────────────────────────────────────────────────
       sectionHeading('Education & Credentials'),
@@ -238,7 +238,7 @@ const doc = new Document({
       subLine('University of Strathclyde, Glasgow, UK'),
 
       sectionHeading('Technologies'),
-      body([t('JavaScript, TypeScript, Node.js, Express, Vue 3, Nuxt, React, Vite, Tailwind CSS, PHP, CodeIgniter, Laravel, PostgreSQL, pgvector, MySQL, SQL Server, REST APIs, webhooks, AWS (EC2, RDS, S3, IAM, SES, SNS, VPC), Cloudflare, Docker, Traefik, GitHub Actions, Git, Linux, LLM APIs, retrieval-augmented generation, vector search, MCP, Google Cloud AI, Azure AI Document Intelligence, n8n, Power Automate, Power Platform, Zapier, UiPath, Automation Anywhere, Vitest, Playwright, Paddle')]),
+      body([t('JavaScript, TypeScript, Node.js, Express, Vue 3, Nuxt, React, Vite, Tailwind CSS, PHP, CodeIgniter, Laravel, Python, FastAPI, PostgreSQL, pgvector, MySQL, SQL Server, REST APIs, webhooks, AWS (EC2, RDS, S3, IAM, SES, SNS, VPC), Cloudflare, Docker, Traefik, GitHub Actions, Git, Linux, LLM APIs, retrieval-augmented generation, vector search, MCP, Google Cloud AI, Azure AI Document Intelligence, n8n, Power Automate, Power Platform, Zapier, UiPath, Automation Anywhere, Vitest, Playwright, pytest, Paddle')]),
 
       sectionHeading('Professional Training & Certifications'),
       body([t('UiPath Certified Advanced RPA Developer (UiARD) • Certified RPA Associate (UiRPA) • Automation Anywhere Certified Advanced RPA Professional')]),
