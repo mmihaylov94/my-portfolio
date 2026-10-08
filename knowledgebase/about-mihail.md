@@ -5,7 +5,7 @@ page_type: about
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [profile, biography, solutions-architect, automation, integrations, ai, experience, education, career, availability]
-last_verified: 2026-09-25
+last_verified: 2026-10-06
 ---
 
 ## Summary
@@ -45,7 +45,7 @@ At Businessmap he built a custom MCP server and supporting Claude Skills, backed
 
 The interesting part was not the AI. It was letting business teams ask questions about customer data without ever seeing a name, address, phone number, or email address, which meant building the filtering and authentication layer himself.
 
-He also built the retrieval-augmented assistant on his own portfolio site, using n8n agent orchestration with tool calling and PostgreSQL with pgvector for retrieval.
+He also built the retrieval-augmented assistant on his own portfolio site: a Python service using FastAPI, the OpenAI API, and PostgreSQL with pgvector, with an agent that decides its own searches, streamed answers, and an evaluation harness. Its first version ran on n8n.
 
 And he built the AI Marketing Reporter, an n8n pipeline in which a language model writes weekly marketing performance reports from Meta Ads, Google Ads, and Google Analytics data. It runs in production for a client, on the client's own n8n instance.
 
@@ -88,11 +88,11 @@ He lived in the United Kingdom for ten years, from September 2013 until June 202
 
 - **AI**: LLM APIs, retrieval-augmented generation, vector search, pgvector, AI agents, tool calling, MCP, Claude Skills, Google Cloud AI, Azure AI Document Intelligence.
 - **Automation**: n8n, Microsoft Power Automate, Zapier, UiPath, Automation Anywhere, Microsoft Power Platform.
-- **Backend**: PHP (CodeIgniter, Laravel), Node.js, Express, TypeScript, REST APIs, webhooks.
+- **Backend**: PHP (CodeIgniter, Laravel), Node.js, Express, TypeScript, Python (FastAPI), REST APIs, webhooks.
 - **Frontend**: Vue 3, Nuxt, React, Vite, Tailwind CSS.
 - **Data**: PostgreSQL, pgvector, MySQL, SQL Server.
 - **Cloud and DevOps**: AWS (EC2, RDS, S3, IAM, SES, SNS, VPC), Docker, Docker Compose, GitHub Actions, Traefik, Cloudflare, Linux.
-- **Testing**: Vitest, Playwright.
+- **Testing**: Vitest, Playwright, pytest.
 
 Earlier delivery work at Deloitte also used Python and C#. Azure AI Document Intelligence, previously named Azure Forms Recogniser, dates from the same period and is still in use: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
 

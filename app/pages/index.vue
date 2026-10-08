@@ -27,7 +27,7 @@ useSeoMeta({
 	twitterImage: `${siteUrl}/images/og-image.png`,
 
 	keywords:
-		"solutions architect, solution architecture, business automation, API-led integrations, enterprise RPA, production AI systems, retrieval-augmented generation, n8n, PHP, Node.js, Vue, PostgreSQL, AWS, Sofia, Bulgaria, remote",
+		"solutions architect, solution architecture, business automation, API-led integrations, enterprise RPA, production AI systems, retrieval-augmented generation, n8n, PHP, Node.js, Python, Vue, PostgreSQL, AWS, Sofia, Bulgaria, remote",
 	author: siteName,
 	robots: "index, follow",
 	themeColor: "#ECCAA4",
@@ -85,6 +85,7 @@ useHead({
 					"PHP",
 					"Node.js",
 					"TypeScript",
+					"Python",
 					"Vue",
 					"React",
 					"PostgreSQL",

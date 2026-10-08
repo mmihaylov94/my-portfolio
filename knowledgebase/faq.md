@@ -5,7 +5,7 @@ page_type: faq
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [faq, profile, projects, portfolio, site]
-last_verified: 2026-09-25
+last_verified: 2026-10-06
 ---
 
 ## What is Mihail's job title?
@@ -19,14 +19,14 @@ Custom tools and AI systems, including production MCP servers, agentic workflows
 ## What projects are on the portfolio?
 
 - **Glotsmith**, a commercial language-learning SaaS he designed, built, deployed, and operates alone, at `https://glotsmith.com`. Its case study is at `https://mihaylov.io/case-studies/glotsmith`.
-- **The AI assistant on this site**, a retrieval-augmented chat assistant built with n8n, pgvector, and Nuxt.
+- **The AI assistant on this site**, a retrieval-augmented chat assistant built in Python with FastAPI, the OpenAI API, and pgvector, with a Nuxt front end. Its source is public at `https://github.com/mmihaylov94/portfolio-ai`.
 - **n8n Pro Automation Framework**, a productised automation framework with idempotency, observability, and contract-defined sub-workflows.
 - **AI Marketing Reporter**, an automated weekly reporting pipeline producing LLM-written performance reports.
 - **Threadline**, a moderated community forum built with CodeIgniter 4 and PostgreSQL, at `https://threadline.mihaylov.io`.
 
 ## Which of Mihail's projects are open source?
 
-Threadline and the lite edition of the n8n Pro Automation Framework (`n8n-lite-automations`) are public repositories under `https://github.com/mmihaylov94`, both under the MIT licence. The source of this website is public too, at `https://github.com/mmihaylov94/my-portfolio`, also under the MIT licence. The pro edition of the n8n framework is private, and Glotsmith is a commercial product whose source is private.
+Threadline, the AI assistant on this site (`portfolio-ai`), and the lite edition of the n8n Pro Automation Framework (`n8n-lite-automations`) are public repositories under `https://github.com/mmihaylov94`, all under the MIT licence. The source of this website is public too, at `https://github.com/mmihaylov94/my-portfolio`, also under the MIT licence. The pro edition of the n8n framework is private, and Glotsmith is a commercial product whose source is private.
 
 ## Which project best shows what Mihail can do?
 

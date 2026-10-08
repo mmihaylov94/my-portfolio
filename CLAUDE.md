@@ -32,7 +32,7 @@ Nuxt 4 with `routeRules: { "/**": { prerender: true } }`. The Docker image serve
 
 Site copy is data, not markup. `app/composables/useAbout.ts` holds the About paragraphs, grouped skill badges, the experience timeline, and social links. `app/composables/useProjects.ts` holds the project carousel entries. Components render from those, so **copy changes belong in the composables**, not in the `.vue` files.
 
-`Project` supports three mutually exclusive call-to-action shapes: `liveUrl` (external link), `caseStudyUrl` (internal route), and `opensChat: true` (opens the chat widget instead of navigating).
+`Project` supports four calls to action, and a card shows a button for each one it sets: `liveUrl` (external link), `caseStudyUrl` (internal route), `opensChat: true` (opens the chat instead of navigating), and `githubUrl` (the source).
 
 ### Adding a route
 
@@ -55,7 +55,7 @@ Things that are easy to break:
 - **The chat's icons must be listed in `icon.clientBundle.icons`** in `nuxt.config.ts`. The panel is never prerendered, so an icon missing from the client bundle is requested from `/api/_nuxt_icon`, which does not exist in production. The icon scanner drops a misspelt name silently; a misspelt listed name fails the build. `tests/unit/chatIcons.test.ts` fails when the components and the list disagree.
 - **Chat components never call `useNavigation()`.** Its `onMounted` scrolls the page to `?section`, or to the top when there is none, so a component that mounts when the panel opens would make the page jump. `ChatLink.vue` follows site links itself.
 - **The conversation is kept in `localStorage["portfolio-chat/v1"]`** (`sessionStore.ts`) and resumed within 24 hours of its last question; "New conversation" starts a new session id. A record that fails any check is discarded whole. The old widget's `n8n-chat/sessionId` is removed on load.
-- **The copy is the owner's.** The greeting, the suggested questions, and the retention notice ("kept for 90 days") are in `ChatPanel.vue`. The notice has to change if portfolio-ai's `CHAT_RETENTION_DAYS` does.
+- **The copy is the owner's.** The greeting, the suggested questions, and the retention notice ("kept for 90 days") are in `ChatPanel.vue`. The notice has to change if portfolio-ai's `CHAT_RETENTION_DAYS` does, and so does `knowledgebase/projects/portfolio-ai-assistant.md`, which states the 90 days twice.
 
 ### The Express API is small
 
@@ -76,9 +76,9 @@ Four routes: `/api/health`; `/api/contact`, rate limited (5 per 15 minutes), opt
 
 ## Knowledgebase
 
-`knowledgebase/**/*.md` is **not** part of the build and is never served. It is the corpus for the RAG chat assistant, embedded into PostgreSQL with pgvector **outside this repository**. Changes reach the live assistant only once they are on `main`: the n8n workflow "Portfolio | Knowledgebase -> RAG Vector Store" re-indexes the folder from GitHub `main` every Monday at 06:00, and the owner can run it by hand in n8n for an immediate refresh. Nothing on a branch is indexed. The `portfolio-ai` project that will replace the n8n assistant already ingests `main` hourly, but into its own database, which the live assistant does not read until the switchover.
+`knowledgebase/**/*.md` is **not** part of the build and is never served. It is the corpus for the RAG chat assistant, embedded into PostgreSQL with pgvector **outside this repository**. Changes reach the live assistant only once they are on `main`: the `portfolio-ai` service ingests the folder from GitHub `main` every hour, on the hour, and re-embeds only the articles that changed. Nothing on a branch is indexed.
 
-Because the assistant answers hiring questions, the knowledgebase must not contradict the site. When site copy changes (job titles, project descriptions, achievements, contact details), update the corresponding knowledgebase documents in the same change, and say that the change reaches the assistant after it is pushed to `main` and the next re-index runs.
+Because the assistant answers hiring questions, the knowledgebase must not contradict the site. When site copy changes (job titles, project descriptions, achievements, contact details), update the corresponding knowledgebase documents in the same change, and say that the change reaches the assistant within the hour of being pushed to `main`.
 
 Conventions in these files: YAML front matter with `doc_id`, `title`, `page_type`, `url`, `source_type`, `tags`, and `last_verified` (bump it when editing). `url` must point at a page that actually exists. Headings are phrased as questions, which matches how the retrieval layer is queried.
 

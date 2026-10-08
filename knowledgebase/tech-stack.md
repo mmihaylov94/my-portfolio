@@ -18,7 +18,7 @@ tags:
     ai-services,
     billing,
   ]
-last_verified: 2026-09-25
+last_verified: 2026-10-06
 ---
 
 ## Summary
@@ -37,7 +37,7 @@ n8n, Microsoft Power Automate, Zapier, UiPath, Automation Anywhere, and Microsof
 
 ### Backend
 
-PHP (CodeIgniter, Laravel), Node.js, Express, TypeScript, REST APIs, and webhooks.
+PHP (CodeIgniter, Laravel), Node.js, Express, TypeScript, Python (FastAPI), REST APIs, and webhooks.
 
 ### Frontend
 
@@ -53,25 +53,27 @@ AWS (EC2, RDS, S3, IAM, SES, SNS, VPC), Docker, Docker Compose, GitHub Actions, 
 
 ### Testing
 
-Vitest and Playwright.
+Vitest, Playwright, and pytest.
 
 ## What AI experience does Mihail have specifically?
 
-He has built retrieval-augmented generation over a curated knowledge base with embeddings and vector search in PostgreSQL using pgvector, AI agents that use tool calling to decide their own retrieval steps, a custom MCP server with supporting Claude Skills, and a custom SSO-authenticated proxy that filters personal data out of what an agent is allowed to see.
+He has built retrieval-augmented generation over a curated knowledge base with embeddings and vector search in PostgreSQL using pgvector, AI agents that use tool calling to decide their own retrieval steps, an evaluation harness that scores an assistant against a golden dataset with an LLM judge, a custom MCP server with supporting Claude Skills, and a custom SSO-authenticated proxy that filters personal data out of what an agent is allowed to see.
 
 Three production examples exist: the MCP server, Claude Skills, and proxy built for business teams at Businessmap; the retrieval-augmented assistant running on this portfolio site; and the AI Marketing Reporter, an n8n pipeline in which a language model writes weekly marketing performance reports, running for a client on the client's own n8n instance.
 
 ## What has Mihail used in past delivery that is not in the current stack?
 
-Python and C#, both from his enterprise RPA period at Deloitte.
+C#, from his enterprise RPA period at Deloitte.
 
-Azure AI Document Intelligence, previously named Azure Forms Recogniser, also dates from that period, but it is part of his current stack: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider.
+Azure AI Document Intelligence, previously named Azure Forms Recogniser, also dates from that period, but it is part of his current stack: his n8n automation framework uses it for OCR, and Glotsmith supports it as an optional OCR provider. He used Python in that period too, and it is in his current stack through the AI assistant on this site.
 
 ## Does Mihail know Python?
 
-Yes, from his enterprise RPA work at Deloitte, where he used it alongside UiPath, Automation Anywhere, C#, and SQL Server.
+Yes. He built the AI assistant on this site in Python in 2026, with Claude Code as a pair programmer: an asynchronous FastAPI service using the OpenAI SDK, psycopg, and pgvector, tested with pytest and checked with mypy. It is his first production Python service.
 
-It is not part of his current stack, and none of the projects in his portfolio use it. Describe it as prior experience from the RPA period rather than a language he works in day to day, and do not attribute any portfolio project to it.
+Before that, he wrote his MSc dissertation, a deep learning project, in Python, and used Python for scripting in his enterprise RPA work at Deloitte, alongside UiPath, Automation Anywhere, C#, and SQL Server.
+
+The assistant is the one project in his portfolio built in Python, so do not attribute any other portfolio project to it.
 
 ## Which cloud AI services does Glotsmith use?
 

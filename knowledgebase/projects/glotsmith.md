@@ -161,7 +161,7 @@ Glotsmith is for adults: users must be at least 18 years old. It is available in
 
 - **Is Glotsmith an AI chatbot?** No. It uses cloud AI services for translation, text-to-speech, OCR, and audio transcription, but it does not generate text and there is no chatbot in it.
 - **What happened to DueNote?** It was renamed. Glotsmith is the same product; the old name is retired.
-- **Can I see the source code?** No. Glotsmith is a commercial product and its repository is private. Mihail's public repositories include Threadline and the lite edition of the n8n Pro Automation Framework.
+- **Can I see the source code?** No. Glotsmith is a commercial product and its repository is private. Mihail's public repositories include Threadline, the AI assistant on his portfolio site, and the lite edition of the n8n Pro Automation Framework.
 - **Do I need to pay to use it?** No. There is a Free plan with no credit card needed, alongside paid Scholar ($12 a month) and Master ($24 a month) plans, each with monthly usage allowances.
 - **Can I study from a scanned book?** Yes. Scanned PDFs and images are put through OCR so their text becomes selectable, translatable, and readable aloud.
 - **Can I share a workbook with a student or a friend?** Yes. Generate a read-only link, and optionally let them copy it into their own account.

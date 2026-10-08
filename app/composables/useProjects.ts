@@ -35,16 +35,18 @@ const projects: Project[] = [
 		id: "2",
 		title: "This site's AI assistant",
 		description:
-			"Retrieval-augmented chat assistant answering questions about my work, built with Nuxt 4 and n8n agent tool calling, backed by pgvector semantic search.",
+			"Retrieval-augmented chat assistant answering questions about my work, built in Python with FastAPI and pgvector semantic search, with streamed answers, an evaluation harness, and feedback on every answer.",
 		image: "images/ai-assistant.png",
 		opensChat: true,
+		githubUrl: "https://github.com/mmihaylov94/portfolio-ai",
 		technologies: [
-			"Nuxt 4",
-			"TypeScript",
-			"n8n",
+			"Python",
+			"FastAPI",
+			"OpenAI API",
 			"pgvector",
 			"RAG",
 			"AI Agents",
+			"Nuxt 4",
 		],
 	},
 	{

@@ -79,6 +79,7 @@ const aboutInfo: AboutInfo = {
 				{ label: "Node.js", icon: "i-simple-icons-nodedotjs" },
 				{ label: "Express", icon: "i-simple-icons-express" },
 				{ label: "TypeScript", icon: "i-simple-icons-typescript" },
+				{ label: "Python (FastAPI)", icon: "i-simple-icons-python" },
 				{ label: "REST APIs", icon: "i-heroicons-code-bracket" },
 				{ label: "Webhooks", icon: "i-heroicons-bolt" },
 			],

@@ -5,7 +5,7 @@ page_type: services
 url: https://mihaylov.io/?section=contact
 source_type: knowledgebase
 tags: [services, consulting, solution-architecture, automation, integrations, ai, compliance, web-development]
-last_verified: 2026-09-25
+last_verified: 2026-10-06
 ---
 
 ## Summary
@@ -72,7 +72,7 @@ He did this for Glotsmith, his own commercial SaaS, covering GDPR, the EU Digita
 ## What evidence is there that he can do this work?
 
 - Commercial SaaS designed, built, deployed, and operated single-handedly, including regulatory obligations implemented in code and schema: Glotsmith.
-- Retrieval-augmented assistant with agent tool calling: the AI assistant on this site.
+- Retrieval-augmented assistant with agent tool calling, an evaluation harness, and feedback capture, built in Python: the AI assistant on this site.
 - Production automation architecture with idempotency and observability: n8n Pro Automation Framework.
 - Reporting automation across three advertising and analytics platforms: AI Marketing Reporter.
 - Community platform, moderation workflow, and audit trails: Threadline.
