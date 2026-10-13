@@ -98,9 +98,10 @@ typo.
   they should not be used. That kind of negative statement is valuable — it stops the assistant
   repeating something stale it found elsewhere.
 - **Do not state what the assistant's evaluation exists to change.** The model that writes the
-  answers, the model that judges them, a reasoning-effort setting, the number of questions in
-  the test set: each of these changes when a comparison finds something better, and an article
-  that names one is wrong the day it does. It is worse than stale. The questions the assistant
+  answers, the model that judges them, a reasoning-effort setting, how many passages a search
+  returns or how many times the assistant may search, the number of questions in the test set:
+  each of these changes when a comparison finds something better, and an article that states
+  one is wrong the day it does. It is worse than stale. The questions the assistant
   is tested on are written from these articles, so a named model ends up inside a test, and
   the test then has to be rewritten with every model, which is the one thing it is there to
   compare. Say what the thing does and how it is chosen ("OpenAI's models, compared by an

@@ -18,7 +18,7 @@ The assistant is a retrieval-augmented generation system: it answers from a cura
 
 Every message is first classified as a question about Mihail or his work, as small talk, or as off-topic. An off-topic message gets a fixed reply, and small talk gets a short reply with no search.
 
-For a question about his work, the model has to search the knowledge base before it answers. It writes its own search queries and may search again, up to three rounds in all. Each query is embedded as a vector and matched against the knowledge base, which is stored in PostgreSQL with the pgvector extension, and the most relevant passages are handed to the model to answer from.
+For a question about his work, the model has to search the knowledge base before it answers. It writes its own search queries, and may search again when the first results are not enough. Each query is embedded as a vector and matched against the knowledge base, which is stored in PostgreSQL with the pgvector extension, and the most relevant passages are handed to the model to answer from.
 
 The answer is streamed to the browser as it is written, and the knowledge base articles its searches found most relevant are listed under it.
 
@@ -26,7 +26,7 @@ The answer is streamed to the browser as it is written, and the knowledge base a
 
 - **Backend**: Python 3.12 and FastAPI, asynchronous throughout, using the OpenAI SDK directly with no RAG framework such as LangChain. Database access is psycopg 3 with hand-written SQL, and schema changes are Alembic migrations.
 - **Data**: PostgreSQL with the pgvector extension, with an HNSW index on the embeddings.
-- **Models**: OpenAI's language models classify each message and write the answers, and an OpenAI embedding model powers the search. The exact models are not fixed: the evaluation harness compares them, and the assistant moves to a better or cheaper one when it finds it.
+- **Models**: OpenAI's language models classify each message and write the answers, and an OpenAI embedding model powers the search. The exact models are not fixed: the evaluation harness compares them, and the assistant moves to a better or cheaper model when the harness finds one.
 - **Front end**: Nuxt 4 and TypeScript. The chat talks to the site's own Express API, which passes each question on to the assistant.
 - **Tooling**: pytest, mypy, and ruff, with GitHub Actions building a Docker image.
 
@@ -60,7 +60,7 @@ An evaluation harness scores the mihaylov.io AI assistant against a golden datas
 
 The harness decides how the assistant runs in production, including which model writes the answers. In its first runs, lowering the model's reasoning effort to the minimum brought the median wait for the first word of an answer from 15.6 seconds down to 3.9, and the cost of an answer down by 45%, with no measurable loss in completeness or style and a small one in faithfulness. A later change of model, with a revised prompt, was adopted the same way: the answers scored higher for faithfulness and for style, and slightly lower for completeness, at about a third of the cost.
 
-The same harness found a fault in the classifier, the step that decides whether a message is about Mihail's work. Sent each question five times at production's settings, it chose the wrong route 28 times in 270, such as refusing "What is Glotsmith?" as off-topic. A change to its prompt brought that to none.
+The same questions found a fault in the classifier, the step that decides whether a message is about Mihail's work. Sent each question five times at production's settings, it chose the wrong route 28 times in 270, such as refusing "What is Glotsmith?" as off-topic. A change to its prompt brought that to none.
 
 ## What happens to what I type into the chat?
 
