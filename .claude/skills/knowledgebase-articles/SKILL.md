@@ -97,6 +97,15 @@ typo.
 - **Say what is no longer true.** `about-mihail.md` explicitly lists retired job titles and says
   they should not be used. That kind of negative statement is valuable — it stops the assistant
   repeating something stale it found elsewhere.
+- **Do not state what the assistant's evaluation exists to change.** The model that writes the
+  answers, the model that judges them, a reasoning-effort setting, the number of questions in
+  the test set: each of these changes when a comparison finds something better, and an article
+  that names one is wrong the day it does. It is worse than stale. The questions the assistant
+  is tested on are written from these articles, so a named model ends up inside a test, and
+  the test then has to be rewritten with every model, which is the one thing it is there to
+  compare. Say what the thing does and how it is chosen ("OpenAI's models, compared by an
+  evaluation harness") and leave the current value to the assistant's own repository. A
+  measurement that has already happened is fine: it is history, and it stays true.
 - **Keep sections self-contained but not bloated.** A few hundred words is comfortable. Sections
   over roughly 6000 tokens get split automatically, which breaks the one-section-one-answer
   property, so split them yourself at a sensible point instead.

@@ -5,7 +5,7 @@ page_type: project
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [rag, retrieval-augmented-generation, pgvector, python, fastapi, openai, ai-agent, tool-calling, evals, streaming, nuxt, typescript, vector-search]
-last_verified: 2026-10-06
+last_verified: 2026-10-13
 ---
 
 ## Summary
@@ -26,9 +26,15 @@ The answer is streamed to the browser as it is written, and the knowledge base a
 
 - **Backend**: Python 3.12 and FastAPI, asynchronous throughout, using the OpenAI SDK directly with no RAG framework such as LangChain. Database access is psycopg 3 with hand-written SQL, and schema changes are Alembic migrations.
 - **Data**: PostgreSQL with the pgvector extension, with an HNSW index on the embeddings.
-- **Models**: OpenAI's `gpt-5-mini` writes the answers, and `text-embedding-3-small`, at 1,536 dimensions, produces the embeddings.
+- **Models**: OpenAI's language models classify each message and write the answers, and an OpenAI embedding model powers the search. The exact models are not fixed: the evaluation harness compares them, and the assistant moves to a better or cheaper one when it finds it.
 - **Front end**: Nuxt 4 and TypeScript. The chat talks to the site's own Express API, which passes each question on to the assistant.
 - **Tooling**: pytest, mypy, and ruff, with GitHub Actions building a Docker image.
+
+## Which AI model does the mihaylov.io AI assistant use?
+
+The mihaylov.io AI assistant runs on OpenAI's models. Language models classify each message and write the answer, and an embedding model turns the knowledge base and each search into vectors.
+
+The exact models are deliberately not named here, because they are not fixed. An evaluation harness scores the assistant on the same questions with different models, and the assistant moves to a better or cheaper one when the scores support it. The models in use today are in the project's public repository, `https://github.com/mmihaylov94/portfolio-ai`.
 
 ## Why did Mihail build the mihaylov.io AI assistant?
 
@@ -50,11 +56,11 @@ It can still be wrong. Answers can be rated with a thumbs up or a thumbs down, s
 
 ## How is the assistant's quality measured?
 
-An evaluation harness scores the mihaylov.io AI assistant against a golden dataset of 54 questions written from the knowledge base. For each question it checks whether the right articles were retrieved and whether the answer follows the rules, such as containing no made-up links. A separate judge model, OpenAI's `gpt-5`, grades each answer for completeness against a reference answer, and for faithfulness to the passages the assistant was given. Every run is stored with the exact configuration that produced it, so two set-ups can be compared.
+An evaluation harness scores the mihaylov.io AI assistant against a golden dataset of questions written from the knowledge base. For each question it checks whether the right articles were retrieved and whether the answer follows the rules, such as containing no made-up links. A separate judge model grades each answer for completeness against a reference answer, and for faithfulness to the passages the assistant was given. Every run is stored with the exact configuration that produced it, so two set-ups can be compared.
 
-The harness decided how the assistant runs in production. In its runs, minimal reasoning effort brought the median wait for the first word of an answer from 15.6 seconds down to 3.9, and the cost of an answer down by 45%, with no measurable loss in completeness or style and a small one in faithfulness.
+The harness decides how the assistant runs in production, including which model writes the answers. In its first runs, lowering the model's reasoning effort to the minimum brought the median wait for the first word of an answer from 15.6 seconds down to 3.9, and the cost of an answer down by 45%, with no measurable loss in completeness or style and a small one in faithfulness. A later change of model, with a revised prompt, was adopted the same way: the answers scored higher for faithfulness and for style, and slightly lower for completeness, at about a third of the cost.
 
-The same questions found a fault in the classifier, the step that decides whether a message is about Mihail's work. Sent each question five times at production's settings, it chose the wrong route 28 times in 270, such as refusing "What is Glotsmith?" as off-topic. A change to its prompt brought that to none.
+The same harness found a fault in the classifier, the step that decides whether a message is about Mihail's work. Sent each question five times at production's settings, it chose the wrong route 28 times in 270, such as refusing "What is Glotsmith?" as off-topic. A change to its prompt brought that to none.
 
 ## What happens to what I type into the chat?
 

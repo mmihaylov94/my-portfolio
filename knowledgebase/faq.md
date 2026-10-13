@@ -5,7 +5,7 @@ page_type: faq
 url: https://mihaylov.io/
 source_type: knowledgebase
 tags: [faq, profile, projects, portfolio, site]
-last_verified: 2026-10-06
+last_verified: 2026-10-13
 ---
 
 ## What is Mihail's job title?
@@ -23,6 +23,8 @@ Custom tools and AI systems, including production MCP servers, agentic workflows
 - **n8n Pro Automation Framework**, a productised automation framework with idempotency, observability, and contract-defined sub-workflows.
 - **AI Marketing Reporter**, an automated weekly reporting pipeline producing LLM-written performance reports.
 - **Threadline**, a moderated community forum built with CodeIgniter 4 and PostgreSQL, at `https://threadline.mihaylov.io`.
+
+All five are shown together in the projects section of the site, at `https://mihaylov.io/?section=projects`. Glotsmith is the only one with a page of its own there, its case study.
 
 ## Which of Mihail's projects are open source?
 
