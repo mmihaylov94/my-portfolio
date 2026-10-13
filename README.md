@@ -7,7 +7,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 ## 🚀 Features
 
 - **Static Site Generation (SSG)** - Pre-rendered at build time for optimal performance
-- **AI Chat** - Answers stream in as they are written, with the documents they drew on and thumbs up and down, from the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) assistant through the site's API. The conversation is kept in the browser for 24 hours
+- **AI Chat** - Answers stream in as they are written, with the articles its searches found most relevant and thumbs up and down, from the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) assistant through the site's API. The conversation is kept in the browser for 24 hours
 - **Contact Form** - With Google reCAPTCHA v3 protection
 - **Dark/Light Mode** - System preference detection with manual toggle
 - **Responsive Design** - Mobile-first approach with smooth animations

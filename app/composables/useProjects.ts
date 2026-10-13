@@ -36,7 +36,7 @@ const projects: Project[] = [
 		title: "This site's AI assistant",
 		description:
 			"Retrieval-augmented chat assistant answering questions about my work, built in Python with FastAPI and pgvector semantic search, with streamed answers, an evaluation harness, and feedback on every answer.",
-		image: "images/ai-assistant.png",
+		image: "images/ai-assistant-chat.png",
 		opensChat: true,
 		githubUrl: "https://github.com/mmihaylov94/portfolio-ai",
 		technologies: [
