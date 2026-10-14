@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { beginShutdown, createApp } from "./app.js";
-import { describeTrust, loadConfig } from "./config.js";
+import { describeStart, loadConfig } from "./config.js";
 import { createLogger } from "./http.js";
 
 // The entry point: read the environment, build the app, listen, and stop cleanly.
@@ -14,11 +14,7 @@ for (const { level, code, message } of config.problems) {
 
 const app = createApp(config, { log });
 const server = app.listen(config.port, "0.0.0.0", () => {
-	log.info("api_started", {
-		port: config.port,
-		chat: config.portfolioAi ? "enabled" : "disabled",
-		trust_proxy: describeTrust(config.trustProxy),
-	});
+	log.info("api_started", describeStart(config));
 });
 
 // Traefik keeps idle connections to this container open for 90 seconds. If Node

@@ -22,7 +22,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 - **Styling:** Tailwind CSS
 - **Language:** TypeScript
 - **Package Manager:** npm
-- **API:** Express (Node.js): the contact form's n8n webhook, and the proxy to the AI assistant
+- **API:** Express (Node.js): the proxy to the AI assistant service, for the chat and for the contact form
 
 ## 📁 Project Structure
 
@@ -33,7 +33,8 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 │   │   ├── app.js            # The app, built from a config object (what the tests use)
 │   │   ├── config.js         # Environment parsing, including TRUST_PROXY
 │   │   ├── chat.js           # /api/chat and /api/chat/feedback → portfolio-ai
-│   │   ├── contact.js        # /api/contact → n8n webhook
+│   │   ├── contact.js        # /api/contact → portfolio-ai
+│   │   ├── text.js           # Trimming and measuring text as portfolio-ai does
 │   │   └── http.js           # Rate limits, errors, logging
 │   ├── tests/                # node --test
 │   ├── .env.example
@@ -105,7 +106,7 @@ Opens at `http://localhost:3001`. Nuxt proxies `/api/*` to the API.
 cd api && npm run dev
 ```
 
-Copy `api/.env.example` to `api/.env` and fill in what you need: the n8n webhook and reCAPTCHA secret for the contact form, and `PORTFOLIO_AI_URL` and `PORTFOLIO_AI_API_KEY` for the chat. The chat needs the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) API running locally (`uv run python -m portfolio_ai.api`, on port 8000) with the same key. With `PORTFOLIO_AI_URL` empty, the chat routes answer 503.
+Copy `api/.env.example` to `api/.env` and fill in what you need: `PORTFOLIO_AI_URL` and `PORTFOLIO_AI_API_KEY` for the chat and the contact form, and the reCAPTCHA secret for the form. Both need the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) API running locally (`uv run python -m portfolio_ai.api`, on port 8000) with the same key. With `PORTFOLIO_AI_URL` empty, the chat routes and the contact form answer 503.
 
 **Tests:**
 ```bash
@@ -131,7 +132,7 @@ npm run preview
 
 ## 🚢 Deployment
 
-The primary deployment uses **Docker** with two services (frontend + API) and Traefik for routing. The frontend is static (Nuxt SSG). The API handles the contact form through an n8n webhook, and passes the chat and its feedback to the AI assistant (`portfolio-ai`), which is private to the Docker network.
+The primary deployment uses **Docker** with two services (frontend + API) and Traefik for routing. The frontend is static (Nuxt SSG). The API passes the chat, its feedback, and the contact form's messages to the AI assistant service (`portfolio-ai`), which is private to the Docker network. That service answers the chat, and emails each contact message to the site's owner.
 
 The static output (`.output/public/`) can also be deployed to Vercel, Netlify, GitHub Pages, or any CDN if you host the API separately.
 
@@ -143,7 +144,7 @@ Two images: frontend (site) and API. Deployed via `docker compose` with Traefik.
 
 | File | Used by | Contents |
 |------|---------|----------|
-| `.env` | api | `N8N_WEBHOOK_URL`, `N8N_API_KEY`, `RECAPTCHA_SECRET_KEY`, `PORT`, `TRUST_PROXY`, `PORTFOLIO_AI_URL`, `PORTFOLIO_AI_API_KEY` (see `api/.env.example`) |
+| `.env` | api | `RECAPTCHA_SECRET_KEY`, `PORT`, `TRUST_PROXY`, `PORTFOLIO_AI_URL`, `PORTFOLIO_AI_API_KEY` (see `api/.env.example`) |
 
 ```bash
 docker compose pull
@@ -162,7 +163,7 @@ The API service (`api/`) has three routes besides `/api/health`:
 
 | Route | Goes to | Limit per visitor |
 |-------|---------|-------------------|
-| `POST /api/contact` | the n8n contact webhook | 5 per 15 minutes |
+| `POST /api/contact` | the assistant's `/v1/contact`, which answers once the owner's email has been sent | 5 per 15 minutes |
 | `POST /api/chat` | the assistant's `/v1/chat/stream`, streamed back as server-sent events | 60 per 15 minutes |
 | `POST /api/chat/feedback` | the assistant's `/v1/messages/{id}/feedback` | 30 per 15 minutes |
 
@@ -170,13 +171,11 @@ Configure in `.env`:
 
 | Variable | Description |
 |----------|-------------|
-| `N8N_WEBHOOK_URL` | Base n8n webhook URL |
-| `N8N_API_KEY` | API key sent in `apikey` header to n8n webhooks |
-| `PORTFOLIO_AI_URL` | The assistant's address on the Docker network. Empty keeps the chat routes switched off (503). |
+| `PORTFOLIO_AI_URL` | The assistant's address on the Docker network. Empty keeps the chat routes and the contact form switched off (503). |
 | `PORTFOLIO_AI_API_KEY` | Identical to the assistant's own `PORTFOLIO_AI_API_KEY`; never sent to the browser |
 | `TRUST_PROXY` | How many proxies sit in front of the API (Traefik, then Cloudflare), so the limits are per visitor. Unset means one shared bucket for everyone. |
 
-The chat routes follow the contract in [portfolio-ai's docs/API.md](https://github.com/mmihaylov94/portfolio-ai/blob/main/docs/API.md), and never write anything a visitor typed to the log.
+All three follow the contract in [portfolio-ai's docs/API.md](https://github.com/mmihaylov94/portfolio-ai/blob/main/docs/API.md), and never write anything a visitor typed to the log.
 
 ### reCAPTCHA (Contact Form)
 

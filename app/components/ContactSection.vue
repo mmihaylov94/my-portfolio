@@ -176,6 +176,7 @@ async function handleSubmit() {
 								v-model="form.email"
 								type="email"
 								required
+								maxlength="254"
 								placeholder="your.email@example.com"
 								class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all text-sm"
 							/>
@@ -218,6 +219,7 @@ async function handleSubmit() {
 								v-model="form.subject"
 								type="text"
 								required
+								maxlength="300"
 								placeholder="What is this regarding?"
 								class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all text-sm"
 							/>
@@ -236,6 +238,7 @@ async function handleSubmit() {
 								v-model="form.message"
 								required
 								rows="5"
+								maxlength="5000"
 								placeholder="Tell me about your project or inquiry..."
 								class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all resize-none text-sm"
 							></textarea>

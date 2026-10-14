@@ -1,9 +1,33 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import express from "express";
-import { describeTrust, loadConfig, parseTrustProxy } from "../src/config.js";
+import { DEFAULT_TIMEOUTS, describeStart, describeTrust, loadConfig, parseTrustProxy } from "../src/config.js";
 
 const KEY = "k".repeat(32);
+
+test("the contact form waits longer than the assistant allows itself", () => {
+	// 30 seconds there at the most: CLASSIFY_SECONDS, REPLY_SECONDS and SEND_SECONDS
+	// twice in portfolio-ai's contact/service.py, which a test of its own holds to 30.
+	// The numbers are written out on both sides so that neither moves alone.
+	assert.equal(DEFAULT_TIMEOUTS.contactMs, 35 * 1000);
+	assert.equal(DEFAULT_TIMEOUTS.recaptchaMs, 10 * 1000);
+});
+
+test("the start line says whether the chat and the contact form are on", () => {
+	const off = loadConfig({ TRUST_PROXY: "2" });
+	const on = loadConfig({ TRUST_PROXY: "2", PORTFOLIO_AI_URL: "http://portfolio-ai:8000", PORTFOLIO_AI_API_KEY: KEY });
+
+	assert.deepEqual(describeStart(off), { port: 3000, chat: "disabled", contact: "disabled", trust_proxy: "2 hops" });
+	assert.deepEqual(describeStart(on), { port: 3000, chat: "enabled", contact: "enabled", trust_proxy: "2 hops" });
+});
+
+test("a reCAPTCHA token is verified with Google, and the secret comes from the environment", () => {
+	assert.deepEqual(loadConfig({ RECAPTCHA_SECRET_KEY: "a-secret" }).contact, {
+		recaptchaSecret: "a-secret",
+		recaptchaVerifyUrl: "https://www.google.com/recaptcha/api/siteverify",
+	});
+	assert.equal(loadConfig({}).contact.recaptchaSecret, null);
+});
 
 test("an unset TRUST_PROXY trusts nothing, and says what that costs", () => {
 	const { trust, problem } = parseTrustProxy(undefined);

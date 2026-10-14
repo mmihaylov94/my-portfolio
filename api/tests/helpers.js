@@ -72,7 +72,7 @@ export async function startApi(t, overrides = {}) {
 		port: 0,
 		trustProxy: false,
 		portfolioAi: null,
-		contact: { webhookUrl: null, apiKey: null, webhookPath: "/contact", recaptchaSecret: null },
+		contact: { recaptchaSecret: null, recaptchaVerifyUrl: null },
 		problems: [],
 		...overrides,
 		limits: { ...DEFAULT_LIMITS, ...overrides.limits },

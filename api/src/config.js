@@ -34,8 +34,18 @@ export const DEFAULT_TIMEOUTS = {
 	// Up to a minute of admission, the assistant's 120 s turn deadline, and a margin.
 	chatOverallMs: 200 * 1000,
 	feedbackMs: 10 * 1000,
-	contactMs: 10 * 1000,
+	// The assistant answers a contact message only once it has classified it, written
+	// the acknowledgement and sent two emails, which takes several seconds. It allows
+	// itself 30 at the most: CLASSIFY_SECONDS, REPLY_SECONDS and SEND_SECONDS twice, in
+	// its contact/service.py, where a test holds their sum. This has to stay above it,
+	// and a test here holds this.
+	contactMs: 35 * 1000,
+	recaptchaMs: 10 * 1000,
 };
+
+// Where a reCAPTCHA token is verified. Part of the config object and not a constant
+// inside the route, so that a test can put a stand-in where Google is.
+export const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 
 function problem(level, code, message) {
 	return { level, code, message };
@@ -142,7 +152,7 @@ export function parseTrustProxy(raw) {
 
 function parseAssistant(rawUrl, rawKey, problems) {
 	const urlValue = typeof rawUrl === "string" ? rawUrl.trim() : "";
-	// Unset is not a problem: it is how the chat is deployed switched off.
+	// Unset is not a problem: it is how the chat and the contact form are switched off.
 	if (urlValue === "") return null;
 
 	let url;
@@ -152,13 +162,13 @@ function parseAssistant(rawUrl, rawKey, problems) {
 		url = null;
 	}
 	if (!url || !["http:", "https:"].includes(url.protocol) || url.username || url.password) {
-		problems.push(problem("error", "portfolio_ai_url_invalid", "PORTFOLIO_AI_URL must be an http(s) URL such as http://portfolio-ai:8000. The chat stays off."));
+		problems.push(problem("error", "portfolio_ai_url_invalid", "PORTFOLIO_AI_URL must be an http(s) URL such as http://portfolio-ai:8000. The chat and the contact form stay off."));
 		return null;
 	}
 
 	const apiKey = typeof rawKey === "string" ? rawKey.trim() : "";
 	if (apiKey.length < MIN_API_KEY_LENGTH) {
-		problems.push(problem("error", "portfolio_ai_key_invalid", `PORTFOLIO_AI_API_KEY must be set and at least ${MIN_API_KEY_LENGTH} characters, identical to the assistant's own. The chat stays off.`));
+		problems.push(problem("error", "portfolio_ai_key_invalid", `PORTFOLIO_AI_API_KEY must be set and at least ${MIN_API_KEY_LENGTH} characters, identical to the assistant's own. The chat and the contact form stay off.`));
 		return null;
 	}
 
@@ -176,14 +186,24 @@ export function loadConfig(env) {
 		trustProxy: trustProxy.trust,
 		portfolioAi: parseAssistant(env.PORTFOLIO_AI_URL, env.PORTFOLIO_AI_API_KEY, problems),
 		contact: {
-			webhookUrl: env.N8N_WEBHOOK_URL || null,
-			apiKey: env.N8N_API_KEY || null,
-			webhookPath: env.N8N_CONTACT_WEBHOOK_PATH || "/contact",
 			recaptchaSecret: env.RECAPTCHA_SECRET_KEY || null,
+			recaptchaVerifyUrl: RECAPTCHA_VERIFY_URL,
 		},
 		limits: DEFAULT_LIMITS,
 		timeouts: DEFAULT_TIMEOUTS,
 		problems,
+	};
+}
+
+/** What the startup log line says. The deployment guide tells its reader to look for these. */
+export function describeStart(config) {
+	// One switch for both: the chat and the contact form are handed to the same service.
+	const assistant = config.portfolioAi ? "enabled" : "disabled";
+	return {
+		port: config.port,
+		chat: assistant,
+		contact: assistant,
+		trust_proxy: describeTrust(config.trustProxy),
 	};
 }
 
