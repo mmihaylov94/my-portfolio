@@ -106,7 +106,7 @@ Opens at `http://localhost:3001`. Nuxt proxies `/api/*` to the API.
 cd api && npm run dev
 ```
 
-Copy `api/.env.example` to `api/.env` and fill in what you need: `PORTFOLIO_AI_URL` and `PORTFOLIO_AI_API_KEY` for the chat and the contact form, and the reCAPTCHA secret for the form. Both need the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) API running locally (`uv run python -m portfolio_ai.api`, on port 8000) with the same key. With `PORTFOLIO_AI_URL` empty, the chat routes and the contact form answer 503.
+Copy `api/.env.example` to `api/.env` and fill in what you need: `PORTFOLIO_AI_URL` and `PORTFOLIO_AI_API_KEY` for the chat and the contact form. Both need the [portfolio-ai](https://github.com/mmihaylov94/portfolio-ai) API running locally (`uv run python -m portfolio_ai.api`, on port 8000) with the same key. With `PORTFOLIO_AI_URL` empty, the chat routes and the contact form answer 503. Leave `RECAPTCHA_SECRET_KEY` empty: with it set, only a token made on `mihaylov.io` is accepted, so a form sent from localhost is refused.
 
 **Tests:**
 ```bash
@@ -185,6 +185,8 @@ The contact form uses Google reCAPTCHA v3 (invisible, badge bottom-left). Get ke
 |----------|-------|-------------|
 | `NUXT_PUBLIC_RECAPTCHA_SITE_KEY` | GitHub secret (build) | Site key (public), baked into frontend at build time |
 | `RECAPTCHA_SECRET_KEY` | `.env` | Secret key (private) |
+
+The API accepts a token only when Google says it was made on `mihaylov.io`, for the action `contact`, with a score of at least 0.5.
 
 If reCAPTCHA keys are not set, the contact form works without verification (useful for local dev).
 

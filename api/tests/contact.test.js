@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { recaptchaRefusal } from "../src/contact.js";
 import { API_KEY, assistant, closedUrl, postJson, startApi, startUpstream } from "./helpers.js";
 
 // The contact form: checked here, then handed to the assistant service, which emails
@@ -256,8 +257,11 @@ function verdict(answer) {
 	};
 }
 
+// What Google answers for a token made on the site, for the form, by a person.
+const GOOD = { success: true, score: 0.9, hostname: "mihaylov.io", action: "contact" };
+
 test("with reCAPTCHA on, a form without a token is refused, and neither Google nor the assistant is asked", async (t) => {
-	const { google, service, api } = await withRecaptcha(t, verdict({ success: true, score: 0.9 }));
+	const { google, service, api } = await withRecaptcha(t, verdict(GOOD));
 
 	const response = await postJson(`${api.url}/api/contact`, FORM);
 	const { error } = await response.json();
@@ -269,14 +273,28 @@ test("with reCAPTCHA on, a form without a token is refused, and neither Google n
 	assert.equal(service.calls.length, 0);
 });
 
+const FAILED = "reCAPTCHA verification failed";
+const TOO_LOW = "reCAPTCHA score too low";
+
+// Each field of Google's answer that matters, wrong once, with every other field right.
 const VERDICTS = [
-	{ name: "a good score lets the form through", answer: { success: true, score: 0.9 }, status: 200 },
-	{ name: "a score of exactly 0.5 lets it through", answer: { success: true, score: 0.5 }, status: 200 },
-	{ name: "a score just under 0.5 is refused", answer: { success: true, score: 0.49 }, status: 400 },
-	{ name: "a token Google does not accept is refused, whatever its score", answer: { success: false, score: 0.9 }, status: 400 },
+	{ name: "a good token lets the form through", answer: GOOD, status: 200 },
+	{ name: "a score of exactly 0.5 lets it through", answer: { ...GOOD, score: 0.5 }, status: 200 },
+	{ name: "a score just under 0.5 is refused", answer: { ...GOOD, score: 0.49 }, status: 400, reason: "low_score", error: TOO_LOW },
+	{ name: "a token Google does not accept is refused, whatever else it says", answer: { ...GOOD, success: false }, status: 400, reason: "not_accepted", error: FAILED },
+	// What Google really sends for a used or expired token: no hostname, no action and
+	// no score. It is logged as not accepted, which is why that check comes first.
+	{ name: "a used token is logged as not accepted", answer: { success: false, "error-codes": ["timeout-or-duplicate"] }, status: 400, reason: "not_accepted", error: FAILED },
+	{ name: "a token made on another site is refused", answer: { ...GOOD, hostname: "elsewhere.example" }, status: 400, reason: "wrong_hostname", error: FAILED },
+	{ name: "a subdomain is another site", answer: { ...GOOD, hostname: "www.mihaylov.io" }, status: 400, reason: "wrong_hostname", error: FAILED },
+	{ name: "a token that names no site is refused", answer: { success: true, score: 0.9, action: "contact" }, status: 400, reason: "wrong_hostname", error: FAILED },
+	{ name: "a token made for another action is refused", answer: { ...GOOD, action: "login" }, status: 400, reason: "wrong_action", error: FAILED },
+	// A v3 key always sends a score. Without one the key is not what this code expects,
+	// and a threshold that only applied to a score that was there would silently stop.
+	{ name: "an answer with no score is refused", answer: { success: true, hostname: "mihaylov.io", action: "contact" }, status: 400, reason: "no_score", error: FAILED },
 ];
 
-for (const { name, answer, status } of VERDICTS) {
+for (const { name, answer, status, reason, error } of VERDICTS) {
 	test(`with reCAPTCHA on: ${name}`, async (t) => {
 		const { google, service, api } = await withRecaptcha(t, verdict(answer));
 
@@ -289,16 +307,91 @@ for (const { name, answer, status } of VERDICTS) {
 		assert.equal(asked.method, "POST");
 		assert.equal(asked.url, "/siteverify");
 		assert.deepEqual(Object.fromEntries(new URLSearchParams(asked.body)), { secret: SECRET, response: "a-token-from-the-browser" });
+		const refused = api.lines.filter((entry) => entry.event === "recaptcha_refused");
 		if (status === 200) {
 			// The token stops here: the assistant is handed the four fields.
 			assert.deepEqual(JSON.parse(service.calls[0].body), FORM);
+			assert.equal(refused.length, 0);
 		} else {
-			assert.match(JSON.parse(text).error, /recaptcha/i);
+			// The two sentences the route has always given; the form matches the word reCAPTCHA.
+			assert.equal(JSON.parse(text).error, error);
 			assert.equal(service.calls.length, 0);
+			assert.equal(refused.length, 1);
+			assert.equal(refused[0].level, "warn");
+			assert.equal(refused[0].reason, reason);
+			assert.equal(refused[0].score, typeof answer.score === "number" ? answer.score : null);
 		}
 		assert.ok(!api.logText().includes(SECRET));
 	});
 }
+
+test("with reCAPTCHA on, the log names the site a foreign token was made on, if it is a hostname at all", async (t) => {
+	const named = await withRecaptcha(t, verdict({ ...GOOD, hostname: "elsewhere.example" }));
+	const junk = await withRecaptcha(t, verdict({ ...GOOD, hostname: "elsewhere.example/<script>" }));
+
+	for (const { api } of [named, junk]) {
+		await (await postJson(`${api.url}/api/contact`, { ...FORM, recaptchaToken: "a-token" })).text();
+	}
+
+	const [first] = named.api.lines.filter((entry) => entry.event === "recaptcha_refused");
+	const [second] = junk.api.lines.filter((entry) => entry.event === "recaptcha_refused");
+	assert.equal(first.hostname, "elsewhere.example");
+	assert.equal(second.hostname, null);
+	assert.ok(!junk.api.logText().includes("<script>"));
+	// Only a hostname that is the reason is logged.
+	const lowScore = await withRecaptcha(t, verdict({ ...GOOD, score: 0.1 }));
+	await (await postJson(`${lowScore.api.url}/api/contact`, { ...FORM, recaptchaToken: "a-token" })).text();
+	const [third] = lowScore.api.lines.filter((entry) => entry.event === "recaptcha_refused");
+	assert.equal(third.reason, "low_score");
+	assert.ok(!("hostname" in third));
+});
+
+test("with reCAPTCHA on, the log gives Google's reasons for not accepting a token, if they are shaped like its codes", async (t) => {
+	const used = await withRecaptcha(t, verdict({ success: false, "error-codes": ["timeout-or-duplicate"] }));
+	const junk = await withRecaptcha(t, verdict({ success: false, "error-codes": ["invalid-input-secret", "<script>", 42] }));
+	const none = await withRecaptcha(t, verdict({ success: false, "error-codes": "invalid-input-secret" }));
+	const lowScore = await withRecaptcha(t, verdict({ ...GOOD, score: 0.1 }));
+
+	const lines = [];
+	for (const { api } of [used, junk, none, lowScore]) {
+		await (await postJson(`${api.url}/api/contact`, { ...FORM, recaptchaToken: "a-token" })).text();
+		lines.push(api.lines.find((entry) => entry.event === "recaptcha_refused"));
+	}
+
+	assert.deepEqual(lines[0].error_codes, ["timeout-or-duplicate"]);
+	assert.deepEqual(lines[1].error_codes, ["invalid-input-secret"]);
+	assert.ok(!junk.api.logText().includes("<script>"));
+	assert.deepEqual(lines[2].error_codes, []);
+	// Only when not being accepted is the reason.
+	assert.ok(!("error_codes" in lines[3]));
+});
+
+// The reason, and with it the sentence the visitor gets, is the first check that fails:
+// accepted, then the site, then the action, then the score. Each answer here is wrong in
+// two ways, and the earlier check is the one named.
+const TWO_FAULTS = [
+	[{ ...GOOD, success: false, hostname: "elsewhere.example" }, "not_accepted"],
+	[{ ...GOOD, hostname: "elsewhere.example", action: "login" }, "wrong_hostname"],
+	[{ ...GOOD, hostname: "elsewhere.example", score: 0.1 }, "wrong_hostname"],
+	[{ ...GOOD, action: "login", score: 0.1 }, "wrong_action"],
+	[{ ...GOOD, action: "login", score: undefined }, "wrong_action"],
+];
+
+test("reCAPTCHA's answer is checked in order: accepted, site, action, score", () => {
+	for (const [answer, reason] of TWO_FAULTS) {
+		assert.equal(recaptchaRefusal(answer), reason, JSON.stringify(answer));
+	}
+});
+
+test("an answer that is not the shape Google sends is refused", () => {
+	assert.equal(recaptchaRefusal(null), "not_accepted");
+	assert.equal(recaptchaRefusal({ ...GOOD, success: "true" }), "not_accepted");
+	// A score sent as text is no score, and is not converted. JavaScript would convert it for
+	// the comparison, and text that is not a number is never below 0.5, so it would pass.
+	assert.equal(recaptchaRefusal({ ...GOOD, score: "0.9" }), "no_score");
+	assert.equal(recaptchaRefusal({ ...GOOD, score: "high" }), "no_score");
+	assert.equal(recaptchaRefusal(GOOD), null);
+});
 
 test("with reCAPTCHA on, a verifier that does not answer in time is a refusal, by the timeout set for it", async (t) => {
 	const { service, api } = await withRecaptcha(t, () => new Promise(() => {}), { timeouts: { recaptchaMs: 150 } });

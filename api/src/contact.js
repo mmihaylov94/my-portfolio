@@ -32,6 +32,46 @@ export function parseContactBody(body) {
 	return value;
 }
 
+// What reCAPTCHA's answer has to say for a form to go on: made on this site, for the
+// contact form, by somebody who scores as a person. The site asks for its token with
+// the action "contact", the default of execute() in app/composables/useRecaptcha.ts,
+// so a change of that name is made on both sides together.
+const RECAPTCHA_HOSTNAME = "mihaylov.io";
+const RECAPTCHA_ACTION = "contact";
+const MIN_RECAPTCHA_SCORE = 0.5;
+
+// A hostname, for the log line of a token made somewhere else. The field holds whatever
+// page the token was made on, which need not be ours, so anything that is not plainly a
+// hostname is logged as null.
+const HOSTNAME = /^[a-z0-9.-]{1,253}$/i;
+
+// Google's reasons for not accepting a token, for the same log line: "timeout-or-duplicate"
+// for a token used twice, "invalid-input-secret" for a wrong RECAPTCHA_SECRET_KEY. Without
+// them the two read the same. Only what is shaped like one of its codes, and a few at most.
+const ERROR_CODE = /^[a-z-]{1,40}$/;
+
+function googleErrorCodes(answer) {
+	const codes = answer?.["error-codes"];
+	if (!Array.isArray(codes)) return [];
+	return codes.filter((code) => typeof code === "string" && ERROR_CODE.test(code)).slice(0, 5);
+}
+
+/**
+ * Why Google's answer about a token refuses the form, or null when it lets it through.
+ * Every field that matters is read, in this order: the token is genuine and unused,
+ * it was made on this site, for this form, and it carries a score of at least 0.5. A
+ * missing score is a refusal: a v3 key always sends one, so its absence means the key
+ * is not what this code expects, and the threshold would otherwise silently not apply.
+ */
+export function recaptchaRefusal(answer) {
+	if (answer?.success !== true) return "not_accepted";
+	if (answer.hostname !== RECAPTCHA_HOSTNAME) return "wrong_hostname";
+	if (answer.action !== RECAPTCHA_ACTION) return "wrong_action";
+	if (!Number.isFinite(answer.score)) return "no_score";
+	if (answer.score < MIN_RECAPTCHA_SCORE) return "low_score";
+	return null;
+}
+
 // Deliberately vague: these reach the public, and a setting's name or a mail server's
 // complaint is a detail of the server, not something a visitor can act on.
 const UNAVAILABLE = "The contact form is not available at the moment.";
@@ -44,13 +84,15 @@ export function createContactRouter(config, { log }) {
 
 	const limiter = createLimiter({ ...limits.contact, message: TOO_MANY });
 
+	// { ok: true }, or { ok: false, why }: whether Google lets this token through.
 	async function verifyRecaptcha(token) {
-		if (!contact.recaptchaSecret) return { success: true };
-		if (!token || typeof token !== "string") return { success: false };
+		if (!contact.recaptchaSecret) return { ok: true };
+		if (!token || typeof token !== "string") return { ok: false, why: "no_token" };
 		// Nowhere to ask is a refusal and not a pass. loadConfig always gives the address;
 		// a config object built without one, a test's say, must neither reach Google nor
 		// let a form through unverified.
-		if (!contact.recaptchaVerifyUrl) return { success: false };
+		if (!contact.recaptchaVerifyUrl) return { ok: false, why: "nowhere_to_verify" };
+		let answer;
 		try {
 			const params = new URLSearchParams({ secret: contact.recaptchaSecret, response: token });
 			const response = await fetch(contact.recaptchaVerifyUrl, {
@@ -59,12 +101,27 @@ export function createContactRouter(config, { log }) {
 				body: params.toString(),
 				signal: AbortSignal.timeout(timeouts.recaptchaMs),
 			});
-			const data = await response.json();
-			return { success: !!data.success, score: data.score };
+			answer = await response.json();
 		} catch (err) {
 			log.error("recaptcha_verify_failed", { cause: err?.cause?.code ?? err?.name ?? null });
-			return { success: false };
+			return { ok: false, why: "unreachable" };
 		}
+		const why = recaptchaRefusal(answer);
+		if (why) {
+			// Which check, and the score, so that a threshold can be judged from the log.
+			// The hostname and Google's codes only when they are the reason.
+			const hostname = answer?.hostname;
+			log.warn("recaptcha_refused", {
+				reason: why,
+				score: Number.isFinite(answer?.score) ? answer.score : null,
+				...(why === "wrong_hostname"
+					? { hostname: typeof hostname === "string" && HOSTNAME.test(hostname) ? hostname : null }
+					: {}),
+				...(why === "not_accepted" ? { error_codes: googleErrorCodes(answer) } : {}),
+			});
+			return { ok: false, why };
+		}
+		return { ok: true };
 	}
 
 	// The service said no. Its status is turned into one a visitor can be shown, and
@@ -170,13 +227,12 @@ export function createContactRouter(config, { log }) {
 				res.status(400).json({ error: "reCAPTCHA verification required" });
 				return;
 			}
-			const { success, score } = await verifyRecaptcha(recaptchaToken);
-			if (!success) {
-				res.status(400).json({ error: "reCAPTCHA verification failed" });
-				return;
-			}
-			if (typeof score === "number" && score < 0.5) {
-				res.status(400).json({ error: "reCAPTCHA score too low" });
+			const verdict = await verifyRecaptcha(recaptchaToken);
+			if (!verdict.ok) {
+				// The two sentences the route has always given. The form shows its own
+				// "Verification failed" for either, as it looks for the word reCAPTCHA.
+				const error = verdict.why === "low_score" ? "reCAPTCHA score too low" : "reCAPTCHA verification failed";
+				res.status(400).json({ error });
 				return;
 			}
 		}
