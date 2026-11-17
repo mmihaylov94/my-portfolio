@@ -73,7 +73,7 @@ A modern, performant portfolio website built with Nuxt 4, showcasing my work as 
 
 ### Prerequisites
 
-- Node.js 22.12 or newer, which the site's tests need (the images build and run on Node 20)
+- Node.js 22.12 or newer, which the site's tests need. The images build and run on Node 22, for the site and the API alike
 - npm
 
 ### Installation

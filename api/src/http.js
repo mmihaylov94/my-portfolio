@@ -4,7 +4,7 @@ import rateLimit from "express-rate-limit";
 // error responses, and the log.
 
 /**
- * Express 4 does not catch a rejected promise from an async handler, and on Node 20
+ * Express 4 does not catch a rejected promise from an async handler, and since Node 15
  * an unhandled rejection ends the process. This passes the error to Express instead.
  */
 export function asyncRoute(handler) {
