@@ -45,9 +45,11 @@ const body = (children, o = {}) => new Paragraph({
   ...o,
 });
 
-// square bullet with hanging indent
+// square bullet with hanging indent. Libre Franklin has no U+25AA, so the run names Segoe UI:
+// Windows falls back to it anyway, but LibreOffice on Linux would pick a colour emoji font,
+// which ignores the blue.
 const bullet = (children, o = {}) => new Paragraph({
-  children: [t('▪  ', { color: BLUE, bold: true }), ...children],
+  children: [t('▪  ', { color: BLUE, bold: true, font: 'Segoe UI' }), ...children],
   alignment: AlignmentType.JUSTIFIED,
   spacing: { after: 36, ...LINE },
   indent: { left: 260, hanging: 180 },
@@ -100,8 +102,9 @@ const projectDesc = (text) => new Paragraph({
   keepNext: true,
 });
 
+// same square as bullet(), so the same Segoe UI run font (see the note there)
 const pBullet = (children) => new Paragraph({
-  children: [t('\u25AA  ', { color: BLUE, bold: true }), ...children],
+  children: [t('\u25AA  ', { color: BLUE, bold: true, font: 'Segoe UI' }), ...children],
   alignment: AlignmentType.JUSTIFIED,
   spacing: { after: 30, ...LINE },
   indent: { left: 380, hanging: 180 },
