@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build
 
 # serve
-FROM nginx:1.27-alpine
+FROM nginx:1.30-alpine
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/.output/public /usr/share/nginx/html
 EXPOSE 80
